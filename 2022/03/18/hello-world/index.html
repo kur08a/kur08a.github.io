@@ -367,6 +367,28 @@
   
 
 
+<!--gitalk评论系统代码添加-->
+
+  <div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div> 
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+
+if(true){
+	var gitalk = new Gitalk({
+  	clientID: 'fa8f691beabb7c18913c',
+  	clientSecret: '338960d4cee917cd790f21e9879e2afaa72a0206',
+  	repo: 'myhexocomments',
+  	owner: 'kur08a',
+  	admin: ['kur08a'],
+  	id: 'Fri Mar 18 2022 21:59:13 GMT+0800',
+  	distractionFreeMode: 'true'
+})
+gitalk.render('gitalk-container') 
+}
+</script>
+  
           </div>
         </div>
       </div>
