@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://kur08a.github.io">
-  <title>Archives | Kur08a&#39;s Blog</title>
+  <title>hexo模板yilia头像增加旋转效果 | Kur08a&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Kur08a&#39;s Blog">
-<meta property="og:url" content="https://kur08a.github.io/archives/index.html">
+  <meta name="description" content="增加头像旋转效果后，鼠标放在头像上头像会旋转。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo模板yilia头像增加旋转效果">
+<meta property="og:url" content="https://kur08a.github.io/2022/03/20/hexo%E6%A8%A1%E6%9D%BFyilia%E5%A4%B4%E5%83%8F%E5%A2%9E%E5%8A%A0%E6%97%8B%E8%BD%AC%E6%95%88%E6%9E%9C/index.html">
 <meta property="og:site_name" content="Kur08a&#39;s Blog">
+<meta property="og:description" content="增加头像旋转效果后，鼠标放在头像上头像会旋转。">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-03-20T09:38:47.000Z">
+<meta property="article:modified_time" content="2022-03-20T09:48:32.038Z">
 <meta property="article:author" content="kur08a">
+<meta property="article:tag" content="hexo">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Kur08a&#39;s Blog" type="application/atom+xml">
@@ -154,35 +159,89 @@
           </div>
           <div id="js-content" class="content-ll">
             
+<article id="post-hexo模板yilia头像增加旋转效果" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      hexo模板yilia头像增加旋转效果
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/03/20/hexo%E6%A8%A1%E6%9D%BFyilia%E5%A4%B4%E5%83%8F%E5%A2%9E%E5%8A%A0%E6%97%8B%E8%BD%AC%E6%95%88%E6%9E%9C/" class="archive-article-date">
+
+
+        <!--显示阅读次数-->
+        
+          <br/>
+          <a class="cloud-tie-join-count" href="javascript:void(0);" style="color:gray;font-size:14px;">
+          <span class="icon-sort"></span>
+          <span id="busuanzi_container_page_pv" style="color:#ef7522;font-size:14px;">
+              阅读数: <span id="busuanzi_value_page_pv"></span>次 &nbsp;&nbsp;
+          </span>
+          </a>
+        
+        <!--显示阅读次数完毕-->
+
+        
+        <a href="/2022/03/20/hexo%E6%A8%A1%E6%9D%BFyilia%E5%A4%B4%E5%83%8F%E5%A2%9E%E5%8A%A0%E6%97%8B%E8%BD%AC%E6%95%88%E6%9E%9C/" class="archive-article-date">
   	<time datetime="2022-03-20T09:38:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-20</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/03/20/hexo%E6%A8%A1%E6%9D%BFyilia%E5%A4%B4%E5%83%8F%E5%A2%9E%E5%8A%A0%E6%97%8B%E8%BD%AC%E6%95%88%E6%9E%9C/">hexo模板yilia头像增加旋转效果</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>增加头像旋转效果后，鼠标放在头像上头像会旋转。</p>
+<span id="more"></span>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">1、在themes\yilia\source\文件夹下增加一个css文件 avatarrotation.css 用来旋转360度，</span><br><span class="line">内容如下：</span><br><span class="line"></span><br><span class="line">.left-col #header .profilepic img &#123;</span><br><span class="line">	/* 控制旋转速度时间*/</span><br><span class="line">  -webkit-transition: -webkit-transform 1.0s ease-out;</span><br><span class="line">  -moz-transition: -moz-transform 1.0s ease-out;</span><br><span class="line">  transition: transform 1.0s ease-out;</span><br><span class="line">&#125;</span><br><span class="line">.left-col #header .profilepic img:hover &#123;</span><br><span class="line">	/* 鼠标经过360% */</span><br><span class="line">  -webkit-transform: rotateZ(360deg);</span><br><span class="line">  -moz-transform: rotateZ(360deg);</span><br><span class="line">  transform: rotateZ(360deg);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2、在 themes\yilia\layout\_partial\head.ejs 文件中添加进去创建的css文件：</span><br><span class="line">找到&lt;%- partial(&#x27;css&#x27;) %&gt;，在它的下面添加代码，把刚才写的文件添加进去，</span><br><span class="line">注意：是在它的下面添加，不然旋转速度将不会生效。</span><br><span class="line">&lt;% if (theme.avatarrotation)&#123; %&gt;</span><br><span class="line">	&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;/./avatarrotation.css&quot;&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br><span class="line"></span><br><span class="line">如果css不生效，查看css中的 href 位置是否写错了，可根据你具体存放的位置写路径。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">3、最后在主题文件_config.yml中添加下面的内容即可：</span><br><span class="line">#头像是否旋转(如果不要旋转取false)</span><br><span class="line">avatarrotation: true</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
+      
+
+
+ <!-- 增加版权声明 -->
+
+
+<div class="declare" hidden="hidden"></div>
+
+<!-- 增加版权声明结束 -->    
+ 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/zfb.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/wx.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -194,135 +253,143 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://kur08a.github.io/2022/03/20/hexo%E6%A8%A1%E6%9D%BFyilia%E5%A4%B4%E5%83%8F%E5%A2%9E%E5%8A%A0%E6%97%8B%E8%BD%AC%E6%95%88%E6%9E%9C/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/03/20/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E4%BD%BF%E7%94%A8hexo%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%93%E5%B1%9Eblog/" class="archive-article-date">
-  	<time datetime="2022-03-20T03:07:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-20</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2022/03/20/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E4%BD%BF%E7%94%A8hexo%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%93%E5%B1%9Eblog/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">手把手教你使用hexo框架搭建自己的专属blog</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/03/20/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E4%BD%BF%E7%94%A8hexo%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%93%E5%B1%9Eblog/">手把手教你使用hexo框架搭建自己的专属blog</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/03/19/Markdown%E6%96%87%E6%A1%A3%E7%BC%96%E5%86%99%E6%A0%BC%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2022-03-19T12:12:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/03/19/Markdown%E6%96%87%E6%A1%A3%E7%BC%96%E5%86%99%E6%A0%BC%E5%BC%8F/">Markdown文档编写格式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/03/18/hello-world/" class="archive-article-date">
-  	<time datetime="2022-03-18T13:59:13.571Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/03/18/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
+        
+    </div>
+</aside>
 
 
+
+  
+  
+  
+
+  
+
+  
+
+  
+
+
+<!--gitalk评论系统代码添加-->
+
+  <div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div> 
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+
+if(true){
+	var gitalk = new Gitalk({
+  	clientID: 'fa8f691beabb7c18913c',
+  	clientSecret: '338960d4cee917cd790f21e9879e2afaa72a0206',
+  	repo: 'myhexocomments',
+  	owner: 'kur08a',
+  	admin: ['kur08a'],
+  	id: 'Sun Mar 20 2022 17:38:47 GMT+0800',
+  	distractionFreeMode: 'true'
+})
+gitalk.render('gitalk-container') 
+}
+</script>
+  
           </div>
         </div>
       </div>
@@ -352,8 +419,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
