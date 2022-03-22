@@ -526,31 +526,33 @@ func main() &#123;
 
 
 
-  
-  <div id="gitment-ctn"></div>
-  
-    <!-- 中文 -->
-    <link rel="stylesheet" href="/lib/gitment.css">
-    <script src="/lib/gitment.js"></script>
-  
-  <script>
-    <!-- id: "Markdown文档编写格式" -->
-    var gitment = new Gitment({
-      id: "20220319201238",
-      owner: 'kur08a',
-      repo: 'myhexocomments',
-      oauth: {
-        client_id: '148f0c84a8a85301fdb9',
-        client_secret: 'e92610d63406442ab9944b5bc1833fa6ab720285',
-      },
-    })
-    gitment.render('gitment-ctn')
-  </script>
 
 
+
+<!--gitalk评论系统代码添加-->
+
   
+<div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div> 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
 
+if(true){
+	var gitalk = new Gitalk({
+  	clientID: '148f0c84a8a85301fdb9',
+  	clientSecret: 'e92610d63406442ab9944b5bc1833fa6ab720285',
+  	repo: 'myhexocomments',
+  	owner: 'kur08a',
+  	admin: ['kur08a'],
+  	id: 'Sat Mar 19 2022 20:12:38 GMT+0800',
+  	distractionFreeMode: 'true'
+})
+gitalk.render('gitalk-container') 
+}
+</script>
+
+  
           </div>
         </div>
       </div>
@@ -761,7 +763,7 @@ func main() &#123;
     	<section class="tools-section tools-section-me" q-show="aboutme">
         
           
-  	  		<div class="aboutme-wrap" id="aboutme">COMPUTER<br><br>网络安全<br>Web安全<br>渗透测试</div>
+  	  		<div class="aboutme-wrap" id="aboutme">COMPUTER<br><br> 网络安全<br> Web安全<br> 渗透测试</div>
   	  	
     	</section>
     
