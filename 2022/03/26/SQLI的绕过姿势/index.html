@@ -10,15 +10,15 @@
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="十种常用绕过姿势以及二次注入原理。 1、SQL注入的各种绕过姿势：①大小写绕过②过滤注释的绕过12?id&#x3D;-1&amp;#x27;union select 1,database(),&amp;#x27;3?id&#x3D;-1&amp;#x27; union select 1,database(),3 or &amp;#x27;1&amp;#x27; &#x3D; &amp;#x27;1  ③双写绕过12?id&#x3D;1&amp;#x27; aAndnD 1&#x3D;1 --+也可在敏">
+  <meta name="description" content="十种常用绕过姿势以及二次注入原理。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQLI的绕过姿势">
 <meta property="og:url" content="https://kur08a.github.io/2022/03/26/SQLI%E7%9A%84%E7%BB%95%E8%BF%87%E5%A7%BF%E5%8A%BF/index.html">
 <meta property="og:site_name" content="Kur08a&#39;s Blog">
-<meta property="og:description" content="十种常用绕过姿势以及二次注入原理。 1、SQL注入的各种绕过姿势：①大小写绕过②过滤注释的绕过12?id&#x3D;-1&amp;#x27;union select 1,database(),&amp;#x27;3?id&#x3D;-1&amp;#x27; union select 1,database(),3 or &amp;#x27;1&amp;#x27; &#x3D; &amp;#x27;1  ③双写绕过12?id&#x3D;1&amp;#x27; aAndnD 1&#x3D;1 --+也可在敏">
+<meta property="og:description" content="十种常用绕过姿势以及二次注入原理。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-03-26T14:23:48.000Z">
-<meta property="article:modified_time" content="2022-03-27T05:22:14.820Z">
+<meta property="article:modified_time" content="2022-03-27T05:25:10.960Z">
 <meta property="article:author" content="kur08a">
 <meta property="article:tag" content="penetration">
 <meta property="article:tag" content="Web vulnerability">
@@ -247,7 +247,7 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>十种常用绕过姿势以及二次注入原理。</p>
+    <p>十种常用绕过姿势以及二次注入原理。<span id="more"></span></p>
 <h2 id="1、SQL注入的各种绕过姿势："><a href="#1、SQL注入的各种绕过姿势：" class="headerlink" title="1、SQL注入的各种绕过姿势："></a>1、SQL注入的各种绕过姿势：</h2><h3 id="①大小写绕过"><a href="#①大小写绕过" class="headerlink" title="①大小写绕过"></a>①大小写绕过</h3><h3 id="②过滤注释的绕过"><a href="#②过滤注释的绕过" class="headerlink" title="②过滤注释的绕过"></a>②过滤注释的绕过</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?id=-1&#x27;union select 1,database(),&#x27;3</span><br><span class="line">?id=-1&#x27; union select 1,database(),3 or &#x27;1&#x27; = &#x27;1</span><br></pre></td></tr></table></figure>
 
 <h3 id="③双写绕过"><a href="#③双写绕过" class="headerlink" title="③双写绕过"></a>③双写绕过</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?id=1&#x27; aAndnD 1=1 --+</span><br><span class="line">也可在敏感词汇中添加注释，如：a/**/nd</span><br></pre></td></tr></table></figure>
@@ -613,15 +613,15 @@ gitalk.render('gitalk-container')
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">penetration</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Web vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">基础</a>
               </li>
              
               <li class="article-tag-list-item">
