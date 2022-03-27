@@ -18,7 +18,7 @@
 <meta property="og:description" content="SQL注入的前提、本质、危害、分类、发现注入点、手工注入与盲注思路……">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-03-27T08:00:48.000Z">
-<meta property="article:modified_time" content="2022-03-27T08:10:14.547Z">
+<meta property="article:modified_time" content="2022-03-27T14:08:37.930Z">
 <meta property="article:author" content="kur08a">
 <meta property="article:tag" content="penetration">
 <meta property="article:tag" content="Web vulnerability">
@@ -227,7 +227,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">2k字</span>
+      <span class="post-count">2.1k字</span>
     </span>
   </span>
 
@@ -236,7 +236,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">7分</span>
+      <span class="post-count">8分</span>
     </span>
   </span>
 </div>
@@ -267,7 +267,7 @@
 
 
 
-<h2 id="6、手工注入与手工盲注思路"><a href="#6、手工注入与手工盲注思路" class="headerlink" title="6、手工注入与手工盲注思路"></a>6、手工注入与手工盲注思路</h2><h3 id="手工注入思路："><a href="#手工注入思路：" class="headerlink" title="手工注入思路："></a>手工注入思路：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">自动化的注入神器sqlmap固然好用，但还是要掌握一些手工注入的思路，</span><br><span class="line">手工注入（非盲注）的步骤:</span><br><span class="line">1.判断是否存在注入，注入是字符型还是数字型。</span><br><span class="line">2.猜解SQL查询语句中的字段数。</span><br><span class="line">3.确定显示的字段顺序。</span><br><span class="line">4.获取当前数据库。</span><br><span class="line">5.获取数据库中的表。</span><br><span class="line">6.获取表中的字段名。</span><br><span class="line">7.下载数据。</span><br></pre></td></tr></table></figure>
+<h2 id="6、手工注入与手工盲注思路"><a href="#6、手工注入与手工盲注思路" class="headerlink" title="6、手工注入与手工盲注思路"></a>6、手工注入与手工盲注思路</h2><h3 id="手工注入思路："><a href="#手工注入思路：" class="headerlink" title="手工注入思路："></a>手工注入思路：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">自动化的注入神器sqlmap固然好用，但还是要掌握一些手工注入的思路，</span><br><span class="line">手工注入（非盲注）的步骤:</span><br><span class="line">1.判断是否存在注入，注入是字符型还是数字型。</span><br><span class="line"></span><br><span class="line">(有时还需要先判断数据库类型、版本，因为数据库类型不同，其内置函数和固定表名也不同，能使用的函数也会随之改变。</span><br><span class="line">例如“内联注释”只针对 Mysql 数据库，对mssql无效；</span><br><span class="line">mysql 5.1.5 版本后才有 ExtractValue 和 UpdateXML 两个函数，5.1.5之前的版本就不能使用这两个函数进行报错注入了。)</span><br><span class="line"></span><br><span class="line">2.猜解SQL查询语句中的字段数。</span><br><span class="line">3.确定显示的字段顺序。</span><br><span class="line">4.获取当前数据库。</span><br><span class="line">5.获取数据库中的表。</span><br><span class="line">6.获取表中的字段名。</span><br><span class="line">7.下载数据。</span><br></pre></td></tr></table></figure>
 
 <h3 id="手工盲注思路："><a href="#手工盲注思路：" class="headerlink" title="手工盲注思路："></a>手工盲注思路：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">手工盲注的过程，就像你与一个机器人聊天，这个机器人知道的很多，但只会回答“是”或者“不是”，</span><br><span class="line">因此你需要询问它这样的问题，例如“数据库名字的第一个字母是不是a啊？”，</span><br><span class="line">通过这种机械的询问，最终获得你想要的数据。</span><br><span class="line">盲注分为基于布尔的盲注、基于时间的盲注以及基于报错的盲注。</span><br><span class="line">手工盲注的步骤：</span><br><span class="line">1.判断是否存在注入，注入是字符型还是数字型</span><br><span class="line">2.猜解当前数据库名</span><br><span class="line">3.猜解数据库中的表名</span><br><span class="line">4.猜解表中的字段名</span><br><span class="line">5.猜解数据</span><br></pre></td></tr></table></figure>
 
@@ -635,7 +635,7 @@ gitalk.render('gitalk-container')
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">基础</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -647,7 +647,7 @@ gitalk.render('gitalk-container')
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">基础</a>
               </li>
              
               <li class="article-tag-list-item">
