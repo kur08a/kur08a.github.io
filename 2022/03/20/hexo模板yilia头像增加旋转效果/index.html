@@ -18,7 +18,7 @@
 <meta property="og:description" content="增加头像旋转效果后，鼠标放在头像上头像会旋转。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-03-20T09:38:47.000Z">
-<meta property="article:modified_time" content="2022-03-27T04:49:53.861Z">
+<meta property="article:modified_time" content="2022-03-27T05:27:26.500Z">
 <meta property="article:author" content="kur08a">
 <meta property="article:tag" content="hexo">
 <meta name="twitter:card" content="summary">
@@ -246,8 +246,7 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>增加头像旋转效果后，鼠标放在头像上头像会旋转。</p>
-<span id="more"></span>
+    <p>增加头像旋转效果后，鼠标放在头像上头像会旋转。<span id="more"></span></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">1、在themes\yilia\source\文件夹下增加一个css文件 avatarrotation.css 用来旋转360度，</span><br><span class="line">内容如下：</span><br><span class="line"></span><br><span class="line">.left-col #header .profilepic img &#123;</span><br><span class="line">	/* 控制旋转速度时间*/</span><br><span class="line">  -webkit-transition: -webkit-transform 1.0s ease-out;</span><br><span class="line">  -moz-transition: -moz-transform 1.0s ease-out;</span><br><span class="line">  transition: transform 1.0s ease-out;</span><br><span class="line">&#125;</span><br><span class="line">.left-col #header .profilepic img:hover &#123;</span><br><span class="line">	/* 鼠标经过360% */</span><br><span class="line">  -webkit-transform: rotateZ(360deg);</span><br><span class="line">  -moz-transform: rotateZ(360deg);</span><br><span class="line">  transform: rotateZ(360deg);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2、在 themes\yilia\layout\_partial\head.ejs 文件中添加进去创建的css文件：</span><br><span class="line">找到&lt;%- partial(&#x27;css&#x27;) %&gt;，在它的下面添加代码，把刚才写的文件添加进去，</span><br><span class="line">注意：是在它的下面添加，不然旋转速度将不会生效。</span><br><span class="line">&lt;% if (theme.avatarrotation)&#123; %&gt;</span><br><span class="line">	&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;/./avatarrotation.css&quot;&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br><span class="line"></span><br><span class="line">如果css不生效，查看css中的 href 位置是否写错了，可根据你具体存放的位置写路径。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">3、最后在主题文件_config.yml中添加下面的内容即可：</span><br><span class="line">#头像是否旋转(如果不要旋转取false)</span><br><span class="line">avatarrotation: true</span><br></pre></td></tr></table></figure>
 
     
