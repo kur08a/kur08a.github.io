@@ -614,6 +614,124 @@
   
   
   
+    <article id="post-python3一些语法特性" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2022/04/01/python3%E4%B8%80%E4%BA%9B%E8%AF%AD%E6%B3%95%E7%89%B9%E6%80%A7/">python3一些语法特性</a>
+	
+    </h1>
+  
+
+
+
+  
+  
+<a href="/2022/04/01/python3%E4%B8%80%E4%BA%9B%E8%AF%AD%E6%B3%95%E7%89%B9%E6%80%A7/" class="archive-article-date">
+        <time datetime="2022-04-01T08:10:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-01</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <span id="more"></span>
+<p>1、无分号 ; </p>
+<p>2、无花括号，用冒号 : 和缩进代替</p>
+<p>3、所有输入默认当做字符串处理，如果要输入一个数字，赋值时要使用 int( )方法进行类型转换。输入为 input( )，输出为 print( )。</p>
+<p>4、&#x2F; 为浮点数除法，&#x2F;&#x2F; 是将小数部分用 .0 代替，类似向下去整。</p>
+<p>5、无三目运算符，但是可以用下面这个代替：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;true&quot;</span> <span class="keyword">if</span>(a==b) <span class="keyword">else</span> <span class="string">&quot;false&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>6、可以直接交换两个变量，不用中间变量。如 x,y &#x3D; y,x</p>
+<p>7、python没有自增长a++，可以使用a+&#x3D;1</p>
+<p>8、python默认每次新的 print 都另起一行，如果想输出到一行，需使用 end 关键字。</p>
+<p>9、输出格式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">1、直接输出</span><br><span class="line">number型数据用逗号分隔，输出时，逗号两边的输出中间自动使用了空格隔开：</span><br><span class="line">print( a , &quot;对应的字符为&quot;, chr(a))</span><br><span class="line">string型数据使用加号 + 连接，输出时直接连在一起，中间没有间隙，可以自行加空格：</span><br><span class="line">print( c + &quot; 的ASCII 码为&quot;, ord(c))</span><br><span class="line"></span><br><span class="line">2、关键字end可以将结果输出到同一行，或者在输出的末尾添加不同的字符：</span><br><span class="line">print(n,end=&#x27; &#x27;)</span><br><span class="line"></span><br><span class="line">3、% % 型：</span><br><span class="line">print(&#x27;三角形面积为 %0.2f&#x27; %area)</span><br><span class="line">print(&#x27;两数之和为 %.1f&#x27; %(float(input(&#x27;输入第一个数字：&#x27;))+float(input(&#x27;输入第二个数字：&#x27;))))</span><br><span class="line"></span><br><span class="line">4、&#123;&#125; .format()型：</span><br><span class="line">print(&quot;从 1 到 &#123;0&#125; 之间不包括&#123;0&#125;，有 &#123;1&#125; 个素数&quot;.format(n,s))</span><br><span class="line">print(&#x27;&#123;0&#125; 的平方根为 &#123;1:0.3f&#125;+&#123;2:0.3f&#125;j&#x27;.format(num,num_sqrt.real,num_sqrt.imag))</span><br><span class="line"></span><br><span class="line">5、f&quot;&#123;变量或表达式&#125;&quot;型(python3.6 之后版本添加的)： </span><br><span class="line">print(f&#x27;&#123;is_number(&quot;-1.37&quot;)&#125;&#x27;)</span><br><span class="line">print(f&quot;当 a=&#123;a:2&#125;,b=&#123;b:2&#125; 时，解密结果为：&#123;M&#125;&quot;)</span><br><span class="line"></span><br><span class="line">6、python三目运算符型：</span><br><span class="line">print(&quot;true&quot; if(a==b) else &quot;false&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>10、面向对象：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">1、类定义：class name(): </span><br><span class="line">2、构造方法：def __init__(self):  该方法在类实例化时会自动调用。</span><br><span class="line">3、类的方法：def name(self):</span><br><span class="line">类的方法与普通的函数只有一个特别的区别：</span><br><span class="line">它们必须有一个额外的第一个参数名称, 按照惯例它的名称是 self(类似Java的this)。</span><br><span class="line">self 代表的是类的实例，代表当前对象的地址，在类中可使用self.xxx调用类的属性和方法。</span><br><span class="line"></span><br><span class="line">4、类中私有属性和私有方法的定义(两个下划线开头)：</span><br><span class="line">__weight = 0      # 私有属性</span><br><span class="line">def __foo(self):  # 私有方法</span><br><span class="line"></span><br><span class="line">5、继承：</span><br><span class="line">class DerivedClassName(BaseClassName):</span><br><span class="line">子类（派生类 DerivedClassName）会继承父类（基类 BaseClassName）的属性和方法。</span><br><span class="line">继承后，子类可以调用和重写父类的方法。</span><br><span class="line"></span><br><span class="line">6、多继承：</span><br><span class="line">class DerivedClassName(Base1, Base2, Base3):</span><br><span class="line">需要注意圆括号中父类的顺序，若是父类中有相同的方法名，而在子类使用时未指定，python从左至右搜索。</span><br><span class="line"></span><br><span class="line">7、super() 函数是用于调用父类(超类)的一个方法：</span><br><span class="line">c = Child()               # 子类实例</span><br><span class="line">c.myMethod()              # 子类调用重写方法</span><br><span class="line">super(Child,c).myMethod() # 用子类对象调用父类已被覆盖的方法</span><br><span class="line"></span><br><span class="line">8、类的专有方法：</span><br><span class="line">__init__ :    构造函数，在生成对象时调用</span><br><span class="line">__del__ :     析构函数，释放对象时使用</span><br><span class="line">__repr__ :    打印，转换</span><br><span class="line">__setitem__ : 按照索引赋值</span><br><span class="line">__getitem__:  按照索引获取值</span><br><span class="line">__len__:      获得长度</span><br><span class="line">__cmp__:      比较运算</span><br><span class="line">__call__:     函数调用</span><br><span class="line">__add__:      加运算</span><br><span class="line">__sub__:      减运算</span><br><span class="line">__mul__:      乘运算</span><br><span class="line">__truediv__:  除运算</span><br><span class="line">__mod__:      求余运算</span><br><span class="line">__pow__:      乘方</span><br><span class="line"></span><br><span class="line">9、运算符重载</span><br><span class="line"></span><br><span class="line">10、静态方法：</span><br><span class="line">class C(object):</span><br><span class="line">    @staticmethod</span><br><span class="line">    def f():</span><br><span class="line">        print(&#x27;nice&#x27;);</span><br><span class="line">C.f();          # 静态方法无需实例化</span><br><span class="line"></span><br><span class="line">11、类方法：</span><br><span class="line">classmethod 修饰符对应的函数不需要实例化，不需要 self 参数，</span><br><span class="line">但第一个参数需要是表示自身类的 cls 参数，可以来调用类的属性，类的方法，实例化对象等。</span><br><span class="line">class A(object):</span><br><span class="line">    bar = 1</span><br><span class="line">    def func1(self):  </span><br><span class="line">        print (&#x27;foo&#x27;) </span><br><span class="line">    @classmethod</span><br><span class="line">    def func2(cls):</span><br><span class="line">        print (&#x27;func2&#x27;)</span><br><span class="line">        print (cls.bar)</span><br><span class="line">        cls().func1()   # 调用 foo 方法</span><br><span class="line"> </span><br><span class="line">A.func2()               # 不需要实例化</span><br></pre></td></tr></table></figure>
+
+<p>11、compile( )编译函数与exec( )执行函数的联合使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;str = &quot;for i in range(0,10): print(i)&quot; </span><br><span class="line">&gt;&gt;&gt; c = compile(str,&#x27;&#x27;,&#x27;exec&#x27;)   # 编译为字节代码对象 </span><br><span class="line">&gt;&gt;&gt; c</span><br><span class="line">&lt;code object &lt;module&gt; at 0x10141e0b0, file &quot;&quot;, line 1&gt;</span><br><span class="line">&gt;&gt;&gt; exec(c)</span><br><span class="line">0</span><br><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">&gt;&gt;&gt; str = &quot;3 * 4 + 5&quot;</span><br><span class="line">&gt;&gt;&gt; a = compile(str,&#x27;&#x27;,&#x27;eval&#x27;)</span><br><span class="line">&gt;&gt;&gt; eval(a)</span><br><span class="line">17</span><br></pre></td></tr></table></figure>
+
+<p>12、with关键字</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">Python 中的 with 语句用于异常处理，封装了 try…except…finally 编码范式，提高了易用性。</span><br><span class="line">with 语句使代码更清晰、更具可读性， 它简化了文件流等公共资源的管理。</span><br><span class="line">在处理文件对象时使用 with 关键字是一种很好的做法。</span><br><span class="line">1、不使用 with，也不使用 try…except…finally：</span><br><span class="line">file = open(&#x27;./test.txt&#x27;, &#x27;w&#x27;)</span><br><span class="line">file.write(&#x27;hello world !&#x27;)</span><br><span class="line">file.close()</span><br><span class="line">以上代码如果在调用 write 的过程中，出现了异常，则 close 方法将无法被执行，因此资源就会一直被该程序占用而无法被释放。</span><br><span class="line">2、使用 try…except…finally 改进代码：</span><br><span class="line">file = open(&#x27;./test.txt&#x27;, &#x27;w&#x27;)</span><br><span class="line">try:</span><br><span class="line">    file.write(&#x27;hello world&#x27;)</span><br><span class="line">finally:</span><br><span class="line">    file.close()</span><br><span class="line">以上代码对可能发生异常的代码处进行 try 捕获，发生异常时执行 except 代码块，</span><br><span class="line">finally 代码块是无论什么情况都会执行，所以文件会被关闭，不会因为执行异常而占用资源。</span><br><span class="line">3、使用 with 关键字：</span><br><span class="line">with open(&#x27;./test.txt&#x27;, &#x27;w&#x27;) as file:</span><br><span class="line">    file.write(&#x27;hello world !&#x27;)</span><br><span class="line">使用 with 关键字系统会自动调用 f.close() 方法， with 的作用等效于 try/finally 语句是一样的。</span><br><span class="line">代码中file是一个文件对象，名字可以自定义。</span><br><span class="line"></span><br><span class="line">with 语句实现原理建立在上下文管理器之上。</span><br><span class="line">上下文管理器是一个实现 __enter__ 和 __exit__ 方法的类。</span><br><span class="line">使用 with 语句确保在嵌套块的末尾调用 __exit__ 方法。</span><br><span class="line">这个概念类似于 try...finally 块的使用。</span><br><span class="line"></span><br><span class="line">以上实例将 hello world! 写到 ./test.txt 文件上。</span><br><span class="line">在文件对象中定义了 __enter__ 和 __exit__ 方法，即文件对象也实现了上下文管理器，</span><br><span class="line">首先调用 __enter__ 方法，然后执行 with 语句中的代码，最后调用 __exit__ 方法。</span><br><span class="line">即使出现错误，也会调用 __exit__ 方法，也就是会关闭文件流。</span><br></pre></td></tr></table></figure>
+    
+
+
+ <!-- 增加版权声明 -->
+ 
+ 
+ <div class="declare" hidden="hidden"></div>
+    
+<!-- 增加版权声明 -->
+<!--  -->
+<!-- 增加版权声明结束 --> 
+
+    
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">python3</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2022/04/01/python3%E4%B8%80%E4%BA%9B%E8%AF%AD%E6%B3%95%E7%89%B9%E6%80%A7/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+<!--gitalk评论系统代码添加-->
+
+  
+  
+  
     <article id="post-python3函数和方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1118,110 +1236,6 @@
   
   
   
-    <article id="post-使用BP进行POST型SQL注入" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/03/27/%E4%BD%BF%E7%94%A8BP%E8%BF%9B%E8%A1%8CPOST%E5%9E%8BSQL%E6%B3%A8%E5%85%A5/">使用BP进行POST型SQL注入</a>
-	
-    </h1>
-  
-
-
-
-  
-  
-<a href="/2022/03/27/%E4%BD%BF%E7%94%A8BP%E8%BF%9B%E8%A1%8CPOST%E5%9E%8BSQL%E6%B3%A8%E5%85%A5/" class="archive-article-date">
-        <time datetime="2022-03-27T13:54:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-27</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>BP抓包，修改数据包探测注入点，结合提交的表单内容、cookie、UA、referer进行注入。
-    
-    <a class="article-more-a" href="/2022/03/27/%E4%BD%BF%E7%94%A8BP%E8%BF%9B%E8%A1%8CPOST%E5%9E%8BSQL%E6%B3%A8%E5%85%A5/#more">more >></a>
-    
-    
-
-
- <!-- 增加版权声明 -->
- 
- 
- <div class="declare" hidden="hidden"></div>
-    
-<!-- 增加版权声明 -->
-<!--  -->
-<!-- 增加版权声明结束 --> 
-
-    
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">penetration</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Web vulnerability</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/03/27/%E4%BD%BF%E7%94%A8BP%E8%BF%9B%E8%A1%8CPOST%E5%9E%8BSQL%E6%B3%A8%E5%85%A5/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!--gitalk评论系统代码添加-->
-
-  
-  
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
@@ -1355,7 +1369,7 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">penetration</a>
+                <a href="javascript:void(0)" class="js-tag color3">English</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1363,7 +1377,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">English</a>
+                <a href="javascript:void(0)" class="js-tag color2">penetration</a>
               </li>
              
               <li class="article-tag-list-item">
