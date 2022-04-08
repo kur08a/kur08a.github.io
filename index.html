@@ -614,6 +614,139 @@
   
   
   
+    <article id="post-chapter1-函数、极限、连续" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2022/04/08/chapter1-%E5%87%BD%E6%95%B0%E3%80%81%E6%9E%81%E9%99%90%E3%80%81%E8%BF%9E%E7%BB%AD/">chapter1 函数、极限、连续</a>
+	
+    </h1>
+  
+
+
+
+  
+  
+<a href="/2022/04/08/chapter1-%E5%87%BD%E6%95%B0%E3%80%81%E6%9E%81%E9%99%90%E3%80%81%E8%BF%9E%E7%BB%AD/" class="archive-article-date">
+        <time datetime="2022-04-08T14:19:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-08</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3 id="一、函数"><a href="#一、函数" class="headerlink" title="一、函数"></a>一、函数</h3><p>1、因变量的唯一性。</p>
+<p>2、由定义域和对应法则唯一确定。</p>
+<p>3、奇偶性</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.若在x=0处有定义，f(0)=0</span><br><span class="line">2.同积为偶，异积为奇</span><br><span class="line">3.对称区间上的函数可写成“一奇+一偶”的形式。</span><br></pre></td></tr></table></figure>
+
+<p>4、周期性</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1.第一区间为有限区间，必定不是周期函数。</span><br><span class="line">2.f(x)周期为T，则f(ax+b) (a≠0)周期为T/|a|。</span><br><span class="line">3.f(x)与g(x)周期均为T，则f(x)+-g(x)周期仍为T。</span><br><span class="line">4.f(x)周期为T1，g(x)周期为T2，T1与T2最小公倍数为T，则f(x)+-g(x)周期为T。</span><br><span class="line">【注：无理数无最小公倍数，最小公倍数为正整数。】</span><br><span class="line">【例：T1=π（无理数），T2=2，T1、T2无公倍数，则f(x)+-g(x)无周期】</span><br><span class="line">5.周期性的判定：</span><br><span class="line">①定义法:f(x)=f(x+T)</span><br><span class="line">②周期函数的运算性质</span><br></pre></td></tr></table></figure>
+
+<p>5、有界性</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">1.定义：</span><br><span class="line">设f(x)在区间I上有定义，若对任意的x∈I，总存在M&gt;0,使|f(x)|&lt;=M,称f(x)在I上有界。</span><br><span class="line">2.单侧有界的定义：</span><br><span class="line">有上界：对任意的x∈I，总存在M，使f(x)&lt;=M</span><br><span class="line">有下界：对任意的x∈I，总存在M，使f(x)&gt;=M</span><br><span class="line">有界：既有上界又有下界。</span><br><span class="line">3.无界的定义：</span><br><span class="line">设f(x)在区间I上有定义，若对任意M&gt;0,总存在x∈I，使|f(x)|&gt;M,称f(x)在I上无界。</span><br><span class="line">4.常见的有界函数：</span><br><span class="line">sinx  cosx  arcsinx arccosx arctanx arccotx sina(x) cosa(x) ...</span><br><span class="line">x/(1+x^2) =&gt;证：①加绝对值 ②放缩(不等式a^2+b^2&gt;=2ab)</span><br></pre></td></tr></table></figure>
+
+<p>6、反函数（一一映射才有反函数）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">y=f(x)的图像与x=f-1(y)重叠，与y=f-1(x)图像关于y=x对称。</span><br><span class="line">1.单调函数必然有反函数，反之不一定成立。</span><br><span class="line">2.常见函数及其反函数：</span><br><span class="line">sinx,x∈[-π/2,π/2]   反函数：x=arcsiny</span><br><span class="line">sinx,x∈[π/2,3π/2]   反函数：x=π-arcsiny</span><br><span class="line">cosx,x∈[0,π]   反函数：x=arccosy</span><br><span class="line">cosx,x∈[-π,0]   反函数：x=-arccosy</span><br></pre></td></tr></table></figure>
+
+<p>7、复合函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.构成复合函数的前提条件：</span><br><span class="line">内层函数的值域与外层函数的定义域交集非空。</span><br><span class="line">2.求解复合函数的表达式和定义域：</span><br><span class="line">（1）改符号：f(u)=...   u=g(x)=...</span><br><span class="line">（2）f[g(x)]=...</span><br></pre></td></tr></table></figure>
+
+<p>8、分段函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1.两种形式的区别：分段点两侧的表达式不同与相同。</span><br><span class="line">2.常见分段函数：</span><br><span class="line">（1）隐藏形式的分段函数：1、绝对值函数（不能直接求导，方法：令其=0，求分段点）</span><br><span class="line">（2）最值函数（表达式比较复杂怎么办？作差令其=0，找到相等的点，区间分开，再进行判断大小）</span><br><span class="line">（3）取整函数：（常用放缩技巧：x-1&lt;[x]&lt;=x）</span><br><span class="line">（4）极限表达式确定的函数，也是隐藏形式的分段函数。</span><br></pre></td></tr></table></figure>
+
+<h3 id="二、极限的概念与性质"><a href="#二、极限的概念与性质" class="headerlink" title="二、极限的概念与性质"></a>二、极限的概念与性质</h3><p>1、极限的定义：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1.函数极限存在的定义（6种）</span><br><span class="line">x0的去心邻域内，绝对误差|f(x)-A|任意小（&gt;0）。</span><br><span class="line"></span><br><span class="line">f(x)在x0处极限存在的充要条件是f(x)在x0的左极限和右极限存在且相等。</span><br><span class="line"></span><br><span class="line">2.数列极限存在的定义（1种）</span><br><span class="line">n-&gt;+∞，存在正整数N，n&gt;N时，|xn-a|任意小。</span><br><span class="line"></span><br><span class="line">数列极限与数列的前有限项无关，只与N足够大时各项的取值有关。</span><br></pre></td></tr></table></figure>
+
+<p>2、极限存在的性质</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">极限存在：</span><br><span class="line">在自变量的某一趋向过程下，函数或数列的变化趋势是无限接近于唯一确定常数变化。</span><br><span class="line">（1）数列极限存在的性质：</span><br><span class="line">1.唯一性</span><br><span class="line">2.有界性：xn极限存在(xn收敛)，则&#123;xn&#125;有界，反之不一定成立。</span><br><span class="line">3.保号性（细节：严格大于和大于等于）</span><br><span class="line">4.数列与其子列的极限性质：</span><br><span class="line">①父列收敛于a，则任一子列必收敛于a。</span><br><span class="line">②父列单调，且某一子列收敛于a，则父列收敛于a。</span><br><span class="line">③偶数项子列极限=奇数项子列极限=a，则父列收敛于a。</span><br><span class="line">（只要父列的后无限项都被子列覆盖了就可以，与前有限项无关）</span><br><span class="line"></span><br><span class="line">（2）函数极限存在的性质：</span><br><span class="line">1.唯一性</span><br><span class="line">2.局部有界性(在整个定义域上不一定有界)</span><br><span class="line">3.局部保号性（细节处同数列极限性质）</span><br></pre></td></tr></table></figure>
+
+<p>3、无穷小量与无穷大量</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">（1）无穷小量</span><br><span class="line">1.类型：</span><br><span class="line">①a(x)恒等于0</span><br><span class="line">②非0无穷小</span><br><span class="line">③其他（如：振荡无穷小）</span><br><span class="line">2.去极限&quot;定理&quot;：limf(x)=A ,则f(x)=A+a(x),且lim a(x)=0</span><br><span class="line"></span><br><span class="line">（2）无穷大量</span><br><span class="line">无穷大量与无界量的区别：</span><br><span class="line">1.无界关注的是确定区间上函数的特性，</span><br><span class="line">而无穷大量只关注在一个微观局部内函数的特性。</span><br><span class="line">2.无穷大量必为无界变量，而无界变量不一定是无穷大量。（如(1/x)*sin(1/x)）</span><br><span class="line"></span><br><span class="line">（3）无穷大与无穷小的关系：互为倒数（分母不为零）</span><br></pre></td></tr></table></figure>
+
+<h3 id="三、极限的计算"><a href="#三、极限的计算" class="headerlink" title="三、极限的计算"></a>三、极限的计算</h3><p>1、极限运算法则：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">（1）无穷小运算性质：</span><br><span class="line">1.有限个无穷小之和仍为无穷小。</span><br><span class="line">【无穷个无穷小之和是否仍为无穷小，与无穷小的阶数或者说变化的速度有关。】</span><br><span class="line">2.有界函数与无穷小乘积仍为无穷小。</span><br><span class="line">3.有限个无穷小乘积仍为无穷小。</span><br><span class="line"></span><br><span class="line">（2）极限的四则运算法则：</span><br><span class="line">前提：f(x)和g(x)各自的极限都存在。</span><br><span class="line"></span><br><span class="line">（3）x-&gt;∞时，有抓大头原理。</span><br><span class="line"></span><br><span class="line">（4）复合函数极限运算法则。</span><br><span class="line"></span><br><span class="line">（5）洛必达法则</span><br><span class="line">前提：</span><br><span class="line">①f(x)/g(x)的极限为0/0或 ∞/∞型未定式；</span><br><span class="line">②f(x)与g(x)在局部可导，且g&#x27;(x)≠0；</span><br><span class="line">③f&#x27;(x)/g&#x27;(x)的极限存在或为 ∞ 。（不能是有界振荡，如limx-&gt;∞(2+cosx^2)）</span><br><span class="line">七种未定式：</span><br><span class="line">1.除法：∞/∞、0/0</span><br><span class="line">2.乘法：0·∞</span><br><span class="line">3.减法：∞-∞</span><br><span class="line">4.幂：∞^0、0^0、1^∞</span><br><span class="line">【这里都指的是极限，其中的&quot;0&quot;为非零无穷小，&quot;1&quot;为极限为1,本身不为1的函数】</span><br><span class="line"></span><br><span class="line">（6）泰勒公式（最有效简便快捷，需记忆）</span><br></pre></td></tr></table></figure>
+
+<p>2、极限存在准则与两个重要极限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">（1）夹逼准则（不好直接求解，但是好适当放缩的极限）</span><br><span class="line">（2）单调有界收敛准则（单调有界数列必收敛）</span><br><span class="line">（3）证明数列单调的四种方法：</span><br><span class="line">1.相减与0比</span><br><span class="line">2.相除与1比</span><br><span class="line">3.数学归纳法：</span><br><span class="line">①x1&lt;=x2</span><br><span class="line">②假设x(k-1) &lt;= xk</span><br><span class="line">③证明xk &lt;= x(k+1)</span><br><span class="line">4.若已知数列的通项公式（不是递推公式），可转换为f(x)进行求导判断单调性。</span><br><span class="line">（4）判断数列有界的常用方法：</span><br><span class="line">1.用有界的定义判断</span><br><span class="line">2.用数学归纳法：</span><br><span class="line">①x1&lt;=M</span><br><span class="line">②假设xk &lt;= M</span><br><span class="line">③证明x(k+1) &lt;= M</span><br><span class="line"></span><br><span class="line">（5）两个重要极限：</span><br><span class="line">1.limx-&gt;0(sinx/x) = 1</span><br><span class="line">推广：lima(x)=0 (a(x)≠0)，则lim sina(x)/a(x) = 1</span><br><span class="line">2.limx-&gt;0(1+x)^(1/x) = e  或 limx-&gt;∞(1+1/x)^x = e</span><br><span class="line">推广：lima(x)=0 (a(x)≠0)，则lim (1+a(x))^(1/a(x)) = e</span><br></pre></td></tr></table></figure>
+
+<p>3、无穷小的比较（比阶）</p>
+
+    
+
+
+ <!-- 增加版权声明 -->
+ 
+ 
+ <div class="declare" hidden="hidden"></div>
+    
+<!-- 增加版权声明 -->
+<!--  -->
+<!-- 增加版权声明结束 --> 
+
+    
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">math</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2022/04/08/chapter1-%E5%87%BD%E6%95%B0%E3%80%81%E6%9E%81%E9%99%90%E3%80%81%E8%BF%9E%E7%BB%AD/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+<!--gitalk评论系统代码添加-->
+
+  
+  
+  
     <article id="post-1-C语言简介" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1118,106 +1251,6 @@
   
   
   
-    <article id="post-hexo博客yilia主题上一页下一页显示的问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/03/28/hexo%E5%8D%9A%E5%AE%A2yilia%E4%B8%BB%E9%A2%98%E4%B8%8A%E4%B8%80%E9%A1%B5%E4%B8%8B%E4%B8%80%E9%A1%B5%E6%98%BE%E7%A4%BA%E7%9A%84%E9%97%AE%E9%A2%98/">hexo博客yilia主题上一页下一页显示的问题</a>
-	
-    </h1>
-  
-
-
-
-  
-  
-<a href="/2022/03/28/hexo%E5%8D%9A%E5%AE%A2yilia%E4%B8%BB%E9%A2%98%E4%B8%8A%E4%B8%80%E9%A1%B5%E4%B8%8B%E4%B8%80%E9%A1%B5%E6%98%BE%E7%A4%BA%E7%9A%84%E9%97%AE%E9%A2%98/" class="archive-article-date">
-        <time datetime="2022-03-28T11:50:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-28</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>hexo框架的yilia主题中翻页显示有如下问题：
-    
-    <a class="article-more-a" href="/2022/03/28/hexo%E5%8D%9A%E5%AE%A2yilia%E4%B8%BB%E9%A2%98%E4%B8%8A%E4%B8%80%E9%A1%B5%E4%B8%8B%E4%B8%80%E9%A1%B5%E6%98%BE%E7%A4%BA%E7%9A%84%E9%97%AE%E9%A2%98/#more">more >></a>
-    
-    
-
-
- <!-- 增加版权声明 -->
- 
- 
- <div class="declare" hidden="hidden"></div>
-    
-<!-- 增加版权声明 -->
-<!--  -->
-<!-- 增加版权声明结束 --> 
-
-    
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/03/28/hexo%E5%8D%9A%E5%AE%A2yilia%E4%B8%BB%E9%A2%98%E4%B8%8A%E4%B8%80%E9%A1%B5%E4%B8%8B%E4%B8%80%E9%A1%B5%E6%98%BE%E7%A4%BA%E7%9A%84%E9%97%AE%E9%A2%98/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!--gitalk评论系统代码添加-->
-
-  
-  
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
@@ -1359,6 +1392,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">penetration</a>
               </li>
              
@@ -1367,11 +1404,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">基础</a>
+                <a href="javascript:void(0)" class="js-tag color3">Web vulnerability</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Web vulnerability</a>
+                <a href="javascript:void(0)" class="js-tag color5">math</a>
               </li>
              
               <li class="article-tag-list-item">
