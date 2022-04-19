@@ -6,21 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://kur08a.github.io">
-  <title>chapter1 函数、极限、连续 | Kur08a&#39;s Blog</title>
+  <title>使用 nmap 进行信息收集 | Kur08a&#39;s Blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="函数、极限、连续">
+  <meta name="description" content="nmap是一个网络探测和安全扫描程序，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="chapter1 函数、极限、连续">
-<meta property="og:url" content="https://kur08a.github.io/2022/04/08/chapter1-%E5%87%BD%E6%95%B0%E3%80%81%E6%9E%81%E9%99%90%E3%80%81%E8%BF%9E%E7%BB%AD/index.html">
+<meta property="og:title" content="使用 nmap 进行信息收集">
+<meta property="og:url" content="https://kur08a.github.io/2022/04/19/%E4%BD%BF%E7%94%A8-nmap-%E8%BF%9B%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/index.html">
 <meta property="og:site_name" content="Kur08a&#39;s Blog">
-<meta property="og:description" content="函数、极限、连续">
+<meta property="og:description" content="nmap是一个网络探测和安全扫描程序，">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-04-08T14:19:26.000Z">
-<meta property="article:modified_time" content="2022-04-09T03:52:10.405Z">
+<meta property="article:published_time" content="2022-04-19T06:35:45.000Z">
+<meta property="article:modified_time" content="2022-04-19T06:40:22.269Z">
 <meta property="article:author" content="kur08a">
-<meta property="article:tag" content="math">
+<meta property="article:tag" content="penetration">
+<meta property="article:tag" content="Web vulnerability">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Kur08a&#39;s Blog" type="application/atom+xml">
@@ -192,14 +193,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-chapter1-函数、极限、连续" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-使用-nmap-进行信息收集" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      chapter1 函数、极限、连续
+      使用 nmap 进行信息收集
     </h1>
   
 
@@ -212,8 +213,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2022/04/08/chapter1-%E5%87%BD%E6%95%B0%E3%80%81%E6%9E%81%E9%99%90%E3%80%81%E8%BF%9E%E7%BB%AD/" class="archive-article-date">
-        <time datetime="2022-04-08T14:19:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-08</time>
+<a href="/2022/04/19/%E4%BD%BF%E7%94%A8-nmap-%E8%BF%9B%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" class="archive-article-date">
+        <time datetime="2022-04-19T06:35:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-19</time>
 </a>
 
   
@@ -226,7 +227,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">1.8k字</span>
+      <span class="post-count">1.5k字</span>
     </span>
   </span>
 
@@ -235,7 +236,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">7分</span>
+      <span class="post-count">6分</span>
     </span>
   </span>
 </div>
@@ -246,44 +247,73 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>函数、极限、连续<span id="more"></span></p>
-<h3 id="一、函数"><a href="#一、函数" class="headerlink" title="一、函数"></a>一、函数</h3><p>1、因变量的唯一性。</p>
-<p>2、由定义域和对应法则唯一确定。</p>
-<p>3、奇偶性</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.若在x=0处有定义，f(0)=0</span><br><span class="line">2.同积为偶，异积为奇</span><br><span class="line">3.对称区间上的函数可写成“一奇+一偶”的形式。</span><br></pre></td></tr></table></figure>
+    <p>nmap是一个网络探测和安全扫描程序，<span id="more"></span>系统管理者和个人可以使用这个软件扫描大型的网络，获取那台主机正在运行以及提供什么服务等信息。nmap支持很多扫描技术，例如：UDP、TCP、connect( )、TCP SYN(半开扫描)、ftp代理(bounce攻击)、反向标志、ICMP、FIN、ACK扫描、圣诞树(Xmas Tree)、SYN扫描 和 null扫描。还可以探测OS类型。</p>
+<p>NMAP可用于：</p>
+<ol>
+<li>检测网络上存活的主机（主机发现）</li>
+<li>检测存活主机上开放的端口（端口发现或枚举）</li>
+<li>检测端口对应的软件和版本（服务发现）</li>
+<li>检测OS，硬件地址，以及软件版本</li>
+<li>检测脆弱性的漏洞（nmap脚本）</li>
+</ol>
+<p>NMAP端口状态解析</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">端口扫描是Nmap最基本最核心的功能，用于确定目标主机的TCP/UDP端口的开放情况。</span><br><span class="line">open       :应用程序在该端口接收TCP连接或者UDP报文。</span><br><span class="line">closed     :关闭的端口对于nmap也是可访问的，它接收nmap探测报文并作出响应。但没有应用程序在其上监听。</span><br><span class="line">filtered   :由于包过滤阻止探测报文到达端口，nmap无法确定该端口是否开放。过滤可能来自专业的防火墙设备，路由规则或者主机上的软件防火墙。</span><br><span class="line">unfiltered :未被过滤状态意味着端口可访问，但是nmap无法确定它是开放还是关闭。只有用于映射防火墙规则集的ACK扫描才会把端口分类到这个状态。</span><br><span class="line">open | filtered  :无法确定端口是开放还是被过滤，开放的端口不响应就是一个例子。没有响应也可能意味着报文过滤器丢弃了探测报文或者它引发的任何反应。UDP，IP协议，FIN，Null等扫描会引起。</span><br><span class="line">closed | filtered:(关闭或者被过滤的):无法确定端口是关闭的还是被过滤的。</span><br></pre></td></tr></table></figure>
 
-<p>4、周期性</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1.第一区间为有限区间，必定不是周期函数。</span><br><span class="line">2.f(x)周期为T，则f(ax+b) (a≠0)周期为T/|a|。</span><br><span class="line">3.f(x)与g(x)周期均为T，则f(x)+-g(x)周期仍为T。</span><br><span class="line">4.f(x)周期为T1，g(x)周期为T2，T1与T2最小公倍数为T，则f(x)+-g(x)周期为T。</span><br><span class="line">【注：无理数无最小公倍数，最小公倍数为正整数。】</span><br><span class="line">【例：T1=π（无理数），T2=2，T1、T2无公倍数，则f(x)+-g(x)无周期】</span><br><span class="line">5.周期性的判定：</span><br><span class="line">①定义法:f(x)=f(x+T)</span><br><span class="line">②周期函数的运算性质</span><br></pre></td></tr></table></figure>
+<h3 id="1、直接扫描，看开放了哪些端口："><a href="#1、直接扫描，看开放了哪些端口：" class="headerlink" title="1、直接扫描，看开放了哪些端口："></a>1、直接扫描，看开放了哪些端口：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap 192.168.1.180</span><br></pre></td></tr></table></figure>
 
-<p>5、有界性</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">1.定义：</span><br><span class="line">设f(x)在区间I上有定义，若对任意的x∈I，总存在M&gt;0,使|f(x)|&lt;=M,称f(x)在I上有界。</span><br><span class="line">2.单侧有界的定义：</span><br><span class="line">有上界：对任意的x∈I，总存在M，使f(x)&lt;=M</span><br><span class="line">有下界：对任意的x∈I，总存在M，使f(x)&gt;=M</span><br><span class="line">有界：既有上界又有下界。</span><br><span class="line">3.无界的定义：</span><br><span class="line">设f(x)在区间I上有定义，若对任意M&gt;0,总存在x∈I，使|f(x)|&gt;M,称f(x)在I上无界。</span><br><span class="line">4.常见的有界函数：</span><br><span class="line">sinx  cosx  arcsinx arccosx arctanx arccotx sina(x) cosa(x) ...</span><br><span class="line">x/(1+x^2) =&gt;证：①加绝对值 ②放缩(不等式a^2+b^2&gt;=2ab)</span><br></pre></td></tr></table></figure>
+<h3 id="2、-v-显示冗余信息，显示扫描细节："><a href="#2、-v-显示冗余信息，显示扫描细节：" class="headerlink" title="2、-v 显示冗余信息，显示扫描细节："></a>2、-v 显示冗余信息，显示扫描细节：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -v 192.168.1.180</span><br></pre></td></tr></table></figure>
 
-<p>6、反函数（一一映射才有反函数）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">y=f(x)的图像与x=f-1(y)重叠，与y=f-1(x)图像关于y=x对称。</span><br><span class="line">1.单调函数必然有反函数，反之不一定成立。</span><br><span class="line">2.常见函数及其反函数：</span><br><span class="line">sinx,x∈[-π/2,π/2]   反函数：x=arcsiny</span><br><span class="line">sinx,x∈[π/2,3π/2]   反函数：x=π-arcsiny</span><br><span class="line">cosx,x∈[0,π]   反函数：x=arccosy</span><br><span class="line">cosx,x∈[-π,0]   反函数：x=-arccosy</span><br></pre></td></tr></table></figure>
+<h3 id="3、对一个网段进行扫描："><a href="#3、对一个网段进行扫描：" class="headerlink" title="3、对一个网段进行扫描："></a>3、对一个网段进行扫描：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap 192.168.1.0/24</span><br></pre></td></tr></table></figure>
 
-<p>7、复合函数</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.构成复合函数的前提条件：</span><br><span class="line">内层函数的值域与外层函数的定义域交集非空。</span><br><span class="line">2.求解复合函数的表达式和定义域：</span><br><span class="line">（1）改符号：f(u)=...   u=g(x)=...</span><br><span class="line">（2）f[g(x)]=...</span><br></pre></td></tr></table></figure>
+<h3 id="4、对一个网段除了指定主机外的其他主机进行扫描："><a href="#4、对一个网段除了指定主机外的其他主机进行扫描：" class="headerlink" title="4、对一个网段除了指定主机外的其他主机进行扫描："></a>4、对一个网段除了指定主机外的其他主机进行扫描：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap 192.168.1.0/24 --exclude 192.168.1.100</span><br></pre></td></tr></table></figure>
 
-<p>8、分段函数</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1.两种形式的区别：分段点两侧的表达式不同与相同。</span><br><span class="line">2.常见分段函数：</span><br><span class="line">（1）隐藏形式的分段函数：1、绝对值函数（不能直接求导，方法：令其=0，求分段点）</span><br><span class="line">（2）最值函数（表达式比较复杂怎么办？作差令其=0，找到相等的点，区间分开，再进行判断大小）</span><br><span class="line">（3）取整函数：（常用放缩技巧：x-1&lt;[x]&lt;=x）</span><br><span class="line">（4）极限表达式确定的函数，也是隐藏形式的分段函数。</span><br></pre></td></tr></table></figure>
+<h3 id="5、对一个网段除了文件内的IP外的IP进行扫描："><a href="#5、对一个网段除了文件内的IP外的IP进行扫描：" class="headerlink" title="5、对一个网段除了文件内的IP外的IP进行扫描："></a>5、对一个网段除了文件内的IP外的IP进行扫描：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap 192.168.1.0/24 --excludefile nmap.txt</span><br></pre></td></tr></table></figure>
 
-<h3 id="二、极限的概念与性质"><a href="#二、极限的概念与性质" class="headerlink" title="二、极限的概念与性质"></a>二、极限的概念与性质</h3><p>1、极限的定义：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1.函数极限存在的定义（6种）</span><br><span class="line">x0的去心邻域内，绝对误差|f(x)-A|任意小（&gt;0）。</span><br><span class="line"></span><br><span class="line">f(x)在x0处极限存在的充要条件是f(x)在x0的左极限和右极限存在且相等。</span><br><span class="line"></span><br><span class="line">2.数列极限存在的定义（1种）</span><br><span class="line">n-&gt;+∞，存在正整数N，n&gt;N时，|xn-a|任意小。</span><br><span class="line"></span><br><span class="line">数列极限与数列的前有限项无关，只与N足够大时各项的取值有关。</span><br></pre></td></tr></table></figure>
+<h3 id="6、扫描一个范围：-端口-1-65535"><a href="#6、扫描一个范围：-端口-1-65535" class="headerlink" title="6、扫描一个范围： 端口 1-65535"></a>6、扫描一个范围： 端口 1-65535</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -p 1-65535 192.168.1.180</span><br></pre></td></tr></table></figure>
 
-<p>2、极限存在的性质</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">极限存在：</span><br><span class="line">在自变量的某一趋向过程下，函数或数列的变化趋势是无限接近于唯一确定常数变化。</span><br><span class="line">（1）数列极限存在的性质：</span><br><span class="line">1.唯一性</span><br><span class="line">2.有界性：xn极限存在(xn收敛)，则&#123;xn&#125;有界，反之不一定成立。</span><br><span class="line">3.保号性（细节：严格大于和大于等于）</span><br><span class="line">4.数列与其子列的极限性质：</span><br><span class="line">①父列收敛于a，则任一子列必收敛于a。</span><br><span class="line">②父列单调，且某一子列收敛于a，则父列收敛于a。</span><br><span class="line">③偶数项子列极限=奇数项子列极限=a，则父列收敛于a。</span><br><span class="line">（只要父列的后无限项都被子列覆盖了就可以，与前有限项无关）</span><br><span class="line"></span><br><span class="line">（2）函数极限存在的性质：</span><br><span class="line">1.唯一性</span><br><span class="line">2.局部有界性(在整个定义域上不一定有界)</span><br><span class="line">3.局部保号性（细节处同数列极限性质）</span><br></pre></td></tr></table></figure>
+<h3 id="7、检测目标主机上的操作系统："><a href="#7、检测目标主机上的操作系统：" class="headerlink" title="7、检测目标主机上的操作系统："></a>7、检测目标主机上的操作系统：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">（每一种操作系统都有一个指纹）</span><br><span class="line">nmap -O 192.168.1.180</span><br></pre></td></tr></table></figure>
 
-<p>3、无穷小量与无穷大量</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">（1）无穷小量</span><br><span class="line">1.类型：</span><br><span class="line">①a(x)恒等于0</span><br><span class="line">②非0无穷小</span><br><span class="line">③其他（如：振荡无穷小）</span><br><span class="line">2.去极限&quot;定理&quot;：limf(x)=A ,则f(x)=A+a(x),且lim a(x)=0</span><br><span class="line"></span><br><span class="line">（2）无穷大量</span><br><span class="line">无穷大量与无界量的区别：</span><br><span class="line">1.无界关注的是确定区间上函数的特性，</span><br><span class="line">而无穷大量只关注在一个微观局部内函数的特性。</span><br><span class="line">2.无穷大量必为无界变量，而无界变量不一定是无穷大量。（如(1/x)*sin(1/x)）</span><br><span class="line"></span><br><span class="line">（3）无穷大与无穷小的关系：互为倒数（分母不为零）</span><br></pre></td></tr></table></figure>
+<h3 id="8、-sS-半开隐蔽扫描，检测目标主机上的操作系统："><a href="#8、-sS-半开隐蔽扫描，检测目标主机上的操作系统：" class="headerlink" title="8、-sS 半开隐蔽扫描，检测目标主机上的操作系统："></a>8、-sS 半开隐蔽扫描，检测目标主机上的操作系统：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-sS：半开扫描(half-open)扫描外网IP，隐蔽一些（防止封IP）：</span><br><span class="line">TCP 同步扫描(TCP SYN)：</span><br><span class="line">因为不必全部打开一个 TCP 连接，所以这项技术通常称为半开扫描(half-open)。</span><br><span class="line">你可以发出一个 TCP 同步包(SYN)，然后等待回应。</span><br><span class="line">如果对方返回 SYN|ACK(响应)包就表示目标端口正在监听；</span><br><span class="line">如果返回 RST 数据包，就表示目标端口没有监听程序；</span><br><span class="line">如果收到一个SYN|ACK 包，源主机就会马上发出一个 RST(复位)数据包断开和目标主机的连接，</span><br><span class="line">这实际上由我们的操作系统内核自动完成的。</span><br><span class="line">└─# nmap -sS -O baidu.com</span><br></pre></td></tr></table></figure>
 
-<h3 id="三、极限的计算"><a href="#三、极限的计算" class="headerlink" title="三、极限的计算"></a>三、极限的计算</h3><p>1、极限运算法则：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">（1）无穷小运算性质：</span><br><span class="line">1.有限个无穷小之和仍为无穷小。</span><br><span class="line">【无穷个无穷小之和是否仍为无穷小，与无穷小的阶数或者说变化的速度有关。】</span><br><span class="line">2.有界函数与无穷小乘积仍为无穷小。</span><br><span class="line">3.有限个无穷小乘积仍为无穷小。</span><br><span class="line"></span><br><span class="line">（2）极限的四则运算法则：</span><br><span class="line">前提：f(x)和g(x)各自的极限都存在。</span><br><span class="line"></span><br><span class="line">（3）x-&gt;∞时，有抓大头原理。</span><br><span class="line"></span><br><span class="line">（4）复合函数极限运算法则。</span><br><span class="line"></span><br><span class="line">（5）洛必达法则</span><br><span class="line">前提：</span><br><span class="line">①f(x)/g(x)的极限为0/0或 ∞/∞型未定式；</span><br><span class="line">②f(x)与g(x)在局部可导，且g&#x27;(x)≠0；</span><br><span class="line">③f&#x27;(x)/g&#x27;(x)的极限存在或为 ∞ 。（不能是有界振荡，如limx-&gt;∞(2+cosx^2)）</span><br><span class="line">七种未定式：</span><br><span class="line">1.除法：∞/∞、0/0</span><br><span class="line">2.乘法：0·∞</span><br><span class="line">3.减法：∞-∞</span><br><span class="line">4.幂：∞^0、0^0、1^∞</span><br><span class="line">【这里都指的是极限，其中的&quot;0&quot;为非零无穷小，&quot;1&quot;为极限为1,本身不为1的函数】</span><br><span class="line"></span><br><span class="line">（6）泰勒公式（最有效简便快捷，需记忆）</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sS -O 192.168.1.180</span><br></pre></td></tr></table></figure>
 
-<p>2、极限存在准则与两个重要极限</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">（1）夹逼准则（不好直接求解，但是好适当放缩的极限）</span><br><span class="line">（2）单调有界收敛准则（单调有界数列必收敛）</span><br><span class="line">（3）证明数列单调的四种方法：</span><br><span class="line">1.相减与0比</span><br><span class="line">2.相除与1比</span><br><span class="line">3.数学归纳法：</span><br><span class="line">①x1&lt;=x2</span><br><span class="line">②假设x(k-1) &lt;= xk</span><br><span class="line">③证明xk &lt;= x(k+1)</span><br><span class="line">4.若已知数列的通项公式（不是递推公式），可转换为f(x)进行求导判断单调性。</span><br><span class="line">（4）判断数列有界的常用方法：</span><br><span class="line">1.用有界的定义判断</span><br><span class="line">2.用数学归纳法：</span><br><span class="line">①x1&lt;=M</span><br><span class="line">②假设xk &lt;= M</span><br><span class="line">③证明x(k+1) &lt;= M</span><br><span class="line"></span><br><span class="line">（5）两个重要极限：</span><br><span class="line">1.limx-&gt;0(sinx/x) = 1</span><br><span class="line">推广：lima(x)=0 (a(x)≠0)，则lim sina(x)/a(x) = 1</span><br><span class="line">2.limx-&gt;0(1+x)^(1/x) = e  或 limx-&gt;∞(1+1/x)^x = e</span><br><span class="line">推广：lima(x)=0 (a(x)≠0)，则lim (1+a(x))^(1/a(x)) = e</span><br></pre></td></tr></table></figure>
+<h3 id="9、扫描一个网段中所有机器是什么类型的操作系统："><a href="#9、扫描一个网段中所有机器是什么类型的操作系统：" class="headerlink" title="9、扫描一个网段中所有机器是什么类型的操作系统："></a>9、扫描一个网段中所有机器是什么类型的操作系统：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sS -O 192.168.1.0/24</span><br></pre></td></tr></table></figure>
 
-<p>3、无穷小的比较（比阶）</p>
+<h3 id="10、查找一些有特点的-IP-地址中，开启-80-端口的服务器："><a href="#10、查找一些有特点的-IP-地址中，开启-80-端口的服务器：" class="headerlink" title="10、查找一些有特点的 IP 地址中，开启 80 端口的服务器："></a>10、查找一些有特点的 IP 地址中，开启 80 端口的服务器：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -v -p 80 192.168.1.62-67</span><br></pre></td></tr></table></figure>
 
+<h3 id="11、对文本内的IP进行扫描："><a href="#11、对文本内的IP进行扫描：" class="headerlink" title="11、对文本内的IP进行扫描："></a>11、对文本内的IP进行扫描：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">（比如通过FOFA得到了一堆IP，可导出到一个文本中统一扫描）</span><br><span class="line">cat nmap.txt</span><br><span class="line">nmap -iL nmap.txt</span><br></pre></td></tr></table></figure>
+
+<h3 id="12、路由跟踪："><a href="#12、路由跟踪：" class="headerlink" title="12、路由跟踪："></a>12、路由跟踪：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap --traceroute 192.168.1.180</span><br></pre></td></tr></table></figure>
+
+<h3 id="13、利用脚本对目标主机进行漏洞扫描-一扫就报警-："><a href="#13、利用脚本对目标主机进行漏洞扫描-一扫就报警-：" class="headerlink" title="13、利用脚本对目标主机进行漏洞扫描(一扫就报警)："></a>13、利用脚本对目标主机进行漏洞扫描(一扫就报警)：</h3><p>nmap脚本：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/share/nmap</span><br><span class="line">ls</span><br><span class="line">cd scripts</span><br><span class="line">ls</span><br></pre></td></tr></table></figure>
+
+<p>利用脚本对目标主机进行漏洞扫描：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap --script=vuln 192.168.1.180</span><br></pre></td></tr></table></figure>
+
+<p><strong>（注意得授权再扫描，一般脚本一扫就会报警的）</strong></p>
+<h3 id="14、利用脚本对目标主机进行简单暴力破解："><a href="#14、利用脚本对目标主机进行简单暴力破解：" class="headerlink" title="14、利用脚本对目标主机进行简单暴力破解："></a>14、利用脚本对目标主机进行简单暴力破解：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap --script=brute 192.168.1.180</span><br></pre></td></tr></table></figure>
+
+<h3 id="15、利用脚本对外网IP进行扫描（whois信息）："><a href="#15、利用脚本对外网IP进行扫描（whois信息）：" class="headerlink" title="15、利用脚本对外网IP进行扫描（whois信息）："></a>15、利用脚本对外网IP进行扫描（whois信息）：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap --script external baidu.com</span><br></pre></td></tr></table></figure>
+
+<h3 id="16、隐蔽地进行扫描："><a href="#16、隐蔽地进行扫描：" class="headerlink" title="16、隐蔽地进行扫描："></a>16、隐蔽地进行扫描：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">（1）随机扫描</span><br><span class="line">└─# nmap -v --randomize-hosts -p 80 192.168.1.62-69</span><br><span class="line"></span><br><span class="line">（2）随机扫描+延时扫描 ，默认单位秒</span><br><span class="line">└─# nmap -v --randomize-hosts --scan-delay 3000ms -p 80 192.168.1.62-69</span><br><span class="line"></span><br><span class="line">全端口扫描：</span><br><span class="line">└─# nmap -v --randomize-hosts --scan-delay 3000ms -p- 80 192.168.1.62-69</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">使用通配符指定 IP 地址</span><br><span class="line">└─# nmap -v --randomize-hosts --scan-delay 30 -p 80 1.*.2.3-8</span><br></pre></td></tr></table></figure>
+
+<h3 id="17、UDP-扫描"><a href="#17、UDP-扫描" class="headerlink" title="17、UDP 扫描"></a>17、UDP 扫描</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -sU 192.168.1.180</span><br></pre></td></tr></table></figure>
+
+<h3 id="18、Connect-扫描："><a href="#18、Connect-扫描：" class="headerlink" title="18、Connect 扫描："></a>18、Connect 扫描：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nmap -sT 192.168.1.63 -p 80</span><br><span class="line">这种扫描方式和 SYN 扫描很像，只是这种扫描方式完成了 TCP 的三次握手。</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="19、报文分段扫描："><a href="#19、报文分段扫描：" class="headerlink" title="19、报文分段扫描："></a>19、报文分段扫描：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -f -v 192.168.1.180</span><br></pre></td></tr></table></figure>
+
+<h3 id="20、使用诱饵主机隐蔽扫描："><a href="#20、使用诱饵主机隐蔽扫描：" class="headerlink" title="20、使用诱饵主机隐蔽扫描："></a>20、使用诱饵主机隐蔽扫描：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">①随机 3 个诱饵</span><br><span class="line">└─# nmap -D RND:3 192.168.1.180</span><br><span class="line"></span><br><span class="line">②使用自己 IP 作为诱饵</span><br><span class="line">└─# nmap -D ME 192.168.1.180</span><br><span class="line"></span><br><span class="line">③指定单个 IP：192.168.1.14 作为诱饵</span><br><span class="line">└─# nmap -D 192.168.1.14 192.168.1.180</span><br><span class="line"></span><br><span class="line">④指定多个 IP 作为诱饵对 192.168.1.180 进行探测</span><br><span class="line">└─# nmap -D 192.168.1.14,192.168.1.18 192.168.1.180</span><br></pre></td></tr></table></figure>
+
+<h3 id="21、伪造源端口为-8888-对目标进行扫描："><a href="#21、伪造源端口为-8888-对目标进行扫描：" class="headerlink" title="21、伪造源端口为 8888 对目标进行扫描："></a>21、伪造源端口为 8888 对目标进行扫描：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">└─# nmap --source-port 8888 192.168.1.180</span><br><span class="line">或</span><br><span class="line">└─# nmap -g 8888 192.168.1.180</span><br></pre></td></tr></table></figure>
+
+<h3 id="22、从互联网上随机选择-10-台主机扫描是否运行-Web-服务器（开放-80-端口）"><a href="#22、从互联网上随机选择-10-台主机扫描是否运行-Web-服务器（开放-80-端口）" class="headerlink" title="22、从互联网上随机选择 10 台主机扫描是否运行 Web 服务器（开放 80 端口）"></a>22、从互联网上随机选择 10 台主机扫描是否运行 Web 服务器（开放 80 端口）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -v -iR 10 -p 80</span><br></pre></td></tr></table></figure>
+
+<h3 id="23、将所有主机视为联机，跳过主机发现，这种方式可以穿透防火墙，避免被防火墙发现。"><a href="#23、将所有主机视为联机，跳过主机发现，这种方式可以穿透防火墙，避免被防火墙发现。" class="headerlink" title="23、将所有主机视为联机，跳过主机发现，这种方式可以穿透防火墙，避免被防火墙发现。"></a>23、将所有主机视为联机，跳过主机发现，这种方式可以穿透防火墙，避免被防火墙发现。</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -Pn 192.168.1.180</span><br></pre></td></tr></table></figure>
     
 
 
@@ -297,7 +327,7 @@
    
    <br>
    <strong>本文链接：</strong>
-   <a rel="license" href="https://kur08a.github.io/2022/04/08/chapter1-%E5%87%BD%E6%95%B0%E3%80%81%E6%9E%81%E9%99%90%E3%80%81%E8%BF%9E%E7%BB%AD/">https://kur08a.github.io/2022/04/08/chapter1-%E5%87%BD%E6%95%B0%E3%80%81%E6%9E%81%E9%99%90%E3%80%81%E8%BF%9E%E7%BB%AD/</a>
+   <a rel="license" href="https://kur08a.github.io/2022/04/19/%E4%BD%BF%E7%94%A8-nmap-%E8%BF%9B%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">https://kur08a.github.io/2022/04/19/%E4%BD%BF%E7%94%A8-nmap-%E8%BF%9B%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</a>
    <br>
    <strong>版权声明：</strong>
    本作品采用
@@ -355,7 +385,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">math</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">penetration</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Web vulnerability</a>
         		</li>
       		
 		</ul>
@@ -411,7 +445,7 @@
   <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
   <p>扫一扫，分享到微信</p>
   <div class="wx-qrcode">
-    <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://kur08a.github.io/2022/04/08/chapter1-%E5%87%BD%E6%95%B0%E3%80%81%E6%9E%81%E9%99%90%E3%80%81%E8%BF%9E%E7%BB%AD/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://kur08a.github.io/2022/04/19/%E4%BD%BF%E7%94%A8-nmap-%E8%BF%9B%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" alt="微信分享二维码">
   </div>
 </div>
 
@@ -426,18 +460,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2022/04/19/%E4%BD%BF%E7%94%A8-nmap-%E8%BF%9B%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          使用 nmap 进行信息收集
-        
-      </div>
-    </a>
   
-  
-    <a href="/2022/04/03/1-C%E8%AF%AD%E8%A8%80%E7%AE%80%E4%BB%8B/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">1-C语言简介</div>
+    <a href="/2022/04/08/chapter1-%E5%87%BD%E6%95%B0%E3%80%81%E6%9E%81%E9%99%90%E3%80%81%E8%BF%9E%E7%BB%AD/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">chapter1 函数、极限、连续</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -464,7 +489,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%87%BD%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">一、函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%9E%81%E9%99%90%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E6%80%A7%E8%B4%A8"><span class="toc-number">2.</span> <span class="toc-text">二、极限的概念与性质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%9E%81%E9%99%90%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="toc-number">3.</span> <span class="toc-text">三、极限的计算</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E7%9B%B4%E6%8E%A5%E6%89%AB%E6%8F%8F%EF%BC%8C%E7%9C%8B%E5%BC%80%E6%94%BE%E4%BA%86%E5%93%AA%E4%BA%9B%E7%AB%AF%E5%8F%A3%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">1、直接扫描，看开放了哪些端口：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81-v-%E6%98%BE%E7%A4%BA%E5%86%97%E4%BD%99%E4%BF%A1%E6%81%AF%EF%BC%8C%E6%98%BE%E7%A4%BA%E6%89%AB%E6%8F%8F%E7%BB%86%E8%8A%82%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">2、-v 显示冗余信息，显示扫描细节：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%AF%B9%E4%B8%80%E4%B8%AA%E7%BD%91%E6%AE%B5%E8%BF%9B%E8%A1%8C%E6%89%AB%E6%8F%8F%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">3、对一个网段进行扫描：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%AF%B9%E4%B8%80%E4%B8%AA%E7%BD%91%E6%AE%B5%E9%99%A4%E4%BA%86%E6%8C%87%E5%AE%9A%E4%B8%BB%E6%9C%BA%E5%A4%96%E7%9A%84%E5%85%B6%E4%BB%96%E4%B8%BB%E6%9C%BA%E8%BF%9B%E8%A1%8C%E6%89%AB%E6%8F%8F%EF%BC%9A"><span class="toc-number">4.</span> <span class="toc-text">4、对一个网段除了指定主机外的其他主机进行扫描：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E5%AF%B9%E4%B8%80%E4%B8%AA%E7%BD%91%E6%AE%B5%E9%99%A4%E4%BA%86%E6%96%87%E4%BB%B6%E5%86%85%E7%9A%84IP%E5%A4%96%E7%9A%84IP%E8%BF%9B%E8%A1%8C%E6%89%AB%E6%8F%8F%EF%BC%9A"><span class="toc-number">5.</span> <span class="toc-text">5、对一个网段除了文件内的IP外的IP进行扫描：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E6%89%AB%E6%8F%8F%E4%B8%80%E4%B8%AA%E8%8C%83%E5%9B%B4%EF%BC%9A-%E7%AB%AF%E5%8F%A3-1-65535"><span class="toc-number">6.</span> <span class="toc-text">6、扫描一个范围： 端口 1-65535</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E6%A3%80%E6%B5%8B%E7%9B%AE%E6%A0%87%E4%B8%BB%E6%9C%BA%E4%B8%8A%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%9A"><span class="toc-number">7.</span> <span class="toc-text">7、检测目标主机上的操作系统：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E3%80%81-sS-%E5%8D%8A%E5%BC%80%E9%9A%90%E8%94%BD%E6%89%AB%E6%8F%8F%EF%BC%8C%E6%A3%80%E6%B5%8B%E7%9B%AE%E6%A0%87%E4%B8%BB%E6%9C%BA%E4%B8%8A%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%9A"><span class="toc-number">8.</span> <span class="toc-text">8、-sS 半开隐蔽扫描，检测目标主机上的操作系统：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9%E3%80%81%E6%89%AB%E6%8F%8F%E4%B8%80%E4%B8%AA%E7%BD%91%E6%AE%B5%E4%B8%AD%E6%89%80%E6%9C%89%E6%9C%BA%E5%99%A8%E6%98%AF%E4%BB%80%E4%B9%88%E7%B1%BB%E5%9E%8B%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%9A"><span class="toc-number">9.</span> <span class="toc-text">9、扫描一个网段中所有机器是什么类型的操作系统：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10%E3%80%81%E6%9F%A5%E6%89%BE%E4%B8%80%E4%BA%9B%E6%9C%89%E7%89%B9%E7%82%B9%E7%9A%84-IP-%E5%9C%B0%E5%9D%80%E4%B8%AD%EF%BC%8C%E5%BC%80%E5%90%AF-80-%E7%AB%AF%E5%8F%A3%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%9A"><span class="toc-number">10.</span> <span class="toc-text">10、查找一些有特点的 IP 地址中，开启 80 端口的服务器：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11%E3%80%81%E5%AF%B9%E6%96%87%E6%9C%AC%E5%86%85%E7%9A%84IP%E8%BF%9B%E8%A1%8C%E6%89%AB%E6%8F%8F%EF%BC%9A"><span class="toc-number">11.</span> <span class="toc-text">11、对文本内的IP进行扫描：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12%E3%80%81%E8%B7%AF%E7%94%B1%E8%B7%9F%E8%B8%AA%EF%BC%9A"><span class="toc-number">12.</span> <span class="toc-text">12、路由跟踪：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13%E3%80%81%E5%88%A9%E7%94%A8%E8%84%9A%E6%9C%AC%E5%AF%B9%E7%9B%AE%E6%A0%87%E4%B8%BB%E6%9C%BA%E8%BF%9B%E8%A1%8C%E6%BC%8F%E6%B4%9E%E6%89%AB%E6%8F%8F-%E4%B8%80%E6%89%AB%E5%B0%B1%E6%8A%A5%E8%AD%A6-%EF%BC%9A"><span class="toc-number">13.</span> <span class="toc-text">13、利用脚本对目标主机进行漏洞扫描(一扫就报警)：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14%E3%80%81%E5%88%A9%E7%94%A8%E8%84%9A%E6%9C%AC%E5%AF%B9%E7%9B%AE%E6%A0%87%E4%B8%BB%E6%9C%BA%E8%BF%9B%E8%A1%8C%E7%AE%80%E5%8D%95%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3%EF%BC%9A"><span class="toc-number">14.</span> <span class="toc-text">14、利用脚本对目标主机进行简单暴力破解：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15%E3%80%81%E5%88%A9%E7%94%A8%E8%84%9A%E6%9C%AC%E5%AF%B9%E5%A4%96%E7%BD%91IP%E8%BF%9B%E8%A1%8C%E6%89%AB%E6%8F%8F%EF%BC%88whois%E4%BF%A1%E6%81%AF%EF%BC%89%EF%BC%9A"><span class="toc-number">15.</span> <span class="toc-text">15、利用脚本对外网IP进行扫描（whois信息）：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16%E3%80%81%E9%9A%90%E8%94%BD%E5%9C%B0%E8%BF%9B%E8%A1%8C%E6%89%AB%E6%8F%8F%EF%BC%9A"><span class="toc-number">16.</span> <span class="toc-text">16、隐蔽地进行扫描：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17%E3%80%81UDP-%E6%89%AB%E6%8F%8F"><span class="toc-number">17.</span> <span class="toc-text">17、UDP 扫描</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#18%E3%80%81Connect-%E6%89%AB%E6%8F%8F%EF%BC%9A"><span class="toc-number">18.</span> <span class="toc-text">18、Connect 扫描：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#19%E3%80%81%E6%8A%A5%E6%96%87%E5%88%86%E6%AE%B5%E6%89%AB%E6%8F%8F%EF%BC%9A"><span class="toc-number">19.</span> <span class="toc-text">19、报文分段扫描：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#20%E3%80%81%E4%BD%BF%E7%94%A8%E8%AF%B1%E9%A5%B5%E4%B8%BB%E6%9C%BA%E9%9A%90%E8%94%BD%E6%89%AB%E6%8F%8F%EF%BC%9A"><span class="toc-number">20.</span> <span class="toc-text">20、使用诱饵主机隐蔽扫描：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#21%E3%80%81%E4%BC%AA%E9%80%A0%E6%BA%90%E7%AB%AF%E5%8F%A3%E4%B8%BA-8888-%E5%AF%B9%E7%9B%AE%E6%A0%87%E8%BF%9B%E8%A1%8C%E6%89%AB%E6%8F%8F%EF%BC%9A"><span class="toc-number">21.</span> <span class="toc-text">21、伪造源端口为 8888 对目标进行扫描：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22%E3%80%81%E4%BB%8E%E4%BA%92%E8%81%94%E7%BD%91%E4%B8%8A%E9%9A%8F%E6%9C%BA%E9%80%89%E6%8B%A9-10-%E5%8F%B0%E4%B8%BB%E6%9C%BA%E6%89%AB%E6%8F%8F%E6%98%AF%E5%90%A6%E8%BF%90%E8%A1%8C-Web-%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88%E5%BC%80%E6%94%BE-80-%E7%AB%AF%E5%8F%A3%EF%BC%89"><span class="toc-number">22.</span> <span class="toc-text">22、从互联网上随机选择 10 台主机扫描是否运行 Web 服务器（开放 80 端口）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#23%E3%80%81%E5%B0%86%E6%89%80%E6%9C%89%E4%B8%BB%E6%9C%BA%E8%A7%86%E4%B8%BA%E8%81%94%E6%9C%BA%EF%BC%8C%E8%B7%B3%E8%BF%87%E4%B8%BB%E6%9C%BA%E5%8F%91%E7%8E%B0%EF%BC%8C%E8%BF%99%E7%A7%8D%E6%96%B9%E5%BC%8F%E5%8F%AF%E4%BB%A5%E7%A9%BF%E9%80%8F%E9%98%B2%E7%81%AB%E5%A2%99%EF%BC%8C%E9%81%BF%E5%85%8D%E8%A2%AB%E9%98%B2%E7%81%AB%E5%A2%99%E5%8F%91%E7%8E%B0%E3%80%82"><span class="toc-number">23.</span> <span class="toc-text">23、将所有主机视为联机，跳过主机发现，这种方式可以穿透防火墙，避免被防火墙发现。</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -502,7 +527,7 @@ if(true){
   	repo: 'myhexocomments',
   	owner: 'kur08a',
   	admin: ['kur08a'],
-  	id: 'Fri Apr 08 2022 22:19:26 GMT+0800',
+  	id: 'Tue Apr 19 2022 14:35:45 GMT+0800',
   	distractionFreeMode: 'true'
 })
 gitalk.render('gitalk-container') 
