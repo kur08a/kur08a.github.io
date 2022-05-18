@@ -614,6 +614,176 @@
   
   
   
+    <article id="post-DS &amp; AL-绪论" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2022/05/18/DS%20&%20AL-%E7%BB%AA%E8%AE%BA/">DS &amp; AL-绪论</a>
+	
+    </h1>
+  
+
+
+
+  
+  
+<a href="/2022/05/18/DS%20&%20AL-%E7%BB%AA%E8%AE%BA/" class="archive-article-date">
+        <time datetime="2022-05-18T07:43:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-18</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="1、数据结构在学什么？"><a href="#1、数据结构在学什么？" class="headerlink" title="1、数据结构在学什么？"></a>1、数据结构在学什么？</h2><p>数据结构在学什么?</p>
+<p>1.如何用程序代码把现实世界的问题信息化（如：如何用代码表示好友相互关注的逻辑关系）</p>
+<p>2.如何用计算机高效地处理这些信息从而创造价值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">人类社会的发展，迄今经历了和经历着三个浪潮:</span><br><span class="line">第一次浪潮为农业阶段，从约1万年前开始;</span><br><span class="line">第二次浪潮为工业阶段，从17世纪末开始;</span><br><span class="line">第三次浪潮为正在到来的信息化阶段。</span><br><span class="line">————《第三次浪潮（1980版)》,阿尔文·托夫勒</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="2、基本概念和术语"><a href="#2、基本概念和术语" class="headerlink" title="2、基本概念和术语"></a>2、基本概念和术语</h2><h3 id="2-1-数据"><a href="#2-1-数据" class="headerlink" title="2.1 数据"></a>2.1 数据</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">数据是信息的载体，是描述客观事物属性的数、字符及所有能输入到计算机中并被</span><br><span class="line">计算机程序识别和处理的符号的集合。数据是计算机程序加工的原料。</span><br></pre></td></tr></table></figure>
+
+<p>现代计算机——经常处理非数值型问题。</p>
+<p>对于非数值型的问题：</p>
+<p>1、我们关心每个个体的具体信息</p>
+<p>2、我们还关心个体之间的关系</p>
+<h3 id="2-2-数据元素-描述一个个体-、数据项-最小单位"><a href="#2-2-数据元素-描述一个个体-、数据项-最小单位" class="headerlink" title="2.2 数据元素(描述一个个体)、数据项(最小单位)"></a>2.2 数据元素(描述一个个体)、数据项(最小单位)</h3><p>数据元素是数据的基本单位，通常作为一个整体进行考虑和处理。</p>
+<p>一个数据元素可由若干数据项组成，&#x3D;&#x3D;数据项&#x3D;&#x3D;是构成数据元素的不可分割的最小单位。</p>
+<h3 id="2-3-数据对象-强调数据元素性质相同"><a href="#2-3-数据对象-强调数据元素性质相同" class="headerlink" title="2.3 数据对象(强调数据元素性质相同)"></a>2.3 数据对象(强调数据元素性质相同)</h3><p>数据对象是具有相同性质的数据元素的集合，是数据的一个子集。</p>
+<h3 id="2-4-数据结构-强调数据元素之间的关系"><a href="#2-4-数据结构-强调数据元素之间的关系" class="headerlink" title="2.4 数据结构(强调数据元素之间的关系)"></a>2.4 数据结构(强调数据元素之间的关系)</h3><p>数据结构是相互之间存在一种或多种特定关系的数据元素的集合。</p>
+<p>同一个数据对象里的数据元素，可以组成不同的数据结构。</p>
+<p>不同的数据元素，可组成相同的数据结构（比如都是网状结构）。</p>
+<p>数据结构这门课着重关注的是数据元素之间的关系，和对这些数据元素的操作，而不关心具体的数据项内容。</p>
+<h3 id="2-5-总结"><a href="#2-5-总结" class="headerlink" title="2.5 总结"></a>2.5 总结</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">数据&gt;数据对象&gt;数据元素&gt;数据项。</span><br><span class="line">数据结构(强调数据元素之间的关系)</span><br><span class="line">数据是信息的载体。</span><br><span class="line">数据对象(强调数据元素性质相同)，是数据的一个子集。</span><br><span class="line">数据元素(描述一个个体)</span><br><span class="line">数据项(最小单位)</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、数据结构三要素"><a href="#3、数据结构三要素" class="headerlink" title="3、数据结构三要素"></a>3、数据结构三要素</h2><h3 id="3-1-逻辑结构-数据元素之间的逻辑关系"><a href="#3-1-逻辑结构-数据元素之间的逻辑关系" class="headerlink" title="3.1 逻辑结构(数据元素之间的逻辑关系)"></a>3.1 逻辑结构(数据元素之间的逻辑关系)</h3><p>408考纲中已将“集合”这种数据结构删除。</p>
+<h3 id="3-2-数据的运算"><a href="#3-2-数据的运算" class="headerlink" title="3.2 数据的运算"></a>3.2 数据的运算</h3><p>针对某种逻辑结构，结合实际需求，定义基本运算。</p>
+<p>查找、插入、删除等。</p>
+<h3 id="3-3-物理结构-存储结构"><a href="#3-3-物理结构-存储结构" class="headerlink" title="3.3 物理结构(存储结构)"></a>3.3 物理结构(存储结构)</h3><p>逻辑结构和数据运算只是定义了一种数据结构；如何用计算机实现这种数据结构（如何用计算机表示数据元素的逻辑关系）则需考虑物理结构。</p>
+<p>1、顺序存储：</p>
+<p>把逻辑上相邻的元素存储在物理位置上也相邻的存储单元中，元素之间的关系由存储单元的邻接关系来体现。</p>
+<p>2、链式存储：</p>
+<p>逻辑上相邻的元素在物理位置上可以不相邻，借助指示元素存储地址的指针来表示元素之间的逻辑关系。</p>
+<p>3、索引存储：</p>
+<p>在存储元素信息的同时，还建立附加的索引表。索引表中的每项称为索引项，索引项的一般形式是（关键字，地址)</p>
+<p>4、散列存储：</p>
+<p>根据元素的关键字直接计算出该元素的存储地址，又称哈希 (Hash）存储。（第六章-散列表）</p>
+<p>【2、3、4都为非顺序存储（离散存储）】</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1.若采用顺序存储，则各个数据元素在物理上必须是连续的;</span><br><span class="line">若采用非顺序存储，则各个数据元素在物理上可以是离散的。</span><br><span class="line">2.数据的存储结构会影响存储空间分配的方便程度</span><br><span class="line">3.数据的存储结构会影响对数据运算的速度</span><br><span class="line">（比如插入新元素，顺序存储可能需要挪动很多位；</span><br><span class="line">而链式存储则只需将待插入元素指向前一位置元素，后一位置元素指向待插入元素即可）</span><br><span class="line"></span><br><span class="line">运算的定义是针对逻辑结构的,指出运算的功能；</span><br><span class="line">运算的实现是针对存储结构的,指出运算的具体操作步骤。</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-4-数据类型、抽象数据类型"><a href="#3-4-数据类型、抽象数据类型" class="headerlink" title="3.4 数据类型、抽象数据类型"></a>3.4 数据类型、抽象数据类型</h3><p>数据类型是一个值的集合和定义在此集合上的一组操作的总称。</p>
+<p>1）原子类型。其值不可再分的数据类型。</p>
+<p>2）结构类型。其值可以再分解为若干成分(分量)的数据类型。</p>
+<p>抽象数据类型(Abstract Data Type，ADT) 是抽象数据组织及与之相关的操作。</p>
+<p>ADT用数学化的语言定义数据的逻辑结构、定义运算，与具体的实现无关。</p>
+<p>定义一个ADT，就是在“定义”一种数据结构。确定了ADT的存储结构，才能“实现”这种数据结构。</p>
+<h2 id="4、算法的基本概念"><a href="#4、算法的基本概念" class="headerlink" title="4、算法的基本概念"></a>4、算法的基本概念</h2><p>程序&#x3D;数据结构+算法</p>
+<p>数据结构 研究如何用数据正确地描述现实世界的问题，并存入计算机。</p>
+<p>算法 研究如何高效地处理这些数据，以解决实际问题。</p>
+<h3 id="4-1-算法的定义（求解问题的步骤）"><a href="#4-1-算法的定义（求解问题的步骤）" class="headerlink" title="4.1 算法的定义（求解问题的步骤）"></a>4.1 算法的定义（求解问题的步骤）</h3><p>算法(algorithm)是对特定问题求解步骤的一种描述，它是指令的有限序列，其中的每条指令表示一个或多个操作。</p>
+<p>【例如，要解决的问题是做一个番茄炒蛋，数据结构则是提供所需的食材，而算法规定做菜的步骤】</p>
+<h3 id="4-2-算法的5个重要特性"><a href="#4-2-算法的5个重要特性" class="headerlink" title="4.2 算法的5个重要特性"></a>4.2 算法的5个重要特性</h3><p>1、<strong>有穷性</strong>（有限步、有穷时间，死循环不是算法）</p>
+<p>一个算法必须总在执行有穷步之后结束，且每一步都可在有穷时间内完成。</p>
+<p>注：算法必须是有穷的（用有限步骤解决某个特定的问题），而程序可以是无穷的（例如微信，不关闭就会一直运行下去）。</p>
+<p>2、<strong>确定性</strong>（无歧义的，相同的输入得到相同的输出）</p>
+<p>算法中每条指令必须有确切的含义，对于相同的输入只能得出相同的输出。</p>
+<p>3、<strong>可行性</strong>（计算机可完成）</p>
+<p>算法中描述的操作都可以通过已经实现的基本运算执行有限次来实现。</p>
+<p>4、<strong>输入</strong>（&gt;&#x3D;0）</p>
+<p>一个算法有零个或多个输入，这些输入取自于某个特定的对象的集合。</p>
+<p>5、<strong>输出</strong>（&gt;&#x3D;1）</p>
+<p>一个算法有一个或多个输出，这些输出是与输入有着某种特定关系的量。</p>
+<h3 id="4-3-算法设计的要求（“好”算法的特质）"><a href="#4-3-算法设计的要求（“好”算法的特质）" class="headerlink" title="4.3 算法设计的要求（“好”算法的特质）"></a>4.3 算法设计的要求（“好”算法的特质）</h3><p>1、<strong>正确性</strong>。算法应能够正确地解决求解问题。</p>
+<p>2、<strong>可读性</strong>。算法应具有良好的可读性，以帮助人们理解。</p>
+<p>3、<strong>健壮性</strong>。输入非法数据时，算法能适当地做出反应或进行处理，而不会产生莫名其妙的输出结果。</p>
+<p>4、<strong>高效率与低存储量需求</strong>。</p>
+<p>高效率：花的时间少，时间复杂度低。</p>
+<p>低存储量需求：不费内存，空间复杂度低。</p>
+<h2 id="5、算法的空间复杂度（只关心数量级）"><a href="#5、算法的空间复杂度（只关心数量级）" class="headerlink" title="5、算法的空间复杂度（只关心数量级）"></a>5、算法的空间复杂度（只关心数量级）</h2><h3 id="5-1-算法实现后执行要占据的空间："><a href="#5-1-算法实现后执行要占据的空间：" class="headerlink" title="5.1 算法实现后执行要占据的空间："></a>5.1 算法实现后执行要占据的空间：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、数据本身要占据的空间，输入/输出、指令、常数、变量等。</span><br><span class="line">（与算法无关，即采用不同的算法均需要这部分空间）</span><br><span class="line">2、算法要使用的辅助空间（与算法有关）</span><br><span class="line">（辅助空间为常量，则算法原地工作）</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2-算法原地工作"><a href="#5-2-算法原地工作" class="headerlink" title="5.2 算法原地工作"></a>5.2 算法原地工作</h3><p>无论问题规模怎么变，算法运行所需的内存空间都是固定的常量，算法空间复杂度为 S(n) &#x3D; O(1)</p>
+<p>注：S 表示 “Space”</p>
+<p>算法原地工作——算法所需辅助空间为常量。【这里是忽略了与算法无关的内存空间】</p>
+<h3 id="5-3-空间复杂度只需关注存储空间大小与问题规模相关的变量"><a href="#5-3-空间复杂度只需关注存储空间大小与问题规模相关的变量" class="headerlink" title="5.3 空间复杂度只需关注存储空间大小与问题规模相关的变量"></a>5.3 空间复杂度只需关注存储空间大小与问题规模相关的变量</h3><h3 id="5-4-加法规则（乘法规则）"><a href="#5-4-加法规则（乘法规则）" class="headerlink" title="5.4 加法规则（乘法规则）"></a>5.4 加法规则（乘法规则）</h3><h3 id="5-5-函数递归调用带来的内存开销"><a href="#5-5-函数递归调用带来的内存开销" class="headerlink" title="5.5 函数递归调用带来的内存开销"></a>5.5 函数递归调用带来的内存开销</h3><h2 id="6、算法的时间复杂度"><a href="#6、算法的时间复杂度" class="headerlink" title="6、算法的时间复杂度"></a>6、算法的时间复杂度</h2><h3 id="6-1-利用语句频度计算"><a href="#6-1-利用语句频度计算" class="headerlink" title="6.1 利用语句频度计算"></a>6.1 利用语句频度计算</h3><h3 id="6-2-时间复杂度表达式的简化"><a href="#6-2-时间复杂度表达式的简化" class="headerlink" title="6.2 时间复杂度表达式的简化"></a>6.2 时间复杂度表达式的简化</h3><p>忽略所有低次幂项和最高次幂系数。</p>
+<h3 id="6-3-常对幂指阶"><a href="#6-3-常对幂指阶" class="headerlink" title="6.3 常对幂指阶"></a>6.3 常对幂指阶</h3><h3 id="6-4-哪些代码语句需计算语句频度？"><a href="#6-4-哪些代码语句需计算语句频度？" class="headerlink" title="6.4 哪些代码语句需计算语句频度？"></a>6.4 哪些代码语句需计算语句频度？</h3><p>1、顺序执行的代码只会影响常数项，可以忽略。</p>
+<p>2、只需挑循环中的一个基本操作分析它的执行次数与 n 的关系即可。</p>
+<p>3、如果有多层嵌套循环，只需关注最深层循环循环了几次。</p>
+<h3 id="6-5-log2-n"><a href="#6-5-log2-n" class="headerlink" title="6.5 log2(n)"></a>6.5 log2(n)</h3><h3 id="6-6-平均时间复杂度"><a href="#6-6-平均时间复杂度" class="headerlink" title="6.6 平均时间复杂度"></a>6.6 平均时间复杂度</h3>
+    
+
+
+ <!-- 增加版权声明 -->
+ 
+ 
+ <div class="declare" hidden="hidden"></div>
+    
+<!-- 增加版权声明 -->
+<!--  -->
+<!-- 增加版权声明结束 --> 
+
+    
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2022/05/18/DS%20&%20AL-%E7%BB%AA%E8%AE%BA/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+<!--gitalk评论系统代码添加-->
+
+  
+  
+  
     <article id="post-使用WireShark对常用的6种协议抓包并分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1122,106 +1292,6 @@
   
   
   
-    <article id="post-python3函数和方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2022/04/01/python3%E5%87%BD%E6%95%B0%E5%92%8C%E6%96%B9%E6%B3%95/">python3函数和方法</a>
-	
-    </h1>
-  
-
-
-
-  
-  
-<a href="/2022/04/01/python3%E5%87%BD%E6%95%B0%E5%92%8C%E6%96%B9%E6%B3%95/" class="archive-article-date">
-        <time datetime="2022-04-01T07:24:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-01</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>陌生函数、内置函数、随机数模块的函数、各种数据类型的常用函数与方法
-    
-    <a class="article-more-a" href="/2022/04/01/python3%E5%87%BD%E6%95%B0%E5%92%8C%E6%96%B9%E6%B3%95/#more">more >></a>
-    
-    
-
-
- <!-- 增加版权声明 -->
- 
- 
- <div class="declare" hidden="hidden"></div>
-    
-<!-- 增加版权声明 -->
-<!--  -->
-<!-- 增加版权声明结束 --> 
-
-    
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">python3</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2022/04/01/python3%E5%87%BD%E6%95%B0%E5%92%8C%E6%96%B9%E6%B3%95/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-<!--gitalk评论系统代码添加-->
-
-  
-  
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
@@ -1359,6 +1429,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">English</a>
               </li>
              
@@ -1367,15 +1441,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">penetration</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Web vulnerability</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">基础</a>
               </li>
              
               <li class="article-tag-list-item">
