@@ -6,16 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://kur08a.github.io">
-  <title>Archives | Kur08a&#39;s Blog</title>
+  <title>10-链表常考题 | Kur08a&#39;s Blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Kur08a&#39;s Blog">
-<meta property="og:url" content="https://kur08a.github.io/archives/page/4/index.html">
+  <meta name="description" content="演示带头结点的单链表的反向输出、找到倒数第k个结点、判断是否有环、是否汇聚以及折半交替组合问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="10-链表常考题">
+<meta property="og:url" content="https://kur08a.github.io/2022/06/04/10-%E9%93%BE%E8%A1%A8%E5%B8%B8%E8%80%83%E9%A2%98/index.html">
 <meta property="og:site_name" content="Kur08a&#39;s Blog">
+<meta property="og:description" content="演示带头结点的单链表的反向输出、找到倒数第k个结点、判断是否有环、是否汇聚以及折半交替组合问题。">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-06-04T07:34:57.000Z">
+<meta property="article:modified_time" content="2022-06-04T07:38:47.720Z">
 <meta property="article:author" content="kur08a">
+<meta property="article:tag" content="数据结构与算法">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Kur08a&#39;s Blog" type="application/atom+xml">
@@ -187,157 +192,280 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-10-链表常考题" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2022/03/20/hexo%E6%A8%A1%E6%9D%BFyilia%E5%A4%B4%E5%83%8F%E5%A2%9E%E5%8A%A0%E6%97%8B%E8%BD%AC%E6%95%88%E6%9E%9C/" class="archive-article-date">
-        <time datetime="2022-03-20T09:38:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-20</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2022/03/20/hexo%E6%A8%A1%E6%9D%BFyilia%E5%A4%B4%E5%83%8F%E5%A2%9E%E5%8A%A0%E6%97%8B%E8%BD%AC%E6%95%88%E6%9E%9C/">hexo模板yilia头像增加旋转效果</a>
-	
+    <h1 class="article-title" itemprop="name">
+      10-链表常考题
     </h1>
   
 
 
-        <div class="article-info info-on-right">
-          
+
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2022/06/04/10-%E9%93%BE%E8%A1%A8%E5%B8%B8%E8%80%83%E9%A2%98/" class="archive-article-date">
+        <time datetime="2022-06-04T07:34:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-04</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">7.5k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">32分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>演示带头结点的单链表的反向输出、找到倒数第k个结点、判断是否有环、是否汇聚以及折半交替组合问题。<span id="more"></span></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br><span class="line">513</span><br><span class="line">514</span><br><span class="line">515</span><br><span class="line">516</span><br><span class="line">517</span><br><span class="line">518</span><br><span class="line">519</span><br><span class="line">520</span><br><span class="line">521</span><br><span class="line">522</span><br><span class="line">523</span><br><span class="line">524</span><br><span class="line">525</span><br><span class="line">526</span><br><span class="line">527</span><br><span class="line">528</span><br><span class="line">529</span><br><span class="line">530</span><br><span class="line">531</span><br><span class="line">532</span><br><span class="line">533</span><br><span class="line">534</span><br><span class="line">535</span><br><span class="line">536</span><br><span class="line">537</span><br><span class="line">538</span><br><span class="line">539</span><br><span class="line">540</span><br><span class="line">541</span><br><span class="line">542</span><br><span class="line">543</span><br><span class="line">544</span><br><span class="line">545</span><br><span class="line">546</span><br><span class="line">547</span><br><span class="line">548</span><br><span class="line">549</span><br><span class="line">550</span><br><span class="line">551</span><br><span class="line">552</span><br><span class="line">553</span><br><span class="line">554</span><br><span class="line">555</span><br><span class="line">556</span><br><span class="line">557</span><br><span class="line">558</span><br><span class="line">559</span><br><span class="line">560</span><br><span class="line">561</span><br><span class="line">562</span><br><span class="line">563</span><br><span class="line">564</span><br><span class="line">565</span><br><span class="line">566</span><br><span class="line">567</span><br><span class="line">568</span><br><span class="line">569</span><br><span class="line">570</span><br><span class="line">571</span><br><span class="line">572</span><br><span class="line">573</span><br><span class="line">574</span><br><span class="line">575</span><br><span class="line">576</span><br><span class="line">577</span><br><span class="line">578</span><br><span class="line">579</span><br><span class="line">580</span><br><span class="line">581</span><br><span class="line">582</span><br><span class="line">583</span><br><span class="line">584</span><br><span class="line">585</span><br><span class="line">586</span><br><span class="line">587</span><br><span class="line">588</span><br><span class="line">589</span><br><span class="line">590</span><br><span class="line">591</span><br><span class="line">592</span><br><span class="line">593</span><br><span class="line">594</span><br><span class="line">595</span><br><span class="line">596</span><br><span class="line">597</span><br><span class="line">598</span><br><span class="line">599</span><br><span class="line">600</span><br><span class="line">601</span><br><span class="line">602</span><br><span class="line">603</span><br><span class="line">604</span><br><span class="line">605</span><br><span class="line">606</span><br><span class="line">607</span><br><span class="line">608</span><br><span class="line">609</span><br><span class="line">610</span><br><span class="line">611</span><br><span class="line">612</span><br><span class="line">613</span><br><span class="line">614</span><br><span class="line">615</span><br><span class="line">616</span><br><span class="line">617</span><br><span class="line">618</span><br><span class="line">619</span><br><span class="line">620</span><br><span class="line">621</span><br><span class="line">622</span><br><span class="line">623</span><br><span class="line">624</span><br><span class="line">625</span><br><span class="line">626</span><br><span class="line">627</span><br><span class="line">628</span><br><span class="line">629</span><br><span class="line">630</span><br><span class="line">631</span><br><span class="line">632</span><br><span class="line">633</span><br><span class="line">634</span><br><span class="line">635</span><br><span class="line">636</span><br><span class="line">637</span><br><span class="line">638</span><br><span class="line">639</span><br><span class="line">640</span><br><span class="line">641</span><br><span class="line">642</span><br><span class="line">643</span><br><span class="line">644</span><br><span class="line">645</span><br><span class="line">646</span><br><span class="line">647</span><br><span class="line">648</span><br><span class="line">649</span><br><span class="line">650</span><br><span class="line">651</span><br><span class="line">652</span><br><span class="line">653</span><br><span class="line">654</span><br><span class="line">655</span><br><span class="line">656</span><br><span class="line">657</span><br><span class="line">658</span><br><span class="line">659</span><br><span class="line">660</span><br><span class="line">661</span><br><span class="line">662</span><br><span class="line">663</span><br><span class="line">664</span><br><span class="line">665</span><br><span class="line">666</span><br><span class="line">667</span><br><span class="line">668</span><br><span class="line">669</span><br><span class="line">670</span><br><span class="line">671</span><br><span class="line">672</span><br><span class="line">673</span><br><span class="line">674</span><br><span class="line">675</span><br><span class="line">676</span><br><span class="line">677</span><br><span class="line">678</span><br><span class="line">679</span><br><span class="line">680</span><br><span class="line">681</span><br><span class="line">682</span><br><span class="line">683</span><br><span class="line">684</span><br><span class="line">685</span><br><span class="line">686</span><br><span class="line">687</span><br><span class="line">688</span><br><span class="line">689</span><br><span class="line">690</span><br><span class="line">691</span><br><span class="line">692</span><br><span class="line">693</span><br><span class="line">694</span><br><span class="line">695</span><br><span class="line">696</span><br><span class="line">697</span><br><span class="line">698</span><br><span class="line">699</span><br><span class="line">700</span><br><span class="line">701</span><br><span class="line">702</span><br><span class="line">703</span><br><span class="line">704</span><br><span class="line">705</span><br><span class="line">706</span><br><span class="line">707</span><br><span class="line">708</span><br><span class="line">709</span><br><span class="line">710</span><br><span class="line">711</span><br><span class="line">712</span><br><span class="line">713</span><br><span class="line">714</span><br><span class="line">715</span><br><span class="line">716</span><br><span class="line">717</span><br><span class="line">718</span><br><span class="line">719</span><br><span class="line">720</span><br><span class="line">721</span><br><span class="line">722</span><br><span class="line">723</span><br><span class="line">724</span><br><span class="line">725</span><br><span class="line">726</span><br><span class="line">727</span><br><span class="line">728</span><br><span class="line">729</span><br><span class="line">730</span><br><span class="line">731</span><br><span class="line">732</span><br><span class="line">733</span><br><span class="line">734</span><br><span class="line">735</span><br><span class="line">736</span><br><span class="line">737</span><br><span class="line">738</span><br><span class="line">739</span><br><span class="line">740</span><br><span class="line">741</span><br><span class="line">742</span><br><span class="line">743</span><br><span class="line">744</span><br><span class="line">745</span><br><span class="line">746</span><br><span class="line">747</span><br><span class="line">748</span><br><span class="line">749</span><br><span class="line">750</span><br><span class="line">751</span><br><span class="line">752</span><br><span class="line">753</span><br><span class="line">754</span><br><span class="line">755</span><br><span class="line">756</span><br><span class="line">757</span><br><span class="line">758</span><br><span class="line">759</span><br><span class="line">760</span><br><span class="line">761</span><br><span class="line">762</span><br><span class="line">763</span><br><span class="line">764</span><br><span class="line">765</span><br><span class="line">766</span><br><span class="line">767</span><br><span class="line">768</span><br><span class="line">769</span><br><span class="line">770</span><br><span class="line">771</span><br><span class="line">772</span><br><span class="line">773</span><br><span class="line">774</span><br><span class="line">775</span><br><span class="line">776</span><br><span class="line">777</span><br><span class="line">778</span><br><span class="line">779</span><br><span class="line">780</span><br><span class="line">781</span><br><span class="line">782</span><br><span class="line">783</span><br><span class="line">784</span><br><span class="line">785</span><br><span class="line">786</span><br><span class="line">787</span><br><span class="line">788</span><br><span class="line">789</span><br><span class="line">790</span><br><span class="line">791</span><br><span class="line">792</span><br><span class="line">793</span><br><span class="line">794</span><br><span class="line">795</span><br><span class="line">796</span><br><span class="line">797</span><br><span class="line">798</span><br><span class="line">799</span><br><span class="line">800</span><br><span class="line">801</span><br><span class="line">802</span><br><span class="line">803</span><br><span class="line">804</span><br><span class="line">805</span><br><span class="line">806</span><br><span class="line">807</span><br><span class="line">808</span><br><span class="line">809</span><br><span class="line">810</span><br><span class="line">811</span><br></pre></td><td class="code"><pre><span class="line">//此程序演示链表的常用考题的解答</span><br><span class="line">//是在【带头结点的单链表的实现，数据元素是整数】的基础上增加了常用考题的解答。</span><br><span class="line">//1.反向输出带头结点的单链表全部结点的值。【要求：时间复杂度为O(n)，空间复杂度为O(1)】</span><br><span class="line">//2.找出带头结点的单链表倒数第k（k&gt;0）个结点。</span><br><span class="line">//3.判断单链表是否有环，并找到环的入口。</span><br><span class="line">//4.找出两个汇聚单链表的公共结点。</span><br><span class="line">//5.假设线性表L=(a1,a2,a3,...an-2,an-1,an)采用带头结点的单链表保存，数据结点的个数为偶数。</span><br><span class="line">//请设计一个空间复杂度为O(1)且时间上尽可能高效的算法，重新排列L中的各结点，</span><br><span class="line">//得到线性表L&#x27;=(a1,an,a2,an-1,a3,an-2,...)。 </span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line"></span><br><span class="line">typedef int ElemType;     // 自定义链表的数据元素为整数。</span><br><span class="line">typedef struct LNode</span><br><span class="line">&#123;</span><br><span class="line">  ElemType data;       // 存放结点的数据元素。</span><br><span class="line">  struct LNode *next;  // 指向下一个结点的指针。</span><br><span class="line">&#125;LNode,*LinkList;</span><br><span class="line"></span><br><span class="line">//一、初始化</span><br><span class="line">//方法1：返回类型为指针(地址)：失败返回NULL，成功返回头结点的地址。</span><br><span class="line">LNode *InitList1();</span><br><span class="line">//方法2：传入的参数为指针变量的地址。失败返回0，成功返回1。</span><br><span class="line">int InitList2(LinkList *LL);</span><br><span class="line">//方法3：C++引用的方法，在Linux下，需要用g++编译。失败返回0，成功返回1。</span><br><span class="line">//int InitList3(LinkList &amp;LL);</span><br><span class="line">//方法4(错误的方法)：传入的参数为指针变量LL的值，LL的值只能传进去，无法返回。</span><br><span class="line">int InitList4(LinkList LL);</span><br><span class="line"></span><br><span class="line">//二、销毁（无需返回）</span><br><span class="line">//销毁链表LL是指释放链表全部的结点，包括头结点。</span><br><span class="line">//方法1：传入的参数为指针变量LL的值，无需返回。</span><br><span class="line">void DestroyList1(LinkList LL);</span><br><span class="line">//方法2：传入的参数为指针变量的地址，无需返回。</span><br><span class="line">void DestroyList2(LinkList *LL);</span><br><span class="line">//方法3：C++引用的方法，在Linux下，需要用g++编译。传入指针的地址的方法。</span><br><span class="line">//void DestroyList3(LinkList &amp;LL);</span><br><span class="line"></span><br><span class="line">//三、清空链表（释放链表全部的结点，但不包括头结点。）</span><br><span class="line">void ClearList(LinkList LL);                    </span><br><span class="line"></span><br><span class="line">//四、插入</span><br><span class="line">//1、按位序插入：在链表LL的第i个位置插入元素e。成功返回1，失败返回0。</span><br><span class="line">int InsertList(LinkList LL, unsigned int i, ElemType *e);</span><br><span class="line">//2、后插操作：在指定结点p之后插入元素e。成功返回1，失败返回0。</span><br><span class="line">int InsertNextNode(LNode *p, ElemType *e);</span><br><span class="line">//3、前插操作：在指定结点p之前插入元素e。成功返回1，失败返回0。</span><br><span class="line">int InsertPriorNode(LNode *p, ElemType *e);</span><br><span class="line">//4、头插法：在链表LL头部插入元素e。成功返回1，失败返回0。</span><br><span class="line">int PushFront(LinkList LL, ElemType *e);</span><br><span class="line">//5、尾插法：在链表LL尾部插入元素e。成功返回1，失败返回0。</span><br><span class="line">int PushBack(LinkList LL, ElemType *e);</span><br><span class="line"></span><br><span class="line">//五、删除</span><br><span class="line">//1、按位序删除：删除链表LL的第i个结点。成功返回1，位置i不合法返回0。</span><br><span class="line">int DeleteNode(LinkList LL, unsigned int i);</span><br><span class="line">//2、删除指定结点p。【若是最后一个结点，就有BUG】</span><br><span class="line">int DeleteNode1(LNode *p);</span><br><span class="line">//3、删除第一个结点，成功返回1，位置不合法返回0。</span><br><span class="line">int PopFront(LinkList LL);</span><br><span class="line">//4、删除最后一个结点，成功返回1，位置不合法返回0。</span><br><span class="line">int PopBack(LinkList LL);</span><br><span class="line"></span><br><span class="line">//六、打印</span><br><span class="line">// 打印链表中的全部元素。</span><br><span class="line">void PrintList(LinkList LL);                   </span><br><span class="line"></span><br><span class="line">//七、查找</span><br><span class="line">//1、求链表长度。返回表LL结点的个数。</span><br><span class="line">int LengthList(LinkList LL);</span><br><span class="line">//2、判断链表是否为空。空-返回1，非空或失败返回0。</span><br><span class="line">int IsEmpty(LinkList LL);</span><br><span class="line">//3、按位序查找：获取链表中第ii个结点，成功返回结点的地址，失败返回空。</span><br><span class="line">//注意：i可以取值为0，表示头结点。</span><br><span class="line">LNode *LocateNode(LinkList LL, unsigned int i);</span><br><span class="line">// 4、按值查找：查找元素e在链表LL中的结点地址，没找到返回NULL，否则返回结点的地址。</span><br><span class="line">LNode *LocateElem(LinkList LL, ElemType *e);</span><br><span class="line"></span><br><span class="line">//八、反转</span><br><span class="line">// 把链表p结点之后的结点原地逆置（反转），返回值：0-失败；1-成功。</span><br><span class="line">int ReverseList(LNode *p);</span><br><span class="line"></span><br><span class="line">//九、合并</span><br><span class="line">// 采用归并的方法，将两个升序的链表La和Lb，合并成一个升序的链表Lc。</span><br><span class="line">int MergeList(LinkList La,LinkList Lb,LinkList Lc);</span><br><span class="line"></span><br><span class="line">/************************************************/</span><br><span class="line">// 第一题：反向打印链表中全部的元素。</span><br><span class="line">void PrintList1(LNode *p);</span><br><span class="line"></span><br><span class="line">// 第二题：找出带头结点的单链表倒数第k(k&gt;0)个结点。</span><br><span class="line">LNode *FindKNode(LinkList LL,unsigned int k);</span><br><span class="line"></span><br><span class="line">// 第三题：判断单链表是否有环，并找到环的入口。</span><br><span class="line">LNode *FindLoop(LinkList LL);</span><br><span class="line"></span><br><span class="line">// 第四题：找出两个汇聚单链表的公共结点，如果没有汇聚，返回空，如果有，返回汇聚的第一个结点。</span><br><span class="line">LNode *FindJoin(LinkList La,LinkList Lb);</span><br><span class="line"></span><br><span class="line">// 第五题：假设线性表L=(a1,a2,a3,...,an-2,an-1,an)采用带头结点的单链表保存，数据结点的个数为偶数。</span><br><span class="line">// 请设计一个空间复杂度为O(1)且时间上尽可能高效的算法，重新排列L中的各结点。</span><br><span class="line">// 最后得到线性表L=(a1,an,a2,an-1,a3,an-2,...)。</span><br><span class="line">void ReplaceList(LinkList LL);</span><br><span class="line">/************************************************/</span><br><span class="line">/************************************************/</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">  LinkList LL=NULL; // 声明链表指针变量。</span><br><span class="line"></span><br><span class="line">  LL=InitList1();     // 初始化链表。</span><br><span class="line"></span><br><span class="line">  printf(&quot;LL=%p\n&quot;,LL);</span><br><span class="line"></span><br><span class="line">  ElemType e;      // 创建一个数据元素。</span><br><span class="line">  printf(&quot;在表中插入元素（1、2、3、4、5、6、7、8、9、10）。\n&quot;);</span><br><span class="line">  e=1;  PushBack(LL, &amp;e);</span><br><span class="line">  e=2;  PushBack(LL, &amp;e);</span><br><span class="line">  e=3;  PushBack(LL, &amp;e);</span><br><span class="line">  e=4;  PushBack(LL, &amp;e);</span><br><span class="line">  e=5;  PushBack(LL, &amp;e);</span><br><span class="line">  e=6;  PushBack(LL, &amp;e);</span><br><span class="line">  e=7;  PushBack(LL, &amp;e);</span><br><span class="line">  e=8;  PushBack(LL, &amp;e);</span><br><span class="line">  e=9;  PushBack(LL, &amp;e);</span><br><span class="line">  e=10; PushBack(LL, &amp;e);</span><br><span class="line"></span><br><span class="line">  // 按正常顺序显示全部结点的值。</span><br><span class="line">  PrintList(LL);</span><br><span class="line">//---------------------------------//</span><br><span class="line">  // 第1题。</span><br><span class="line">//   // 反向显示全部结点的值。</span><br><span class="line">//   printf(&quot;第一题：反向显示全部结点的值：\n&quot;);</span><br><span class="line">//   PrintList1(LL-&gt;next); printf(&quot;\n\n&quot;);</span><br><span class="line"></span><br><span class="line">//---------------------------------// </span><br><span class="line">  // 第2题。</span><br><span class="line">//   // 找出带头结点的单链表倒数第k(k&gt;0)个结点。</span><br><span class="line">//   printf(&quot;第二题：\n&quot;); </span><br><span class="line">//   LNode *tmp=FindKNode(LL,6);</span><br><span class="line">//   if (tmp == NULL) </span><br><span class="line">//     printf(&quot;倒数第6个结点没找着。\n\n&quot;);</span><br><span class="line">//   else</span><br><span class="line">//     printf(&quot;倒数第6个结点的值是%d。\n\n&quot;,tmp-&gt;data);</span><br><span class="line">  </span><br><span class="line">//---------------------------------//</span><br><span class="line">  // 第3题。//需先注释上面调用第2题的代码。</span><br><span class="line">//   printf(&quot;第三题：\n&quot;);</span><br><span class="line">//   // 判断单链表是否有环，并找到环的入口。</span><br><span class="line">//   //先模拟有环：手工把链表设置成有环。</span><br><span class="line">//   LNode *tmp1=LocateNode(LL,4);</span><br><span class="line">//   LNode *tmp2=LocateNode(LL,10);</span><br><span class="line">//   tmp2-&gt;next=tmp1;</span><br><span class="line">//   printf(&quot;设置链表环入口的地址是%p，结点的值是%d。\n\n&quot;,tmp1,tmp1-&gt;data);</span><br><span class="line"></span><br><span class="line">//   // 判断单链表是否有环，并找到环的入口。</span><br><span class="line">//   LNode *tmp=FindLoop(LL);</span><br><span class="line">//   if (tmp == NULL) </span><br><span class="line">//     printf(&quot;链表没环。\n&quot;);</span><br><span class="line">//   else</span><br><span class="line">//     printf(&quot;链表有环，且链表环入口的地址是%p，结点的值是%d。\n\n&quot;,tmp,tmp-&gt;data);</span><br><span class="line"></span><br><span class="line">//---------------------------------//</span><br><span class="line">  // 第4题。//需先注释上面调用第2、3题的代码。</span><br><span class="line">//   printf(&quot;第四题：\n&quot;);</span><br><span class="line">//   //先模拟出两个链表：</span><br><span class="line">//   LinkList La=LL;   // La直接用上面的LL。</span><br><span class="line">//   // 创建链表Lb。</span><br><span class="line">//   LinkList Lb=InitList1();    // 初始化链表。</span><br><span class="line">//   printf(&quot;在表Lb中插入元素（11、12、33）。\n&quot;);</span><br><span class="line">//   e=11;  PushBack(Lb, &amp;e);</span><br><span class="line">//   e=12;  PushBack(Lb, &amp;e);</span><br><span class="line">//   e=13;  PushBack(Lb, &amp;e);</span><br><span class="line">//   // 把Lb最后一个节点的next指针指向La的第7个结点。</span><br><span class="line">//   LNode *tmp1=LocateNode(La,7); </span><br><span class="line">//   LNode *tmp2=LocateNode(Lb,3); </span><br><span class="line">//   tmp2-&gt;next=tmp1;</span><br><span class="line">//   printf(&quot;La：&quot;); PrintList(La);</span><br><span class="line">//   printf(&quot;Lb：&quot;); PrintList(Lb);</span><br><span class="line"></span><br><span class="line">//   // 找出两个汇聚单链表的公共结点，如果没有汇聚，返回空，如果有，返回汇聚的第一个结点。</span><br><span class="line">//   LNode *tmp=FindJoin(La,Lb);</span><br><span class="line">//   if (tmp == NULL)</span><br><span class="line">//     printf(&quot;链表没有汇聚。\n\n&quot;);</span><br><span class="line">//   else</span><br><span class="line">//     printf(&quot;链表汇聚的起始地址是%p，结点的值是%d。\n\n&quot;,tmp,tmp-&gt;data);</span><br><span class="line"></span><br><span class="line">//---------------------------------//</span><br><span class="line">  // 第5题。</span><br><span class="line">//   // 假设线性表L=(a1,a2,a3,...,an-2,an-1,an)采用带头结点的单链表保存，数据结点的个数为偶数。</span><br><span class="line">//   // 请设计一个空间复杂度为O(1)且时间上尽可能高效的算法，重新排列L中的各结点。</span><br><span class="line">//   // 最后得到线性表L=(a1,an,a2,an-1,a3,an-2,...)。</span><br><span class="line">//   printf(&quot;第五题：\n&quot;);</span><br><span class="line">//   ReplaceList(LL);</span><br><span class="line">//   PrintList(LL);</span><br><span class="line"></span><br><span class="line">//---------------------------------//</span><br><span class="line">  // 在测试FindLoop函数的时候，不能启用以下代码。</span><br><span class="line">  DestroyList1(LL); LL=NULL;  // 销毁链表，LL置为空。</span><br><span class="line"></span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br><span class="line">/************************************************/</span><br><span class="line">/************************************************/</span><br><span class="line">//一、初始化</span><br><span class="line">//方法1：返回类型为指针(地址)：失败返回NULL，成功返回头结点的地址。【简单】</span><br><span class="line">LNode *InitList1()</span><br><span class="line">&#123;</span><br><span class="line">  //1.分配头结点。</span><br><span class="line">  LNode *head = (LNode *)malloc(sizeof(LNode));</span><br><span class="line">  //2.内存不足，返回失败。</span><br><span class="line">  if(head==NULL) return NULL;</span><br><span class="line">  //3.头结点的下一结点暂时不存在，置空。</span><br><span class="line">  head-&gt;next = NULL;</span><br><span class="line">  //4.返回头结点的地址。</span><br><span class="line">  return head;</span><br><span class="line">&#125;</span><br><span class="line">//方法2：传入的参数为指针变量的地址。失败返回0，成功返回1。</span><br><span class="line">int InitList2(LinkList *LL)</span><br><span class="line">&#123;</span><br><span class="line">  //函数传入参数时实际上是传入了参数的地址，</span><br><span class="line">  //这里定义的形参类型为指针，表示要传入的数据类型应该为指针的地址，即 &amp;LL。</span><br><span class="line">  //1.检查LL是否已存在，已存在则请先释放。</span><br><span class="line">  if(*LL != NULL)&#123; printf(&quot;链表LL已存在，在初始化之前请先释放它。\n&quot;); return 0; &#125;</span><br><span class="line">  //2.分配头结点。</span><br><span class="line">  LNode *head = (LNode *)malloc(sizeof(LNode));</span><br><span class="line">  //3.内存不足，分配失败。</span><br><span class="line">  if(head == NULL) return 0;</span><br><span class="line">  //4.头结点的下一结点暂时不存在，置空。</span><br><span class="line">  head-&gt;next == NULL;</span><br><span class="line">  //5.指针变量LL存放头结点的地址。</span><br><span class="line">  *LL=head;//这里的LL跟主函数中的LL不同，这里的LL是主函数中LL的地址，*LL才表示LL的值</span><br><span class="line">  return 1;</span><br><span class="line">&#125;</span><br><span class="line">// //方法3：C++引用的方法，在Linux下，需要用g++编译。失败返回0，成功返回1。</span><br><span class="line">// int InitList3(LinkList &amp;LL)</span><br><span class="line">// &#123;</span><br><span class="line">//   //1.检查LL是否已存在，已存在则请先释放。</span><br><span class="line">//   if(LL != NULL)&#123; printf(&quot;链表L已存在，在初始化之前请先释放它。\n&quot;); return 0; &#125;</span><br><span class="line">//   //2.分配头结点。</span><br><span class="line">//   LNode *head = (LNode *)malloc(sizeof(LNode)); </span><br><span class="line">//   //3.内存不足，返回失败。 </span><br><span class="line">//   if(head == NULL) return NULL; </span><br><span class="line">//   //4.头结点的下一结点暂时不存在，置空。</span><br><span class="line">//   head-&gt;next=NULL; </span><br><span class="line">//   //5.指针变量LL的值赋值为头结点的地址。</span><br><span class="line">//   LL=head;</span><br><span class="line">//   return 1;</span><br><span class="line">// &#125;</span><br><span class="line">//方法4(错误的方法)：传入的参数为指针变量LL的值，LL的值只能传进去，无法返回。</span><br><span class="line">int InitList4(LinkList LL)</span><br><span class="line">&#123;</span><br><span class="line">  //1.分配头结点。</span><br><span class="line">  LNode *head = (LNode *)malloc(sizeof(LNode)); </span><br><span class="line">  //2.内存不足，返回失败。 </span><br><span class="line">  if (head == NULL) return 0;  </span><br><span class="line">  //3.头结点的下一结点暂时不存在，置空。</span><br><span class="line">  head-&gt;next=NULL;</span><br><span class="line">  //4.链表指向头结点  </span><br><span class="line">  LL=head;</span><br><span class="line">  printf(&quot;LL1=%p\n&quot;,LL);//输出后可以看到LL与LL1的地址不同，即改变了形参，没改变实参。</span><br><span class="line">  return 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//二、销毁（无需返回）</span><br><span class="line">//销毁链表LL是指释放链表全部的结点，包括头结点。</span><br><span class="line">//方法1：传入的参数为指针变量LL的值，无需返回。</span><br><span class="line">void DestroyList1(LinkList LL)</span><br><span class="line">&#123;</span><br><span class="line">  //1.定义一个临时结点用于保存地址。</span><br><span class="line">  LNode *tmp;</span><br><span class="line">  //2.链表非空时，一个一个释放结点。</span><br><span class="line">  while(LL != NULL)</span><br><span class="line">  &#123;</span><br><span class="line">    tmp = LL-&gt;next;</span><br><span class="line">    free(LL);</span><br><span class="line">    LL = tmp;</span><br><span class="line">  &#125;</span><br><span class="line">  //LL在本函数中相当于局部变量，就算置空了也不会影响调用者传递的LL，所以LL=NULL没有意义。</span><br><span class="line">  //LL=NULL;//所以此处无意义，为了防止野指针还得在主函数中使用LL=NULL;   </span><br><span class="line">  return;</span><br><span class="line">&#125;</span><br><span class="line">//方法2：传入的参数为指针变量的地址，直接操作内容，无需返回。【推荐】</span><br><span class="line">void DestroyList2(LinkList *LL)</span><br><span class="line">&#123;</span><br><span class="line">  //1.定义两个临时结点（指针变量，用于保存地址）</span><br><span class="line">  LNode *tmp1,*tmp2;</span><br><span class="line">  //2.指针变量LL的地址对应的值，即指针变量LL的值，即链表头结点的地址，保存在tmp1中</span><br><span class="line">  tmp1=*LL;</span><br><span class="line">  //3.链表不为空时，一个一个释放当前结点</span><br><span class="line">  while(tmp1 != NULL)</span><br><span class="line">  &#123;</span><br><span class="line">    tmp2 = tmp1-&gt;next;//tmp2保存下一结点的地址。</span><br><span class="line">    free(tmp1);       //释放当前结点。</span><br><span class="line">    tmp1 = tmp2;       //LL指针移动到下一结点。</span><br><span class="line">  &#125;</span><br><span class="line">  //4.把指针变量LL的值置为空，即不再指向链表的头结点的地址，表示链表不存在了。</span><br><span class="line">  *LL=NULL;  </span><br><span class="line">  return;</span><br><span class="line">&#125;</span><br><span class="line">// //方法3：C++引用的方法，在Linux下，需要用g++编译。传入指针的地址的方法。</span><br><span class="line">// void DestroyList3(LinkList &amp;LL)</span><br><span class="line">// &#123;</span><br><span class="line">//   LNode *tmp;</span><br><span class="line">//   while(LL!=NULL)</span><br><span class="line">//   &#123;</span><br><span class="line">//     tmp=LL-&gt;next;   // tmp保存下一结点的地址。</span><br><span class="line">//     free(LL);       // 释放当前结点。</span><br><span class="line">//     LL=tmp;         // LL指针移动到下一结点。</span><br><span class="line">//   &#125;</span><br><span class="line">//   LL=NULL;  //指针变量LL的值置为空，表示链表不存在了。</span><br><span class="line">//   return;</span><br><span class="line">// &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//三、清空链表（释放链表全部的结点，但不包括头结点。）</span><br><span class="line">void ClearList(LinkList LL)</span><br><span class="line">&#123;</span><br><span class="line">  //1.判断链表是否存在。</span><br><span class="line">  if(LL == NULL)&#123; printf(&quot;链表LL不存在。\n&quot;); return; &#125;</span><br><span class="line">  //2.定义两个临时结点，一个保存头结点下一结点的地址 </span><br><span class="line">  LNode *tmp1;</span><br><span class="line">  LNode *tmp2=LL-&gt;next;//保留头结点，从头结点的下一个结点开始释放。</span><br><span class="line">  //3.逐个结点释放</span><br><span class="line">  while(tmp2 != NULL)</span><br><span class="line">  &#123;</span><br><span class="line">    tmp1=tmp2-&gt;next;</span><br><span class="line">    free(tmp2);</span><br><span class="line">    tmp2=tmp1;</span><br><span class="line">  &#125;</span><br><span class="line">  //4.释放完后，将头结点的下一节点赋值为空。</span><br><span class="line">  LL-&gt;next=NULL; //这行代码一定不能少，否则会留下野指针(任意数值)。</span><br><span class="line">  return;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//四、插入</span><br><span class="line">//1、按位序插入：在链表LL的第i个位置插入元素e。成功返回1，失败返回0。</span><br><span class="line">int InsertList(LinkList LL, unsigned int i, ElemType *e)</span><br><span class="line">&#123;</span><br><span class="line">  // 1.判断表和元素是否存在。</span><br><span class="line">  if((LL == NULL)||(e == NULL))&#123; printf(&quot;链表LL或元素e不存在。\n&quot;); return 0; &#125;</span><br><span class="line">  // 2.判断插入位置是否合法 </span><br><span class="line">  if(i &lt; 1)&#123; printf(&quot;插入位置(%d)不合法，应该大于0。\n&quot;,i); return 0; &#125;</span><br><span class="line">  // 3.要在位序i插入结点，必须找到i-1结点。</span><br><span class="line">  LNode *p=LL;// 指针p指向头结点，逐步往后移动，如果为空，表示后面没结点了。</span><br><span class="line">  int k=0;    // k指向的是第几个结点，从头结点0开始，p每向后移动一次，k就加1。</span><br><span class="line">  while((p!=NULL)&amp;&amp;(k &lt; i-1))</span><br><span class="line">  &#123;</span><br><span class="line">    p=p-&gt;next;</span><br><span class="line">    k++;</span><br><span class="line">    //printf(&quot;p=%p,k=%d\n&quot;,p,k);</span><br><span class="line">  &#125;</span><br><span class="line">  //-------------以上为按位序操作寻找第i-1个结点的代码-----------------</span><br><span class="line">  //4.没找到，位置不合法，超过了表长</span><br><span class="line">  if(p==NULL)&#123; printf(&quot;位置(%d)不合法，超过了表长。\n&quot;,i); return 0; &#125;</span><br><span class="line">  //5.找到了第i-1个结点，那就分配一个结点，存放待插入元素。</span><br><span class="line">  LNode *tmp=(LNode *)malloc(sizeof(LNode));</span><br><span class="line">  if(tmp==NULL) return 0;//内存不足，返回失败。</span><br><span class="line">  //考虑数据元素为结构体的情况，这里采用了memcpy的方法而不是直接赋值。</span><br><span class="line">  memcpy(&amp;tmp-&gt;data, e, sizeof(ElemType));</span><br><span class="line">  //6.处理next指针。</span><br><span class="line">  //（下面两行不能颠倒，否则会导致自己指向自己）</span><br><span class="line">  tmp-&gt;next = p-&gt;next;</span><br><span class="line">  p-&gt;next = tmp;</span><br><span class="line">  return 1;</span><br><span class="line">  ///////////////////////////////////////</span><br><span class="line">  // 以上所有代码可以用以下代码代替。</span><br><span class="line">  // LNode *p=LocateNode(LL,i-1);//找到第i-1个结点  </span><br><span class="line">  // return InsertNextNode(p,e);//执行后插操作</span><br><span class="line">  ///////////////////////////////////////</span><br><span class="line">&#125;</span><br><span class="line">//2、后插操作：在指定结点p之后插入元素e。成功返回1，失败返回0。</span><br><span class="line">int InsertNextNode(LNode *p, ElemType *e)</span><br><span class="line">&#123;</span><br><span class="line">  //1.判断结点p是否存在</span><br><span class="line">  if(p == NULL)&#123; printf(&quot;结点p不存在。\n&quot;); return 0; &#125;</span><br><span class="line">  //2.分配一个结点，存放待插入元素。</span><br><span class="line">  LNode *tmp = (LNode *)malloc(sizeof(LNode));</span><br><span class="line">  if(tmp == NULL) return 0;//内存不足，返回失败。</span><br><span class="line">  memcpy(&amp;tmp-&gt;data,e,sizeof(ElemType));</span><br><span class="line">  //3.处理后插操作：</span><br><span class="line">  tmp-&gt;next=p-&gt;next;</span><br><span class="line">  p-&gt;next=tmp;</span><br><span class="line">  return 1;</span><br><span class="line">&#125;</span><br><span class="line">//3、前插操作：在指定结点p之前插入元素e。成功返回1，失败返回0。</span><br><span class="line">int InsertPriorNode(LNode *p, ElemType *e)</span><br><span class="line">&#123;</span><br><span class="line">  //在指定结点p之前插入采用偷梁换柱的方法：</span><br><span class="line">  //一、分配一个新的结点；</span><br><span class="line">  //二、把p结点的数据和指针复制到新结点中。</span><br><span class="line">  //三、把待插入元素的数据存入p结点中。</span><br><span class="line">  </span><br><span class="line">  //1.判断结点p是否存在</span><br><span class="line">  if(p == NULL)&#123; printf(&quot;结点p不存在。\n&quot;); return 0; &#125;</span><br><span class="line">  //2.分配一个结点，复制结点p的数据和指针</span><br><span class="line">  LNode *tmp = (LNode *)malloc(sizeof(LNode));</span><br><span class="line">  if(tmp == NULL) return 0;//内存不足，返回失败。</span><br><span class="line">  //3.把p结点的数据和指针复制到tmp中。</span><br><span class="line">  memcpy(&amp;tmp-&gt;data,&amp;p-&gt;data,sizeof(ElemType));//数据</span><br><span class="line">  tmp-&gt;next=p-&gt;next;//指针</span><br><span class="line">  //4.把待插入的元素存入p中。</span><br><span class="line">  memcpy(&amp;p-&gt;data,e,sizeof(ElemType));</span><br><span class="line">  p-&gt;next=tmp;</span><br><span class="line">  return 1;</span><br><span class="line">&#125;</span><br><span class="line">//4、头插法：在链表LL头部插入元素e。成功返回1，失败返回0。</span><br><span class="line">int PushFront(LinkList LL, ElemType *e)</span><br><span class="line">&#123;</span><br><span class="line">  return InsertList(LL,1,e);</span><br><span class="line">&#125;</span><br><span class="line">//5、尾插法：在链表LL尾部插入元素e。成功返回1，失败返回0。</span><br><span class="line">int PushBack(LinkList LL, ElemType *e)</span><br><span class="line">&#123;</span><br><span class="line">  // 1.判断表和元素是否存在。</span><br><span class="line">  if((LL == NULL)||(e == NULL))&#123; printf(&quot;链表LL或元素e不存在。\n&quot;); return 0; &#125; </span><br><span class="line">  LNode *p=LL;  //从头结点开始。</span><br><span class="line">  // 2.找到最后一个结点【没有事先保存尾部结点地址，所以每次插入都要遍历】。</span><br><span class="line">  while(p-&gt;next != NULL)  p=p-&gt;next;</span><br><span class="line">  // 3.分配一个结点，存放待插入元素。</span><br><span class="line">  LNode *tmp = (LNode *)malloc(sizeof(LNode));  </span><br><span class="line">  if (tmp == NULL) return 0;  // 内存不足，返回失败。</span><br><span class="line">  // 考虑数据元素为结构体的情况，这里采用了memcpy的方法而不是直接赋值。</span><br><span class="line">  memcpy(&amp;tmp-&gt;data,e,sizeof(ElemType));</span><br><span class="line">  // 4.处理next指针。</span><br><span class="line">  tmp-&gt;next=NULL;</span><br><span class="line">  p-&gt;next=tmp;</span><br><span class="line">  return 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//五、删除</span><br><span class="line">//1、按位序删除：删除链表LL的第i个结点。成功返回1，位置i不合法返回0。</span><br><span class="line">int DeleteNode(LinkList LL, unsigned int i)</span><br><span class="line">&#123;</span><br><span class="line">  //1.判断链表是否存在。</span><br><span class="line">  if(LL == NULL)&#123; printf(&quot;链表LL不存在。\n&quot;); return 0; &#125; </span><br><span class="line">  //2.判断删除位置是否合法</span><br><span class="line">  if (i &lt; 1) &#123; printf(&quot;删除位置（%d）不合法，应该在大于0。\n&quot;,i); return 0; &#125;</span><br><span class="line">  // 3.要删除位序i结点，必须找到i-1结点。</span><br><span class="line">  LNode *p=LL;//指针p指向头结点，逐步往后移动，如果为空，表示后面没结点了。</span><br><span class="line">  int k=0;    //k指向的是第几个结点，从头结点0开始，p每向后移动一次，k就加1。</span><br><span class="line">  while((p != NULL)&amp;&amp;(k &lt; i-1))</span><br><span class="line">  &#123;</span><br><span class="line">    p=p-&gt;next; </span><br><span class="line">    k++;</span><br><span class="line">  &#125;</span><br><span class="line">  // p指向的是第i-1个结点，p-&gt;next指定的是要删除的结点，如果p-&gt;next==NULL，即删除的结点不存在。</span><br><span class="line">  if(p-&gt;next==NULL)&#123; printf(&quot;位置（%d）不合法，超过了表长。\n&quot;,i); return 0; &#125;</span><br><span class="line">  //4.删除结点</span><br><span class="line">  LNode *tmp=p-&gt;next;   //tmp为将要删除的结点。</span><br><span class="line">  p-&gt;next=p-&gt;next-&gt;next;//写成p-&gt;next=tmp-&gt;next更简洁。</span><br><span class="line">  free(tmp);</span><br><span class="line">  return 1;</span><br><span class="line">&#125;</span><br><span class="line">//2、删除指定结点p。【若是最后一个结点，就有BUG】</span><br><span class="line">int DeleteNode1(LNode *p)</span><br><span class="line">&#123;</span><br><span class="line">  //删除指定结点的思想是：后继结点前移</span><br><span class="line">  //1）把p后继结点的数据和next指针复制到p结点；2）删除p结点的后继结点。</span><br><span class="line">  </span><br><span class="line">  //1.判断结点p是否存在</span><br><span class="line">  if(p == NULL)&#123; printf(&quot;结点p不存在。\n&quot;); return 0; &#125;</span><br><span class="line">  //2.分配一个结点tmp指向p的后继结点。</span><br><span class="line">  LNode *tmp=p-&gt;next; </span><br><span class="line">  //3.把p后继结点的数据和next指针复制到p结点</span><br><span class="line">  memcpy(&amp;p-&gt;data,&amp;tmp-&gt;data,sizeof(ElemType));//把后继结点的数据复制到p结点中。</span><br><span class="line">  p-&gt;next=tmp-&gt;next;//把p的next指向后继结点的next。</span><br><span class="line">  //4.释放后继结点。</span><br><span class="line">  free(tmp);</span><br><span class="line">  //写这个函数的目的是为了说明这种方法是有问题的。</span><br><span class="line">  //问题：如果当前的p结点是链表的最后一个结点，那么它的后继结点根本不存在。</span><br><span class="line">  //结论：此法不通，还是乖乖的从链表头部开始扫描。</span><br><span class="line">  return 1;</span><br><span class="line">&#125;</span><br><span class="line">//3、删除第一个结点，成功返回1，位置不合法返回0。</span><br><span class="line">int PopFront(LinkList LL)</span><br><span class="line">&#123;</span><br><span class="line">  return DeleteNode(LL, 1);</span><br><span class="line">&#125;</span><br><span class="line">//4、删除最后一个结点，成功返回1，位置不合法返回0。</span><br><span class="line">int PopBack(LinkList LL)</span><br><span class="line">&#123;</span><br><span class="line">  //1.判断表和元素是否存在。</span><br><span class="line">  if(LL == NULL)&#123; printf(&quot;链表LL不存在。\n&quot;); return 0; &#125; </span><br><span class="line">  //2.判断表是否为空。必须加上这个判断，否则下面的循环p-&gt;next-&gt;next不成立。</span><br><span class="line">  if(LL-&gt;next == NULL)&#123; printf(&quot;链表LL为空，没有尾结点。\n&quot;); return 0; &#125; </span><br><span class="line">  //3.要删除最后一个结点，必须找到倒数第二个结点</span><br><span class="line">  LNode *p=LL;  //从第0个结点开始。</span><br><span class="line">  //找到倒数第二个结点（包括头结点）。</span><br><span class="line">  while (p-&gt;next-&gt;next != NULL) p=p-&gt;next;//p-&gt;next-&gt;next==NULL时即找到了倒数第二个结点。</span><br><span class="line">  //4.释放最后一个结点。</span><br><span class="line">  free(p-&gt;next);</span><br><span class="line">  p-&gt;next=NULL;</span><br><span class="line">  return 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//六、打印链表中的全部元素。</span><br><span class="line">void PrintList(LinkList LL)</span><br><span class="line">&#123;</span><br><span class="line">  //1.判断链表是否存在。</span><br><span class="line">  if(LL == NULL)&#123; printf(&quot;链表LL不存在。\n&quot;); return; &#125;</span><br><span class="line">  //2.从第1个结点开始。 </span><br><span class="line">  LNode *p=LL-&gt;next; </span><br><span class="line">  while(p != NULL)</span><br><span class="line">  &#123;</span><br><span class="line">    printf(&quot;%-3d&quot;, p-&gt;data);// 如果元素e为结构体，这行代码要修改。</span><br><span class="line">    p=p-&gt;next;</span><br><span class="line">  &#125;</span><br><span class="line">  printf(&quot;\n&quot;);</span><br><span class="line">  /*</span><br><span class="line">  // 以下代码用于显示全部结点的地址和元素的值。</span><br><span class="line">  LNode *p=LL;  // 从第0个结点开始。</span><br><span class="line">  while (p != NULL)</span><br><span class="line">  &#123;</span><br><span class="line">    printf(&quot;%p,%p,%-3d\n&quot;,p,p-&gt;next,p-&gt;data);  // 如果元素e为结构体，这行代码要修改。</span><br><span class="line">    p=p-&gt;next;</span><br><span class="line">  &#125;</span><br><span class="line">  */</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//七、查找</span><br><span class="line">//1、求链表长度。返回表LL结点的个数。</span><br><span class="line">int LengthList(LinkList LL)</span><br><span class="line">&#123;</span><br><span class="line">  //1.判断链表是否存在。</span><br><span class="line">  if(LL == NULL)&#123; printf(&quot;链表LL不存在。\n&quot;); return 0; &#125; </span><br><span class="line">  //2.头结点不算，从第1个结点开始。</span><br><span class="line">  LNode *p=LL-&gt;next; </span><br><span class="line">  int length=0;</span><br><span class="line">  while(p != NULL)&#123; p=p-&gt;next; length++; &#125;</span><br><span class="line">  return length;</span><br><span class="line">  // 不使用临时变量，如何计算链表（包括头结点）的长度？【！NICE！】</span><br><span class="line">  // if(LL==NULL) return 0;</span><br><span class="line">  // return LengthList(LL-&gt;next)+1;//【递归】</span><br><span class="line">&#125;</span><br><span class="line">//2、判断链表是否为空。空-返回1，非空或失败返回0。</span><br><span class="line">int IsEmpty(LinkList LL)</span><br><span class="line">&#123;</span><br><span class="line">  //1.判断链表是否存在。</span><br><span class="line">  if(LL == NULL) return 0;</span><br><span class="line">  //2.判断链表是否为空。</span><br><span class="line">  if(LL-&gt;next == NULL) return 1;</span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br><span class="line">//3、按位序查找：获取链表中第ii个结点，成功返回结点的地址，失败返回空。</span><br><span class="line">//注意：i可以取值为0，表示头结点。</span><br><span class="line">LNode *LocateNode(LinkList LL, unsigned int i)</span><br><span class="line">&#123;</span><br><span class="line">  //1.判断表是否存在。</span><br><span class="line">  if(LL == NULL)&#123; printf(&quot;链表LL不存在。\n&quot;); return NULL; &#125; </span><br><span class="line">  LNode *p=LL;  // 指针p指向头结点，逐步往后移动，如果为空，表示后面没结点了。</span><br><span class="line">  int k=0;      // k指向的是第几个结点，从头结点0开始，p每向后移动一次，k就加1。</span><br><span class="line">  while((p != NULL)&amp;&amp;(k &lt; i))</span><br><span class="line">  &#123; </span><br><span class="line">    p=p-&gt;next; </span><br><span class="line">    k++; </span><br><span class="line">  &#125;</span><br><span class="line">  //2.没找到，即查找位置不合法</span><br><span class="line">  if(p==NULL)&#123; printf(&quot;位置（%d）不合法，超过了表长。\n&quot;,i); return NULL; &#125;</span><br><span class="line">  //3.找到了，返回结点的地址</span><br><span class="line">  return p;</span><br><span class="line">&#125;</span><br><span class="line">// 4、按值查找：查找元素e在链表LL中的结点地址，没找到返回NULL，否则返回结点的地址。</span><br><span class="line">LNode *LocateElem(LinkList LL, ElemType *e)</span><br><span class="line">&#123;</span><br><span class="line">  // 1.判断表和元素是否存在。</span><br><span class="line">  if((LL == NULL)||(e == NULL))&#123; printf(&quot;链表LL或元素e不存在。\n&quot;); return 0; &#125;</span><br><span class="line">  // 2.从第1个数据结点开始，循环判断。</span><br><span class="line">  LNode *p=LL-&gt;next;  </span><br><span class="line">  while(p != NULL)</span><br><span class="line">  &#123;</span><br><span class="line">    // 如果数据元素是结构体，以下代码要修改。</span><br><span class="line">    if(p-&gt;data == *e) return p;</span><br><span class="line">    p = p-&gt;next;</span><br><span class="line">  &#125;</span><br><span class="line">  return NULL;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//八、反转</span><br><span class="line">//把链表p结点之后的结点原地逆置（反转），成功返回1，失败返回0。</span><br><span class="line">//因为是原地反转，没有消耗额外的存储空间，因此空间复杂度是O(1)。</span><br><span class="line">int ReverseList(LNode *p)</span><br><span class="line">&#123;</span><br><span class="line">  //1.判断结点p是否存在</span><br><span class="line">  if(p == NULL)&#123; printf(&quot;结点p不存在。\n&quot;); return 0; &#125;</span><br><span class="line">  LNode *ss;      // 当前结点。</span><br><span class="line">  LNode *ssnext;  // 当前结点的下一结点。</span><br><span class="line">  //2.从p结点之后的结点开始反转。</span><br><span class="line">  ss=p-&gt;next;    </span><br><span class="line">  p-&gt;next=NULL;  // p-&gt;next指向空。</span><br><span class="line">  while(ss != NULL)</span><br><span class="line">  &#123;</span><br><span class="line">    ssnext=ss-&gt;next;  // 保留ss下一结点的地址。</span><br><span class="line">    //以下两行相当于在p之后插入ss结点（挨个插入）。</span><br><span class="line">    ss-&gt;next=p-&gt;next;  </span><br><span class="line">    p-&gt;next=ss;</span><br><span class="line">    </span><br><span class="line">    ss=ssnext;  // ss结点后移。</span><br><span class="line">  &#125;</span><br><span class="line">  return 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 九、采用归并的方法，将两个升序的链表La和Lb，合并成一个升序的链表Lc。</span><br><span class="line">int MergeList(LinkList La,LinkList Lb,LinkList Lc)</span><br><span class="line">&#123;</span><br><span class="line">  //1.检查空指针</span><br><span class="line">  if((La == NULL) || (Lb == NULL) || (Lc == NULL))&#123; printf(&quot;表La、Lb、Lc至少有一个不存在。\n&quot;); return 0; &#125;</span><br><span class="line">  //2.指向第一个结点</span><br><span class="line">  La=La-&gt;next;</span><br><span class="line">  Lb=Lb-&gt;next;</span><br><span class="line">  LNode *p;</span><br><span class="line">  //3.把La和Lb合并到Lc中。</span><br><span class="line">  while((La != NULL) &amp;&amp; (Lb != NULL))</span><br><span class="line">  &#123;</span><br><span class="line">    // 3.1取La和Lb的较小者。</span><br><span class="line">    if(La-&gt;data &lt;= Lb-&gt;data)</span><br><span class="line">    &#123;</span><br><span class="line">      p=La; </span><br><span class="line">      La=La-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">      p=Lb; </span><br><span class="line">      Lb=Lb-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    // 3.2把较小者追加到Lc中。</span><br><span class="line">    Lc-&gt;next=(LNode *)malloc(sizeof(LNode));  // 分配一个新结点。</span><br><span class="line">    Lc=Lc-&gt;next;</span><br><span class="line">    memcpy(&amp;Lc-&gt;data, &amp;p-&gt;data, sizeof(ElemType));</span><br><span class="line">    Lc-&gt;next=NULL;</span><br><span class="line">  &#125;</span><br><span class="line">  // 4.1表Lb没有了但表La还有元素，则把链表La其它的元素追加到Lc中。</span><br><span class="line">  while(La != NULL)</span><br><span class="line">  &#123;</span><br><span class="line">    Lc-&gt;next=(LNode *)malloc(sizeof(LNode));  // 分配一个新结点。</span><br><span class="line">    Lc=Lc-&gt;next;</span><br><span class="line">    memcpy(&amp;Lc-&gt;data,&amp;La-&gt;data,sizeof(ElemType));</span><br><span class="line">    Lc-&gt;next=NULL;</span><br><span class="line">    La=La-&gt;next;</span><br><span class="line">  &#125;</span><br><span class="line">  // 4.2表La没有了但表Lb还有元素，则把链表Lb其它的元素追加到Lc中。</span><br><span class="line">  while(Lb != NULL)</span><br><span class="line">  &#123;</span><br><span class="line">    Lc-&gt;next=(LNode *)malloc(sizeof(LNode));  // 分配一个新结点。</span><br><span class="line">    Lc=Lc-&gt;next;</span><br><span class="line">    memcpy(&amp;Lc-&gt;data,&amp;Lb-&gt;data,sizeof(ElemType));</span><br><span class="line">    Lc-&gt;next=NULL;</span><br><span class="line">    Lb=Lb-&gt;next;</span><br><span class="line">  &#125;</span><br><span class="line">  return 1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/************************************************/</span><br><span class="line">//第一题：反向打印链表中全部的元素。【要求：时间复杂度为O(n)，空间复杂度为O(1)】</span><br><span class="line">void PrintList1(LNode *p)//【递归-空间复杂度为O(1)】</span><br><span class="line">&#123;</span><br><span class="line">  if (p == NULL) return;</span><br><span class="line">  PrintList1(p-&gt;next);</span><br><span class="line">  printf(&quot;%-3d&quot;, p-&gt;data);  </span><br><span class="line">  return;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//第二题：找出带头结点的单链表倒数第k(k&gt;0)个结点。</span><br><span class="line">LNode *FindKNode(LinkList LL,unsigned int k)</span><br><span class="line">&#123;</span><br><span class="line">//思路：定义两个指针结点，</span><br><span class="line">//先让p1跑到第k个结点，然后p1和p2一起跑，当p1跑到表尾即p1==NULL时，p2就跑到倒数第k个结点了。</span><br><span class="line">  //1.定义两个指针结点</span><br><span class="line">  LNode *p1=LL-&gt;next;//从第一个结点开始</span><br><span class="line">  LNode *p2=LL-&gt;next;</span><br><span class="line">  //2.让p1先跑k个节点。</span><br><span class="line">  int i=1;//从第一个结点开始跑</span><br><span class="line">  while((p1!=NULL) &amp;&amp; (i&lt;k))</span><br><span class="line">  &#123;</span><br><span class="line">    p1=p1-&gt;next; </span><br><span class="line">    i++;</span><br><span class="line">  &#125;</span><br><span class="line">  if(p1 == NULL) return NULL;//表中结点不够k个，即表没那么长，返回NULL。</span><br><span class="line">  //3.然后p1和p2一起跑，p1继续跑到尾，同时p2也开始跑。</span><br><span class="line">  while (1)</span><br><span class="line">  &#123;</span><br><span class="line">    p1=p1-&gt;next; </span><br><span class="line">    if(p1 == NULL) break;</span><br><span class="line">    p2=p2-&gt;next;</span><br><span class="line">  &#125;</span><br><span class="line">  return p2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//第三题：判断单链表是否有环，并找到环的入口。</span><br><span class="line">/*      len（头结点到环入口的距离）</span><br><span class="line">    ------------------</span><br><span class="line">               --    --</span><br><span class="line">              --      --  ·——&gt;arc（环入口到快慢指针相遇点的距离）</span><br><span class="line">             --        --</span><br><span class="line">              --      --</span><br><span class="line">               --    --</span><br><span class="line">                ------</span><br><span class="line">    采用快慢两个之指针fast和slow，从第一个数据结点开始跑，</span><br><span class="line">    slow跑一步，fast跑两步，如果有环，fast和slow将在环中相遇。</span><br><span class="line">    环周长为per，相遇时，fast已跑了n圈。</span><br><span class="line">    由时间相等得等式：len+arc = (len+n*per+arc)/2</span><br><span class="line">    即 len = n*per-arc</span><br><span class="line">    因此，再采用两个指针，一个从第一个数据结点开始跑，另一个从相遇的结点开始跑，</span><br><span class="line">    两个指针必定在环入口的结点相遇，即 len = n*per-arc</span><br><span class="line">*/ </span><br><span class="line">LNode *FindLoop(LinkList LL)</span><br><span class="line">&#123;</span><br><span class="line">  //1、设置快慢指针。</span><br><span class="line">  LNode *fast=LL,*slow=LL;  </span><br><span class="line">  //2、slow走一步，fast走两步。</span><br><span class="line">  while((fast != NULL) &amp;&amp; (fast-&gt;next != NULL)) //防止链表没环操作空指针的情况。</span><br><span class="line">  &#123;</span><br><span class="line">    // 慢指针走一步，快指针走两步。</span><br><span class="line">    slow=slow-&gt;next;</span><br><span class="line">    fast=fast-&gt;next-&gt;next;</span><br><span class="line"></span><br><span class="line">    if (slow == fast) break;</span><br><span class="line">  &#125;</span><br><span class="line">  //3、如果快指针能跑到NULL，表示没环。</span><br><span class="line">  if((fast==NULL) || (fast-&gt;next==NULL)) return NULL;</span><br><span class="line">  //4、找到环的入口。</span><br><span class="line">  LNode *p1=LL,*p2=slow;//一个从第一个数据结点开始跑，另一个从相遇的结点(慢指针所在结点)开始跑。</span><br><span class="line">  while (p1 != p2)</span><br><span class="line">  &#123;</span><br><span class="line">    p1=p1-&gt;next; </span><br><span class="line">    p2=p2-&gt;next;</span><br><span class="line">  &#125;</span><br><span class="line">  return p1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//第四题：找出两个汇聚单链表的公共结点，如果没有汇聚，返回空，如果有，返回汇聚的第一个结点。</span><br><span class="line">LNode *FindJoin(LinkList La,LinkList Lb)</span><br><span class="line">&#123;</span><br><span class="line">//思路：先得到两个单链表的长度，</span><br><span class="line">//长的链表先走差值步，然后两个链表一起走，结点地址相同就是汇聚点。</span><br><span class="line">  //1、得到两个单链表的长度：</span><br><span class="line">  int lalen=LengthList(La); // 得到La的长度。</span><br><span class="line">  int lblen=LengthList(Lb); // 得到Lb的长度。</span><br><span class="line">  //2、长的先走差值步：</span><br><span class="line">  LNode *pa,*pb;</span><br><span class="line">  // 如果La更长，La先走lalen-lblen步。</span><br><span class="line">  for (pa=La; lblen&lt;lalen; lalen--)</span><br><span class="line">    pa=pa-&gt;next;</span><br><span class="line">  // 如果Lb更长，Lb先走lblen-lalen步。</span><br><span class="line">  for (pb=Lb; lalen&lt;lblen; lblen--)</span><br><span class="line">    pb=pb-&gt;next;</span><br><span class="line">  //3、然后La和Lb一起走，结点地址相同就是汇聚点。</span><br><span class="line">  while (1)</span><br><span class="line">  &#123;</span><br><span class="line">    if (pa == pb) break;</span><br><span class="line">    pa=pa-&gt;next; pb=pb-&gt;next;</span><br><span class="line">    if (pa == NULL) return NULL;// 跑到头了还没有相同的地址，表示没有汇聚。</span><br><span class="line">  &#125;</span><br><span class="line">  return pa;// 返回汇聚的第一个结点的地址。</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 第五题：假设线性表L=(a1,a2,a3,...,an-2,an-1,an)采用带头结点的单链表保存，数据结点的个数为偶数。</span><br><span class="line">// 请设计一个空间复杂度为O(1)且时间上尽可能高效的算法，重新排列L中的各结点。</span><br><span class="line">// 最后得到线性表L=(a1,an,a2,an-1,a3,an-2,...)。</span><br><span class="line">void ReplaceList(LinkList LL)</span><br><span class="line">&#123;</span><br><span class="line">  // 第1步：找到链表的中间结点。</span><br><span class="line">  LNode *fast=LL,*slow=LL;  // 设置快慢指针。</span><br><span class="line">  while (fast-&gt;next != NULL) </span><br><span class="line">  &#123;</span><br><span class="line">    // 慢指针走一步，快指针走两步。</span><br><span class="line">    slow=slow-&gt;next;</span><br><span class="line">    fast=fast-&gt;next-&gt;next;// 因为数据结点的个数为偶数，所以这里不会出现操作空指针的情况。</span><br><span class="line">    // printf(&quot;slow=%p,data=%d\n&quot;,slow,slow-&gt;data);</span><br><span class="line">    // printf(&quot;fast=%p,data=%d\n&quot;,fast,fast-&gt;data);</span><br><span class="line">  &#125;</span><br><span class="line">  // slow指向链表前半段最后一个结点。</span><br><span class="line">  // printf(&quot;slow=%p,data=%d\n&quot;,slow,slow-&gt;data);</span><br><span class="line"></span><br><span class="line">  // 第2步：把链表的后半段原地逆置。</span><br><span class="line">  ReverseList(slow);</span><br><span class="line">  // PrintList(LL);</span><br><span class="line"></span><br><span class="line">  // 第3步：把链表的后半段插入到前半段中。</span><br><span class="line">  LNode *n1=LL-&gt;next;    // n1为前半段第一个数据结点。</span><br><span class="line">  LNode *n2=slow-&gt;next;  // n2为后半段第一个数据结点。</span><br><span class="line">  slow-&gt;next=NULL;  // 链表结束标志。</span><br><span class="line">  LNode *tmp;</span><br><span class="line">  while (n2 != NULL)</span><br><span class="line">  &#123;</span><br><span class="line">    tmp=n2-&gt;next;      // 保存下一结点的地址。</span><br><span class="line">    n2-&gt;next=n1-&gt;next;</span><br><span class="line">    n1-&gt;next=n2;</span><br><span class="line">    n2=tmp;</span><br><span class="line">    n1=n1-&gt;next-&gt;next; // n1跳到下一个插入位置。</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+    
+
+
+ <!-- 增加版权声明 -->
+ 
+ 
+ <div class="declare">
+   <strong>本文作者：</strong>
+   
+     kur08a
+   
+   <br>
+   <strong>本文链接：</strong>
+   <a rel="license" href="https://kur08a.github.io/2022/06/04/10-%E9%93%BE%E8%A1%A8%E5%B8%B8%E8%80%83%E9%A2%98/">https://kur08a.github.io/2022/06/04/10-%E9%93%BE%E8%A1%A8%E5%B8%B8%E8%80%83%E9%A2%98/</a>
+   <br>
+   <strong>版权声明：</strong>
+   本作品采用
+   <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+   进行许可。转载请注明出处！
+   
+     <br>
+     <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"/></a>
+   
+ </div>
+    
+<!-- 增加版权声明 -->
+<!--  -->
+<!-- 增加版权声明结束 --> 
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/zfb.jpg">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/wx.jpg">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+    
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+  <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+  <p>扫一扫，分享到微信</p>
+  <div class="wx-qrcode">
+    <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://kur08a.github.io/2022/06/04/10-%E9%93%BE%E8%A1%A8%E5%B8%B8%E8%80%83%E9%A2%98/" alt="微信分享二维码">
+  </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2022/03/20/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E4%BD%BF%E7%94%A8hexo%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%93%E5%B1%9Eblog/" class="archive-article-date">
-        <time datetime="2022-03-20T03:07:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-20</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/2022/06/03/9-%E5%B8%A6%E5%A4%B4%E7%BB%93%E7%82%B9%E7%9A%84%E5%BE%AA%E7%8E%AF%E5%8D%95%E9%93%BE%E8%A1%A8-%E6%95%B4%E6%95%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">9-带头结点的循环单链表-整数</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2022/03/20/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E4%BD%BF%E7%94%A8hexo%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%93%E5%B1%9Eblog/">手把手教你使用hexo框架搭建自己的专属blog</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的<^-^>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--gitalk评论系统代码添加-->
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2022/03/19/Markdown%E6%96%87%E6%A1%A3%E7%BC%96%E5%86%99%E6%A0%BC%E5%BC%8F/" class="archive-article-date">
-        <time datetime="2022-03-19T12:12:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-19</time>
-</a>
+<div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div> 
 
-        </div>
-    	 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+
+if(true){
+	var gitalk = new Gitalk({
+  	clientID: '148f0c84a8a85301fdb9',
+  	clientSecret: 'e92610d63406442ab9944b5bc1833fa6ab720285',
+  	repo: 'myhexocomments',
+  	owner: 'kur08a',
+  	admin: ['kur08a'],
+  	id: 'Sat Jun 04 2022 15:34:57 GMT+0800',
+  	distractionFreeMode: 'true'
+})
+gitalk.render('gitalk-container') 
+}
+</script>
+
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2022/03/19/Markdown%E6%96%87%E6%A1%A3%E7%BC%96%E5%86%99%E6%A0%BC%E5%BC%8F/">Markdown文档编写格式</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/3/">上一页</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="page-number current">4</span>
-    </nav>
-  
-
-
           </div>
         </div>
       </div>
@@ -376,8 +504,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
