@@ -6,21 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://kur08a.github.io">
-  <title>fast info-gather | Kur08a&#39;s Blog</title>
+  <title>4-字符串的两种模式匹配算法的代码实现 | Kur08a&#39;s Blog</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="主动信息搜集：">
+  <meta name="description" content="此程序演示两种字符串模式匹配算法的实现，包括BF算法和KMP算法及KMP算法的优化。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="fast info-gather">
-<meta property="og:url" content="https://kur08a.github.io/2022/03/27/fast-info-gather/index.html">
+<meta property="og:title" content="4-字符串的两种模式匹配算法的代码实现">
+<meta property="og:url" content="https://kur08a.github.io/2022/07/14/4-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95%E7%9A%84%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/index.html">
 <meta property="og:site_name" content="Kur08a&#39;s Blog">
-<meta property="og:description" content="主动信息搜集：">
+<meta property="og:description" content="此程序演示两种字符串模式匹配算法的实现，包括BF算法和KMP算法及KMP算法的优化。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-03-27T06:49:40.000Z">
-<meta property="article:modified_time" content="2022-06-04T07:41:50.418Z">
+<meta property="article:published_time" content="2022-07-14T03:25:04.000Z">
+<meta property="article:modified_time" content="2022-07-14T03:27:35.290Z">
 <meta property="article:author" content="kur08a">
-<meta property="article:tag" content="penetration">
+<meta property="article:tag" content="数据结构与算法">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Kur08a&#39;s Blog" type="application/atom+xml">
@@ -192,14 +192,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-fast-info-gather" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-4-字符串的两种模式匹配算法的代码实现" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      fast info-gather
+      4-字符串的两种模式匹配算法的代码实现
     </h1>
   
 
@@ -212,8 +212,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2022/03/27/fast-info-gather/" class="archive-article-date">
-        <time datetime="2022-03-27T06:49:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-27</time>
+<a href="/2022/07/14/4-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95%E7%9A%84%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" class="archive-article-date">
+        <time datetime="2022-07-14T03:25:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-14</time>
 </a>
 
   
@@ -235,7 +235,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">5分</span>
+      <span class="post-count">6分</span>
     </span>
   </span>
 </div>
@@ -246,109 +246,8 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p><strong>主动信息搜集：</strong> <span id="more"></span></p>
-<p>与目标主机进行直接交互，通过对交互过程中的信息进行收集，优点是能够实时的得到最新的信息，缺点是会记录自己的所有操作信息。比如nmap端口扫描，scapy高级扫描，Burpsuite站点地图收集等。</p>
-<p><strong>被动信息搜集：</strong></p>
-<p>不与目标主机进行直接交互，通过搜索引擎(与服务器进行交互而非目标主机)或者社会工程等方式间接的获取目标主机的信息。比如：Google搜索，Shadan搜索，fofa搜索，钟馗之眼等。</p>
-<h2 id="一、whois信息"><a href="#一、whois信息" class="headerlink" title="一、whois信息"></a>一、whois信息</h2><p>注册商、注册人、邮件、DNS解析服务器、注册人联系电话、企业备案信息【限于国内，国外无需备案】等。</p>
-<p>①<a target="_blank" rel="noopener" href="https://whois.aizhan.com/">爱站</a> </p>
-<p>②<a target="_blank" rel="noopener" href="https://whois365.com/cn">全球whois查询(可看自己的IP)</a> </p>
-<h2 id="二、子域名"><a href="#二、子域名" class="headerlink" title="二、子域名"></a>二、子域名</h2><p>①Layer子域名挖掘机。</p>
-<p>②<a target="_blank" rel="noopener" href="https://www.virustotal.com/">virustotal</a> 首选（子域名和IP都出来了）</p>
-<p>③<a target="_blank" rel="noopener" href="https://github.com/aboul3la/Sublist3r">Sublist3r</a> (很全面,需配置好)</p>
-<h2 id="三、IP段的收集"><a href="#三、IP段的收集" class="headerlink" title="三、IP段的收集"></a>三、IP段的收集</h2><p>通过whois和子域名查询就可以基本得到IP段了。</p>
-<h2 id="四、查找真实IP-非CDN的IP"><a href="#四、查找真实IP-非CDN的IP" class="headerlink" title="四、查找真实IP(非CDN的IP)"></a>四、查找真实IP(非CDN的IP)</h2><p>①ping、nslookup（常规，没有绕过CDN）</p>
-<p>②DNS历史解析记录：</p>
-<p><a target="_blank" rel="noopener" href="https://viewdns.info/iphistory/">iphistory（好用）</a>  </p>
-<p><a target="_blank" rel="noopener" href="https://site.ip138.com/">域名查询</a> </p>
-<p>③查找子域名(有时主站做了CDN而C段子域名未加入CDN)</p>
-<p>④网站邮件头信息</p>
-<p>(比如说，邮箱注册，邮箱找回密码、RSS 邮件订阅等功能场景，通过网站给自己发送邮件，从而让目标主动暴露他们的真实的 IP，查看邮件头信息，获取到网站的真实 IP。)</p>
-<p>⑤网络空间安全引擎搜索(钟馗之眼、fofa)</p>
-<p>⑥利用 SSL 证书寻找真实 IP(SSL&#x2F;TLS 证书通常包含域名、子域名和电子邮件地址)</p>
-<p><a target="_blank" rel="noopener" href="https://crt.sh/">crt.sh</a></p>
-<p><a target="_blank" rel="noopener" href="https://censys.io/">censys.io</a></p>
-<p>⑦国外主机解析域名</p>
-<p>(大部分 CDN 厂商因为各种原因只做了国内的线路，而针对国外的线路可能几乎没有，此时我们使用国外的 DNS 查询，很可能获取到真实 IP。)</p>
-<p><a target="_blank" rel="noopener" href="http://host-tracker.com/">host-tracker</a></p>
-<p>⑧扫描全网</p>
-<p>(通过 Zmap、masscan 等工具对整个互联网发起扫描，针对扫描结果进行关键字查找，获取网站真实 IP)<br>Zmap(下载)和masscan(自带)在kali都有了。</p>
-<p>⑨配置不当导致可绕过CDN。</p>
-<p>案例 1：为了方便用户访问，我们常常将 <a target="_blank" rel="noopener" href="http://www.test.com/">www.test.com</a> 和 test.com 解析到同一个站点，而CDN 只配置了 <a target="_blank" rel="noopener" href="http://www.test.com,通过访问/">www.test.com，通过访问</a> test.com，就可以绕过 CDN 了。(百度就是)</p>
-<p>案例 2：站点同时支持 http 和 https 访问，CDN 只配置 https 协议，那么这时访问 http 就可以轻易绕过。</p>
-<h2 id="五、端口扫描"><a href="#五、端口扫描" class="headerlink" title="五、端口扫描"></a>五、端口扫描</h2><p>21 &gt;&gt; FTP</p>
-<p>22 &gt;&gt; SSH</p>
-<p>23 &gt;&gt; Telnet</p>
-<p>53 &gt;&gt; DNS</p>
-<p>80 &gt;&gt; HTTP</p>
-<p>110 &gt;&gt; POP3</p>
-<p>443 &gt;&gt; HTTPS</p>
-<p>445 &gt;&gt; SMB (ServerMessage Block) 通信协议</p>
-<p>1080 &gt;&gt; socket</p>
-<p>1433 &gt;&gt; mssql（默认安装时留下的空口令SA用户，可以让攻 击者为所欲为）</p>
-<p>3306 &gt;&gt; Mysql</p>
-<p>… …</p>
-<p>3389 &gt;&gt;Windows远程连接&#x2F;RDP</p>
-<p>6379 &gt;&gt;redis（Remote Dictionary Server )，即远程字典服务</p>
-<p>8080 &gt;&gt;Tomcat&#x2F;Jboss</p>
-<p>9090 &gt;&gt;WebSphere 等</p>
-<p>常用工具：</p>
-<p>nmap    (kali自带)</p>
-<p>nbtscan  (kali自带)</p>
-<p>telnet    kali自带 远程登录（q 退出）</p>
-<p>portscan ？</p>
-<h2 id="六、网站架构探测"><a href="#六、网站架构探测" class="headerlink" title="六、网站架构探测"></a>六、网站架构探测</h2><p>探测目标站点的网站架构，比如：操作系统，中间件，脚本语言，数据库，服务器，web容器等等。</p>
-<p>服务器类型：服务器平台、版本等</p>
-<p>网站容器：   搭建网站的服务组件，例如: iis、Apache、nginx、tomcat 等</p>
-<p>脚本类型：   ASP、PHP、JSP、aspx 等</p>
-<p>数据库类型：access、sqlserver、mysql、oracle、postgresql 等</p>
-<p>①CMS 指纹识别(whatweb【kali有,也有在线网站】、Webrobot 工具)</p>
-<p>②谷歌 hacker（Google搜索语法）</p>
-<p>③Firefox插件Wappalyzer</p>
-<h2 id="七、敏感文件、敏感目录探测"><a href="#七、敏感文件、敏感目录探测" class="headerlink" title="七、敏感文件、敏感目录探测"></a>七、敏感文件、敏感目录探测</h2><p>通常我们所说的<strong>敏感文件、敏感目录</strong>大概有以下几种：</p>
-<ul>
-<li>Git</li>
-<li>hg&#x2F;Mercurial</li>
-<li>svn&#x2F;Subversion</li>
-<li>bzr&#x2F;Bazaar</li>
-<li>Cvs</li>
-<li>WEB-INF 泄露</li>
-<li>备份文件泄露、配置文件泄露</li>
-</ul>
-<p>敏感文件、敏感目录挖掘一般都是靠工具、脚本来找</p>
-<p><strong>收集方向：</strong></p>
-<p>robots.txt、后台目录、安装包、上传目录、mysql 管理接口、安装页面、phpinfo、编辑器</p>
-<p><strong>常用工具：</strong></p>
-<p>字典爆破 &gt;&gt; 御剑、dirbuster(kali自带)、dirb(kali自带，好用)、wwwscan、<br>IIS_shortname_Scanner等</p>
-<p>蜘蛛爬行 &gt;&gt; 爬行菜刀、webrobot，burpsuite 等</p>
-<p><strong>后台查找：</strong></p>
-<ol>
-<li>弱口令默认后台：admin，admin&#x2F;login.asp，manage，login.asp 等等常见后台</li>
-<li>查看网页的链接：一般来说，网站的主页有管理登陆类似的东西，有些可能被管理员删掉</li>
-<li>查看网站图片的属性</li>
-<li>查看网站使用的管理系统，从而确定后台</li>
-<li>用工具查找：wwwscan，intellitamper，御剑</li>
-<li>robots.txt 的帮助：robots.txt 文件告诉蜘蛛程序在服务器上什么样的文件可以被查看</li>
-<li>GoogleHacker</li>
-<li>查看网站使用的编辑器是否有默认后台</li>
-<li>短文件利用</li>
-<li>sqlmap –sql-shell load_file(‘d:&#x2F;wwroot&#x2F;index.php’);</li>
-</ol>
-<h2 id="八、目标域名邮箱收集"><a href="#八、目标域名邮箱收集" class="headerlink" title="八、目标域名邮箱收集"></a>八、目标域名邮箱收集</h2><p>一定要养成收集站点邮箱账号的习惯（因为好多官方后台都是用内部邮箱账号登录的，指不定哪天你就得到一个进后台的机会）。</p>
-<ul>
-<li>通过说明文档以及网站页面收集，或者网站发表者以及留言板信息处收集账号</li>
-<li>通过 teemo，metago，burpusit，awvs，netspker 或者 google 语法收集</li>
-<li>搜索相关 QQ 群收集相关企业员工的社交账号 (用途：可用来进行爆破或者弱口令登录以及撞库攻击。)</li>
-</ul>
-<h2 id="九、WAF-探测"><a href="#九、WAF-探测" class="headerlink" title="九、WAF 探测"></a>九、WAF 探测</h2><p>Waf 也叫 Web 应用防火墙，是通过执行一系列针对 HTTP&#x2F;HTTPS 的安全策略来专门为 Web 应用提供保护的一款产品。</p>
-<p>常用的两种方式：</p>
-<p>1）手工（提交恶意数据，简单粗暴）</p>
-<p>2）Kali 工具（WAFW00F (wafw零零f)、Nmap）</p>
-<h2 id="十、旁站、C-段"><a href="#十、旁站、C-段" class="headerlink" title="十、旁站、C 段"></a>十、旁站、C 段</h2><p>旁站：是和目标网站在同一台服务器上的其它的网站。</p>
-<p>C 段：是和目标服务器 ip 处在同一个 C 段的其它服务器。</p>
-<p><strong>常用工具：</strong></p>
-<p>web &gt;&gt; k8 旁站、御剑 1.5</p>
-<p>端口 &gt;&gt; portscan</p>
+    <p>此程序演示两种字符串模式匹配算法的实现，包括BF算法和KMP算法及KMP算法的优化。<span id="more"></span></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * 此程序演示了两种字符串模式匹配算法的实现，包括：</span><br><span class="line"> * 1）普通的模式匹配算法，即BF(Brute Force)算法；</span><br><span class="line"> * 2）KMP算法</span><br><span class="line"> *  1.KMP算法之求next数组；</span><br><span class="line"> *  2.KMP算法的优化之求nextval数组；</span><br><span class="line"> *  3.KMP算法的模式匹配算法实现。</span><br><span class="line">*/</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line"></span><br><span class="line">/**********************************************************************/</span><br><span class="line">//----------------------------BF暴力匹配算法---------------------------//</span><br><span class="line">/**********************************************************************/</span><br><span class="line">// 采用BF算法，查找在源字符串S 中 目标模式串T 出现的位置，字符串的起始位置【从0开始】（与王道书上不同）。</span><br><span class="line">// 只要在源字符串S 中找到了第一个目标模式串T，函数就返回。</span><br><span class="line">// 成功返回模式串T 在源字符串S 中第一次出现的数组下标，失败返回-1。</span><br><span class="line">int index_bf(char S[],char T[])</span><br><span class="line">// int index_bf(char *S,char *T)</span><br><span class="line">&#123;</span><br><span class="line">  if ( (S==0) || (T==0) ) return -1;  // 判断空指针。</span><br><span class="line"></span><br><span class="line">  // 源字符串S和模式串T都从数组下标0开始。</span><br><span class="line">  int i=0,j=0;  // 循环从0开始。</span><br><span class="line">  int slen=strlen(S),tlen=strlen(T);</span><br><span class="line">  while ( (i&lt;slen) &amp;&amp; (j&lt;tlen) )</span><br><span class="line">  &#123;</span><br><span class="line">    if (S[i] == T[j]) </span><br><span class="line">    &#123;</span><br><span class="line">      i++; j++;  // 继续比较后面的字符。</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">      i=i-j+1; j=0; // 目标串和模式串的指针都回溯。</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  // 匹配成功。</span><br><span class="line">  if (j==tlen) return i-tlen;</span><br><span class="line">  else return -1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/**********************************************************************/</span><br><span class="line">//------------------------KMP算法之求next数组--------------------------//</span><br><span class="line">/**********************************************************************/</span><br><span class="line">// 根据模式串T，计算next数组，字符串的起始位置从0开始。</span><br><span class="line">// void getnext(char *T,int *next)</span><br><span class="line">// 方法一：前后缀和部分匹配值：</span><br><span class="line">void getnext(char T[],int next[])</span><br><span class="line">&#123;</span><br><span class="line">  if ( (T==0) || (next==0) ) return;  // 判断空指针。</span><br><span class="line">  int tlen=strlen(T);  // 模式串的长度。</span><br><span class="line"></span><br><span class="line">  // 如果模式串的长度小于3，无需计算next数组，直接返回。</span><br><span class="line">  // 起始位置从0开始的字符串的next数组的第0位永远为-1，第1位永远为0。</span><br><span class="line">  if (tlen==0) return;</span><br><span class="line">  if (tlen==1)&#123; next[0]=-1; return; &#125;</span><br><span class="line">  if (tlen==2)&#123; next[0]=-1; next[1]=0; return; &#125;</span><br><span class="line"></span><br><span class="line">  next[0]=-1;  // 位置0直接填入-1。</span><br><span class="line">  next[1]=0;   // 位置1直接填入0。</span><br><span class="line"></span><br><span class="line">  // 如果想调试本函数，放开// xxx即可。</span><br><span class="line">  int j;</span><br><span class="line">  // 循环从2开始，位置0和1不必计算。</span><br><span class="line">  for (j=2;j&lt;tlen;j++)</span><br><span class="line">  &#123;</span><br><span class="line">    // 显示子串。</span><br><span class="line">    // xxx char p0[tlen]; memset(p0,0,sizeof(p0));</span><br><span class="line">    // xxx strncpy(p0,T,j);  printf(&quot;p0=%s  &quot;,p0);</span><br><span class="line"></span><br><span class="line">    int maxlen=0;  // 最长相等前后缀长度。</span><br><span class="line">    // 用一个循环，得到全部的前缀和后缀，并判断最长相等前后缀。</span><br><span class="line">    int i=1;</span><br><span class="line">    for (i=1; i&lt;j; i++)</span><br><span class="line">    &#123; </span><br><span class="line">      char p1[tlen], p2[tlen]; </span><br><span class="line">      memset(p1,0,sizeof(p1));</span><br><span class="line">      memset(p2,0,sizeof(p2));</span><br><span class="line">      //strncpy(目标数组，指定数组的开始位置，n个字节长度)：将指定长度的字符串复制到字符数组中</span><br><span class="line">      strncpy(p1,T,i);       // 取前缀。</span><br><span class="line">      strncpy(p2,T+j-i,i);   // 取后缀。</span><br><span class="line">      // xxx printf(&quot;%s %s    &quot;,p1,p2);</span><br><span class="line">      // 判断前后缀是否相同，相同就记下i的值。</span><br><span class="line">      if (strcmp(p1,p2)==0) maxlen=i;</span><br><span class="line">    &#125;</span><br><span class="line">    // xxx printf(&quot; maxlen=%d\n&quot;,maxlen);  </span><br><span class="line">    next[i]=maxlen;</span><br><span class="line">  &#125;</span><br><span class="line">  // xxx printf(&quot;next &quot;); </span><br><span class="line">  // xxx int kk;</span><br><span class="line">  // xxx for(kk=0;kk&lt;strlen(T);kk++) </span><br><span class="line">  // xxx   printf(&quot;%d &quot;,next[kk]);</span><br><span class="line">  // xxx printf(&quot;\n&quot;);</span><br><span class="line">  return ;</span><br><span class="line">&#125;</span><br><span class="line">// // 方法二：</span><br><span class="line">// void getnext(char T[],int next[])</span><br><span class="line">// &#123;</span><br><span class="line">//   if ( (T==0) || (next==0) ) return;  // 判断空指针。</span><br><span class="line">//   int tlen=strlen(T);  // 模式串的长度。</span><br><span class="line">//   int i=0,j=-1;</span><br><span class="line">//   next[0]=-1;</span><br><span class="line">//   while(i&lt;tlen)</span><br><span class="line">//   &#123;</span><br><span class="line">//     if(j==-1 || T[i]==T[j])</span><br><span class="line">//     &#123;</span><br><span class="line">//         ++i; ++j;</span><br><span class="line">//         next[i] = j;</span><br><span class="line">//     &#125;</span><br><span class="line">//     else j = next[j];</span><br><span class="line">//   &#125;</span><br><span class="line">//   return ;</span><br><span class="line">// &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/**********************************************************************/</span><br><span class="line">//-----------------------KMP算法之求nextval数组------------------------//</span><br><span class="line">/**********************************************************************/</span><br><span class="line">// 根据模式串T和next数组计算nextval数组，字符串的起始位置从0开始。</span><br><span class="line">// void getnextval(char *T,int *next,int *nextval)</span><br><span class="line">void getnextval(char T[],int next[],int nextval[])</span><br><span class="line">&#123;</span><br><span class="line">  if( T==0 || next==0 || nextval==0 ) return;  // 判断空指针。</span><br><span class="line"></span><br><span class="line">  int tlen=strlen(T);  // 模式串的长度。  </span><br><span class="line">  nextval[0]=-1;   // 位置0直接填入-1。</span><br><span class="line">  int j;</span><br><span class="line">  // 从第1个位置开始扫描。</span><br><span class="line">  for (j=1; j&lt;tlen; j++)</span><br><span class="line">  &#123;</span><br><span class="line">    if (T[next[j]] == T[j]) </span><br><span class="line">      nextval[j] = nextval[next[j]];</span><br><span class="line">    else</span><br><span class="line">      nextval[j] = next[j];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**********************************************************************/</span><br><span class="line">//-------------------------KMP算法之模式匹配---------------------------//</span><br><span class="line">/**********************************************************************/</span><br><span class="line">// 采用kmp算法，查找在源字符串S中模式串T出现的位置，字符串的起始位置从0开始。</span><br><span class="line">// 只要在源字符串S中找到了第一个模式串T，函数就返回。</span><br><span class="line">// 成功返回模式串T在源字符串S中第一次出现的数组下标，失败返回-1。</span><br><span class="line">// int index_kmp(char *S,char *T)</span><br><span class="line">int index_kmp(char S[],char T[])</span><br><span class="line">&#123;</span><br><span class="line">  if ( (S==0) || (T==0) ) return -1;  // 判断空指针。</span><br><span class="line"></span><br><span class="line">  // 源字符串S和模式串T都从数组下标0开始。</span><br><span class="line">  int i=0,j=0;  </span><br><span class="line">  int slen=strlen(S),tlen=strlen(T);</span><br><span class="line">  </span><br><span class="line">  // 获取next数组。</span><br><span class="line">  int next[tlen]; </span><br><span class="line">  getnext(T,next);</span><br><span class="line"></span><br><span class="line">  // 根据模式串T和next数组计算nextval数组，字符串的起始位置【从0开始】。</span><br><span class="line">  int nextval[tlen]; </span><br><span class="line">  getnextval(T,next,nextval);</span><br><span class="line"></span><br><span class="line">  // 模式匹配：</span><br><span class="line">  while( i&lt;slen &amp;&amp; j&lt;tlen)</span><br><span class="line">  &#123;</span><br><span class="line">    if( j==-1 || S[i] == T[j] )</span><br><span class="line">    &#123;</span><br><span class="line">      i++; j++;  // 继续比较后面的字符。</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">      // j=next[j]; // 根据next数组模式串指针回溯。</span><br><span class="line">      j=nextval[j]; // 根据nextval数组模式串指针回溯。</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  // 匹配成功。</span><br><span class="line">  if (j==tlen) </span><br><span class="line">    return i-tlen;</span><br><span class="line">  else</span><br><span class="line">    return -1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/**********************************************************************/</span><br><span class="line">//------------------------------主函数--------------------------------//</span><br><span class="line">/**********************************************************************/</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">  //////////////////////////////////</span><br><span class="line">  // 获取模式串的next数组，字符串的位置从0开始。</span><br><span class="line">  // 仿照王道案例：T：abaabc，next:-1 0 0 1 1 2。</span><br><span class="line">  char tmp[100];</span><br><span class="line">  memset(tmp,0,sizeof(tmp));</span><br><span class="line">  strcpy(tmp,&quot;abaabc&quot;);</span><br><span class="line">  int next[100];</span><br><span class="line">  getnext(tmp,next);</span><br><span class="line"></span><br><span class="line">  printf(&quot;next    &quot;); </span><br><span class="line">  for(int kk=0; kk&lt;strlen(tmp); kk++) </span><br><span class="line">    printf(&quot;%d &quot;,next[kk]); </span><br><span class="line">  printf(&quot;\n&quot;);</span><br><span class="line">  //////////////////////////////////</span><br><span class="line"></span><br><span class="line">  //////////////////////////////////</span><br><span class="line">  // 根据模式串T和next数组计算nextval数组，字符串的起始位置从0开始。</span><br><span class="line">  // 仿照王道案例：T：abaabc，next:-1 0 0 1 1 2，nextval:-1 0 -1 1 0 2。</span><br><span class="line">  int nextval[100];</span><br><span class="line">  getnextval(tmp,next,nextval);</span><br><span class="line"></span><br><span class="line">  printf(&quot;nextval &quot;); </span><br><span class="line">  for(int ll=0; ll&lt;strlen(tmp); ll++) </span><br><span class="line">    printf(&quot;%d &quot;,nextval[ll]); </span><br><span class="line">  printf(&quot;\n&quot;);</span><br><span class="line">  //////////////////////////////////</span><br><span class="line"></span><br><span class="line">  //////////////////////////////////</span><br><span class="line">  // 判断模式串和目标串是否匹配。</span><br><span class="line">  char S[100]; memset(S,0,sizeof(S));</span><br><span class="line">  char T[100]; memset(T,0,sizeof(T));</span><br><span class="line">  strcpy(S,&quot;aabaabcbcabaabc&quot;); </span><br><span class="line">  strcpy(T,&quot;abaabc&quot;);</span><br><span class="line">  printf(&quot;index_bf  = %d\n&quot;, index_bf(S,T));</span><br><span class="line">  printf(&quot;index_kmp = %d\n&quot;,index_kmp(S,T));</span><br><span class="line">  //////////////////////////////////</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
     
 
@@ -363,7 +262,7 @@
    
    <br>
    <strong>本文链接：</strong>
-   <a rel="license" href="https://kur08a.github.io/2022/03/27/fast-info-gather/">https://kur08a.github.io/2022/03/27/fast-info-gather/</a>
+   <a rel="license" href="https://kur08a.github.io/2022/07/14/4-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95%E7%9A%84%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/">https://kur08a.github.io/2022/07/14/4-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95%E7%9A%84%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/</a>
    <br>
    <strong>版权声明：</strong>
    本作品采用
@@ -421,7 +320,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">penetration</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
         		</li>
       		
 		</ul>
@@ -477,7 +376,7 @@
   <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
   <p>扫一扫，分享到微信</p>
   <div class="wx-qrcode">
-    <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://kur08a.github.io/2022/03/27/fast-info-gather/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://kur08a.github.io/2022/07/14/4-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95%E7%9A%84%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0/" alt="微信分享二维码">
   </div>
 </div>
 
@@ -492,18 +391,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2022/03/27/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4(%E6%B5%93%E7%BC%A9%E7%89%88)/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Linux常用命令(浓缩版)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2022/03/26/SQLI%E7%9A%84%E7%BB%95%E8%BF%87%E5%A7%BF%E5%8A%BF/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">SQLI的绕过姿势</div>
+    <a href="/2022/07/10/3-10-%E9%A1%BA%E5%BA%8F%E6%A0%88%E5%AE%9E%E7%8E%B0%E4%B8%AD%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%BD%AC%E5%90%8E%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">3-10-顺序栈实现中缀表达式转后缀表达式</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -530,7 +420,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81whois%E4%BF%A1%E6%81%AF"><span class="toc-number">1.</span> <span class="toc-text">一、whois信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AD%90%E5%9F%9F%E5%90%8D"><span class="toc-number">2.</span> <span class="toc-text">二、子域名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81IP%E6%AE%B5%E7%9A%84%E6%94%B6%E9%9B%86"><span class="toc-number">3.</span> <span class="toc-text">三、IP段的收集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%9F%A5%E6%89%BE%E7%9C%9F%E5%AE%9EIP-%E9%9D%9ECDN%E7%9A%84IP"><span class="toc-number">4.</span> <span class="toc-text">四、查找真实IP(非CDN的IP)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F"><span class="toc-number">5.</span> <span class="toc-text">五、端口扫描</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E6%8E%A2%E6%B5%8B"><span class="toc-number">6.</span> <span class="toc-text">六、网站架构探测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E6%95%8F%E6%84%9F%E6%96%87%E4%BB%B6%E3%80%81%E6%95%8F%E6%84%9F%E7%9B%AE%E5%BD%95%E6%8E%A2%E6%B5%8B"><span class="toc-number">7.</span> <span class="toc-text">七、敏感文件、敏感目录探测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E7%9B%AE%E6%A0%87%E5%9F%9F%E5%90%8D%E9%82%AE%E7%AE%B1%E6%94%B6%E9%9B%86"><span class="toc-number">8.</span> <span class="toc-text">八、目标域名邮箱收集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81WAF-%E6%8E%A2%E6%B5%8B"><span class="toc-number">9.</span> <span class="toc-text">九、WAF 探测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E3%80%81%E6%97%81%E7%AB%99%E3%80%81C-%E6%AE%B5"><span class="toc-number">10.</span> <span class="toc-text">十、旁站、C 段</span></a></li></ol>
+                    目录，不存在的<^-^>
                     </div>
                 </span>
             </div>
@@ -568,7 +458,7 @@ if(true){
   	repo: 'myhexocomments',
   	owner: 'kur08a',
   	admin: ['kur08a'],
-  	id: 'Sun Mar 27 2022 14:49:40 GMT+0800',
+  	id: 'Thu Jul 14 2022 11:25:04 GMT+0800',
   	distractionFreeMode: 'true'
 })
 gitalk.render('gitalk-container') 
